@@ -1,0 +1,23 @@
+# General
+node_modules/
+.env
+dist/
+.vscode/
+.DS_Store
+
+# Frontend
+frontend/node_modules/
+frontend/.env
+frontend/dist/
+
+# Backend
+backend/node_modules/
+backend/.env
+backend/uploads/
+
+# Dashboard
+dashboard/node_modules/
+dashboard/.env
+dashboard/output.xml
+dashboard/log.html
+dashboard/report.html

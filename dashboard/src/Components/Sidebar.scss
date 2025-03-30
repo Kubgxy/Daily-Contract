@@ -1,0 +1,35 @@
+.sidebar {
+  width: 250px;
+  background-color: #f5f7fa;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease, width 0.3s ease;
+  z-index: 999;
+  padding-left: 5px;
+  padding-top: 20px; /* เพิ่มระยะห่างสำหรับ hamburger */
+}
+.menu-item:hover {
+  background-color: #00796b;
+  color: white;
+}
+
+.menu-item {
+  padding: 15px;
+  color: #4a4a4a;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ลบขีดเส้นใต้จากลิงก์ */
+.link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nested-menu-item {
+  padding-left: 40px; // เพิ่มระยะซ้าย
+}

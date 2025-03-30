@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* index.css */
+
+html,
+body {
+    height: 100%;
+    /* ให้แน่ใจว่าพื้นหลังครอบคลุมทั้งหน้าจอ */
+    margin: 0;
+    /* ลบระยะขอบเริ่มต้น */
+    padding: 0;
+    /* ลบ Padding เริ่มต้น */
+    background: #e9e9e9;
+    /* พื้นหลังแบบไล่สี */
+    font-family: 'Arial', sans-serif;
+    /* ตั้งค่า font เริ่มต้น (ถ้าต้องการ) */
+}
+
+#root {
+    min-height: 100%;
+    /* ทำให้ React Root Container ครอบคลุมพื้นที่ทั้งหมด */
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ตกแต่ง scrollbar ใน Webkit Browsers */
+
+.scrollbar-custom::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.scrollbar-custom::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+}
+
+
+/* ตกแต่ง scrollbar ใน Firefox */
+
+.scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}

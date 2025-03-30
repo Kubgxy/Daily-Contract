@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.2 on win32)" generated="2025-03-27T23:05:55.109791" rpa="false" schemaversion="5">
+<suite id="s1" name="FrontEndTest" source="D:\SPU\Dail-Tailwinds-SourceCode\Daily-Tailwinds-cookies-ver2\TestFunction\FrontEndTest.robot">
+<test id="s1-t1" name="Test Cancel Then Form Reset" line="521">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/Screenshots/WorkInfo/Negative/CancelReset</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-03-27T23:05:55.410104" elapsed="0.000648"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:55.411639" level="INFO">Opening browser 'chrome' to base url 'http://localhost:5173/'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-03-27T23:05:55.411294" elapsed="1.543468"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-03-27T23:05:56.975932" elapsed="0.482441"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-27T23:05:57.459849" elapsed="0.058707"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:57.785357" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/WorkInfo/Negative/CancelReset/CancelReset1.png"&gt;&lt;img src="Screenshots/WorkInfo/Negative/CancelReset/CancelReset1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-03-27T23:05:57.518903" elapsed="0.266638"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:57.786101" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:57.785790" elapsed="0.162363"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>CancelReset1.png</arg>
+<status status="PASS" start="2025-03-27T23:05:57.459154" elapsed="0.489217"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:57.949129" level="INFO">Typing text 'Admin' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>Admin</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:57.948794" elapsed="0.191031"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:58.140612" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-03-27T23:05:58.186098" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>2209Tnkoak</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:58.140288" elapsed="0.123957"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-27T23:05:58.265510" elapsed="0.020180"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:58.645881" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/WorkInfo/Negative/CancelReset/CancelReset2.png"&gt;&lt;img src="Screenshots/WorkInfo/Negative/CancelReset/CancelReset2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-03-27T23:05:58.285941" elapsed="0.360094"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:58.646559" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:58.646270" elapsed="0.090215"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>CancelReset2.png</arg>
+<status status="PASS" start="2025-03-27T23:05:58.264865" elapsed="0.471839"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-27T23:05:58.740107" elapsed="0.256472"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:59.311523" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/WorkInfo/Negative/CancelReset/CancelReset3.png"&gt;&lt;img src="Screenshots/WorkInfo/Negative/CancelReset/CancelReset3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-03-27T23:05:58.996860" elapsed="0.314928"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:59.312552" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:59.312158" elapsed="0.271717"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>CancelReset3.png</arg>
+<status status="PASS" start="2025-03-27T23:05:58.739656" elapsed="0.844443"/>
+</kw>
+<kw name="Select From List By Index" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:59.585136" level="INFO">Selecting options from selection list 'xpath=//select' by index 2.</msg>
+<arg>xpath=//select</arg>
+<arg>2</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<status status="PASS" start="2025-03-27T23:05:59.584677" elapsed="0.195148"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:59.780788" level="INFO">Typing text '5' into text field 'xpath=//input[@type='number']'.</msg>
+<arg>xpath=//input[@type='number']</arg>
+<arg>5</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:59.780469" elapsed="0.095402"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:05:59.876749" level="INFO">Typing text 'บันทึกก่อนยกเลิก' into text field 'xpath=//textarea'.</msg>
+<arg>xpath=//textarea</arg>
+<arg>บันทึกก่อนยกเลิก</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:05:59.876424" elapsed="0.156747"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-27T23:06:00.035510" elapsed="0.023618"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:06:00.229841" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/WorkInfo/Negative/CancelReset/CancelReset4.png"&gt;&lt;img src="Screenshots/WorkInfo/Negative/CancelReset/CancelReset4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-03-27T23:06:00.059443" elapsed="0.170683"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:06:00.230694" level="INFO">Clicking element 'xpath=//button[contains(text(), 'ยกเลิก')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:06:00.230369" elapsed="0.068934"/>
+</kw>
+<arg>xpath=//button[contains(text(), 'ยกเลิก')]</arg>
+<arg>CancelReset4.png</arg>
+<status status="PASS" start="2025-03-27T23:06:00.034140" elapsed="0.265328"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-03-27T23:06:01.300627" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-03-27T23:06:00.299855" elapsed="1.001007"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-03-27T23:06:01.302094" elapsed="0.014059"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:06:01.436227" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/WorkInfo/Negative/CancelReset/CancelReset5.png"&gt;&lt;img src="Screenshots/WorkInfo/Negative/CancelReset/CancelReset5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-03-27T23:06:01.316397" elapsed="0.120010"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:06:01.437036" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-03-27T23:06:01.436671" elapsed="0.150267"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>CancelReset5.png</arg>
+<status status="PASS" start="2025-03-27T23:06:01.301574" elapsed="0.285520"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-03-27T23:06:01.846377" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Screenshots/WorkInfo/Negative/CancelReset/CancelReset6.png"&gt;&lt;img src="Screenshots/WorkInfo/Negative/CancelReset/CancelReset6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>CancelReset6.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-03-27T23:06:01.587537" elapsed="0.259263"/>
+</kw>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-03-27T23:06:01.847764" elapsed="2.191413"/>
+</kw>
+<doc>ทดสอบกรณีกดยกเลิกแล้วกลับเข้ามาใหม่ ข้อมูลควรถูก reset ทั้งหมด</doc>
+<tag>WorkInfoNegativeCancelReset</tag>
+<status status="PASS" start="2025-03-27T23:05:55.407601" elapsed="8.632300"/>
+</test>
+<doc>Test FrontEnd Function For Web Daily Contract</doc>
+<status status="PASS" start="2025-03-27T23:05:55.111293" elapsed="8.930344"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">WorkInfoNegativeCancelReset</stat>
+</tag>
+<suite>
+<stat name="FrontEndTest" id="s1" pass="1" fail="0" skip="0">FrontEndTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

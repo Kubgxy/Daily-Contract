@@ -1,0 +1,110 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #b0bdce;  /* เปลี่ยนเป็นสีพื้นหลังสีฟ้า */
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.login-form {
+  width: 700px;  /* ปรับขนาดฟอร์มตามที่ต้องการ */
+  height: 450px;
+  background: rgba(255, 255, 255, 0.8);  /* พื้นหลังโปร่งใส */
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);  /* เอฟเฟกต์กระจกฝ้า */
+  -webkit-backdrop-filter: blur(10px);  /* สำหรับ Safari */
+  border: 1px solid rgba(255, 255, 255, 0.3);  /* ขอบสีขาวโปร่งใส */
+  text-align: center;
+}
+
+.login-form h2 {
+  margin-bottom: 0.5rem;
+  font-size: 24px;
+  color: #202124;
+  font-weight: 500;
+  margin-top: 170px;
+}
+
+.login-form p {
+  color: #5f6368;
+  font-size: 14px;
+  margin-bottom: 2rem;
+}
+
+.login-form div {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.login-form label {
+  display: block;
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 0.5rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #202124;
+  transition: border 0.2s ease;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+  border-color: #1a73e8;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.login-form button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #1a73e8;  /* สีปุ่มเป็นสีฟ้า */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 1rem;
+}
+
+.login-form button:hover {
+  background-color: #1557b0;
+}
+
+.login-form button:active {
+  background-color: #174ea6;
+}
+
+/* สไตล์สำหรับไอคอนผู้ใช้ด้านบน */
+.user-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #1a73e8;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
