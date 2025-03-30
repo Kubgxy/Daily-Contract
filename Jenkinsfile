@@ -15,7 +15,7 @@ pipeline {
         stage('📦 Install Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         stage('🧪 Test Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'echo "Frontend test (optional)"'
+                    bat 'echo Frontend test (optional)'
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('📦 Install Backend') {
             steps {
                 dir('backend') {
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
         stage('🧪 Test Backend') {
             steps {
                 dir('backend') {
-                    sh 'echo "Backend test (optional)"'
+                    bat 'echo Backend test (optional)'
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
         stage('🤖 Robot Framework') {
             steps {
                 dir('dashboard') {
-                    sh 'robot Testcase.robot'
+                    bat 'robot Testcase.robot'
                 }
             }
         }
