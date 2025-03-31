@@ -6,6 +6,8 @@ services:
     container_name: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
     networks:
       - app-network
 
@@ -21,7 +23,8 @@ services:
     environment:
       MONGODB_URI: mongodb://mongo:27017/mydb?authSource=mydb
       SECRET_KEY: japaitarmhasecrettummai-secretyounii
-
+      EMAIL_USER: fog3kp@gmail.com
+      EMAIL_PASS: dpzzdqqknbgthibm
 
   frontend:
     build:
@@ -55,3 +58,5 @@ services:
 
 networks:
   app-network:
+volumes:
+  mongo_data:
