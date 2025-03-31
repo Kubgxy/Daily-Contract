@@ -28,6 +28,14 @@ pipeline {
             }
         }
 
+        stage('📁 Prepare Env for Frontend') {
+            steps {
+                dir('frontend') {
+                    bat 'copy .env.example .env'
+                }
+            }
+        }
+
         stage('🐳 Build Frontend Docker Image') {
             steps {
                 dir('frontend') {
@@ -48,6 +56,14 @@ pipeline {
             steps {
                 dir('dashboard') {
                     bat 'echo "No dashboard test yet"'
+                }
+            }
+        }
+
+        stage('📁 Prepare Env for Dashboard') {
+            steps {
+                dir('dashboard') {
+                    bat 'copy .env.example .env'
                 }
             }
         }
