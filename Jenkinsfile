@@ -116,6 +116,38 @@ pipeline {
                 }
             }
         }
+
+        stage('🛡️ Restore MongoDB (if missing)') {
+            steps {
+                script {
+                    def volumeExists = bat(
+                        script: 'docker volume ls --format "{{.Name}}" | findstr /C:"daily-contract-pipeline_mongo_data"',
+                        returnStatus: true
+                    ) == 0
+
+                    if (!volumeExists) {
+                        echo "🔁 MongoDB volume not found. Running mongorestore..."
+                        bat 'timeout /t 5 >nul'
+                        bat 'docker exec mongo mongorestore --drop --db=mydb /dump/mydb'
+                    } else {
+                        echo "✅ MongoDB volume already exists. Skipping restore."
+                    }
+                }
+            }
+        }
+
+        stage('📊 Run Frontend Test (Robot Framework)') {
+            steps {
+                dir('tests') {
+                    bat 'robot -d results FrontEndTest.robot'
+                }
+                publishHTML(target: [
+                    reportDir: 'tests/results',
+                    reportFiles: 'report.html,log.html',
+                    reportName: '🧪 Robot Test Report'
+                ])
+            }
+        }
     }
 
     post {
