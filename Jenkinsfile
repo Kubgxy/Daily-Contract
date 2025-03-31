@@ -47,7 +47,7 @@ pipeline {
         stage('🤖 Robot Framework') {
             steps {
                 dir('dashboard') {
-                    bat 'robot Testcase.robot'
+                    bat 'C:\\Users\\._kubgxy\\AppData\\Local\\Programs\\Python\\Python3x\\Scripts\\robot.bat Testcase.robot'
                 }
             }
         }
