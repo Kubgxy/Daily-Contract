@@ -107,6 +107,15 @@ pipeline {
                 }
             }
         }
+
+        stage('🚀 Run Docker Compose') {
+            steps {
+                dir('.') {
+                    bat 'docker-compose down || echo "No containers to stop"'
+                    bat 'docker-compose up -d --build'
+                }
+            }
+        }
     }
 
     post {
