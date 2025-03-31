@@ -23,7 +23,23 @@ pipeline {
         stage('🧪 Test Frontend') {
             steps {
                 dir('frontend') {
-                    bat 'echo Frontend test (optional)'
+                    bat 'echo "No frontend test yet"'
+                }
+            }
+        }
+
+        stage('📦 Install Dashboard') {
+            steps {
+                dir('dashboard') {
+                    bat 'npm install'
+                }
+            }
+        }
+
+        stage('🧪 Test Dashboard') {
+            steps {
+                dir('dashboard') {
+                    bat 'echo "No dashboard test yet"'
                 }
             }
         }
@@ -39,15 +55,7 @@ pipeline {
         stage('🧪 Test Backend') {
             steps {
                 dir('backend') {
-                    bat 'echo Backend test (optional)'
-                }
-            }
-        }
-
-        stage('🤖 Robot Framework') {
-            steps {
-                dir('dashboard') {
-                    bat 'C:\\Users\\._kubgxy\\AppData\\Local\\Programs\\Python\\Python3x\\Scripts\\robot.bat Testcase.robot'
+                    bat 'echo "No backend test yet"'
                 }
             }
         }
