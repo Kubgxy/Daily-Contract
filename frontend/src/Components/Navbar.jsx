@@ -20,7 +20,7 @@ export default function Navbar() {
     const fetchEmployeeData = async () => {
         try {
           const response = await axios.get(
-            `${baseURL.VITE_ENDPOINT}/api/auth/employees/me`,
+            `${baseURL}/api/auth/employees/me`,
             { withCredentials: true }
           );
           setEmployee(response.data);

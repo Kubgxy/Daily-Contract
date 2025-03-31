@@ -6,7 +6,8 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY . .
-COPY .env .
+
+# ❌ ไม่ copy .env โดยตรงอีกต่อไป
 
 RUN yarn build
 

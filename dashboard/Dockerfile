@@ -13,7 +13,5 @@ COPY . .
 
 RUN echo "VITE_ENDPOINT=$VITE_ENDPOINT" > .env.local
 
-ENV PORT=5174
-EXPOSE $PORT
-
+EXPOSE 5174
 CMD ["npm", "run", "dev"]

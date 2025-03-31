@@ -5,16 +5,15 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 
+# สำหรับ build-time variable (ถ้าจะใช้)
 ARG VITE_ENDPOINT
 ENV VITE_ENDPOINT=$VITE_ENDPOINT
 ENV NODE_ENV=development
 
 COPY . .
 
-# ให้ vite อ่าน .env ตอนรัน dev
+# สร้าง .env.local จาก ENV เพื่อให้ vite อ่านได้
 RUN echo "VITE_ENDPOINT=$VITE_ENDPOINT" > .env.local
 
-ENV PORT=5173
-EXPOSE $PORT
-
+EXPOSE 5173
 CMD ["npm", "run", "dev"]

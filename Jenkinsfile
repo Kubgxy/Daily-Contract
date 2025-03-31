@@ -92,6 +92,14 @@ pipeline {
             }
         }
 
+        stage('📁 Prepare Env for Backend') {
+            steps {
+                dir('backend') {
+                    bat 'copy .env.example .env'
+                }
+            }
+        }
+
         stage('🐳 Build Backend Docker Image') {
             steps {
                 dir('backend') {

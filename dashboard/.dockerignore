@@ -1,0 +1,9 @@
+# Dashboard
+node_modules
+.env
+.git
+.vscode
+README.md
+Dockerfile
+*.xml
+*.html
