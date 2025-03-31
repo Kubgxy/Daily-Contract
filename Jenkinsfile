@@ -28,6 +28,14 @@ pipeline {
             }
         }
 
+        stage('🐳 Build Frontend Docker Image') {
+            steps {
+                dir('frontend') {
+                    bat 'docker build -t daily-frontend:latest .'
+                }
+            }
+        }
+
         stage('📦 Install Dashboard') {
             steps {
                 dir('dashboard') {
@@ -44,6 +52,14 @@ pipeline {
             }
         }
 
+        stage('🐳 Build Dashboard Docker Image') {
+            steps {
+                dir('dashboard') {
+                    bat 'docker build -t daily-dashboard:latest .'
+                }
+            }
+        }
+
         stage('📦 Install Backend') {
             steps {
                 dir('backend') {
@@ -56,6 +72,14 @@ pipeline {
             steps {
                 dir('backend') {
                     bat 'echo "No backend test yet"'
+                }
+            }
+        }
+
+        stage('🐳 Build Backend Docker Image') {
+            steps {
+                dir('backend') {
+                    bat 'docker build -t daily-backend:latest .'
                 }
             }
         }
