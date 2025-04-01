@@ -10,22 +10,24 @@ ${BASE_URL}       http://localhost:5173
 
 *** Test Cases ***
 Test Login Employee
-    [Tags]        critical
-    Go To         ${BASE_URL}/login
-    Log           🔎 Checking Login Page...
-    Click And Capture    xpath=//input[@name="email"]    email_input.png
-    Input Text           xpath=//input[@name="email"]    test@email.com
-    Click And Capture    xpath=//input[@name="password"]    password_input.png
-    Input Password       xpath=//input[@name="password"]    123456
-    Click And Capture    xpath=//button[contains(text(), "เข้าสู่ระบบ")]    login_click.png
-    Wait Until Page Contains Element    xpath=//div[contains(text(), "ยินดีต้อนรับ")]    timeout=5s
-    Capture Page Screenshot    after_login.png
+    [Tags]    LoginEmployee
+    [Documentation]    Test Login For Employee
+    Open Browser    ${BASE_URL}    chrome
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    Login1.png
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    Login2.png
+    Click And Capture    xpath=/html/body/div/div/div/div[2]    Login3.png
 
 Test Function On ProfilePage
-    Go To         ${BASE_URL}/profile
-    Log           👤 เข้าหน้าโปรไฟล์
-    Wait Until Page Contains    แก้ไขโปรไฟล์
-    Capture Page Screenshot     profile.png
+    [Tags]    ProfilePage_Seenotification
+    [Documentation]    Test Function On ProfilePage
+    Open Browser    ${BASE_URL}    chrome
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    ProfilePage1.png
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240003
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    ProfilePage2.png
+    Click And Capture    xpath=/html/body/div/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/button    ProfilePage3.png
 
 *** Keywords ***
 Open Browser And Maximize
