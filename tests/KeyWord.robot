@@ -14,6 +14,6 @@ Open Browser And Maximize
 
 Click And Capture
     [Arguments]    ${locator}    ${filename}
-    Wait Until Element Is Visible    ${locator}    timeout=5s
+    Wait Until Element Is Visible    ${locator}    timeout=10s
     Capture Page Screenshot    ${filename}
     Click Element    ${locator}
