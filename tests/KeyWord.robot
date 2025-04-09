@@ -8,9 +8,12 @@ ${BASE_URL}    http://localhost:5173/
 
 *** Keywords ***
 Open Browser And Maximize
-    Open Browser    ${BASE_URL}    ${BROWSER}    options=--headless --no-sandbox --disable-dev-shm-usage --user-data-dir=/tmp/chrome-user-data
+    Open Browser    ${BASE_URL}    chrome
+    ...    options=--headless
+    ...    options=--no-sandbox
+    ...    options=--disable-dev-shm-usage
+    ...    options=--user-data-dir=/tmp/chrome-user-data
     Maximize Browser Window
-    Set Selenium Speed    0.2s
 
 Click And Capture
     [Arguments]    ${locator}    ${filename}
