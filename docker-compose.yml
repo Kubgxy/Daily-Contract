@@ -64,13 +64,13 @@ services:
     container_name: robot-tester
     user: root
     volumes:
-      - ./tests:/opt/robotframework/tests
-      - ./results:/opt/robotframework/reports
+    - ./tests:/opt/robotframework/tests
+    - ./results:/tmp/reports
     environment:
       ROBOT_OPTIONS: >
-        --outputdir /opt/robotframework/reports
+        --outputdir /tmp/reports
         --variable BROWSER:chrome
-        --variable SCREENSHOT_DIRECTORY:/opt/robotframework/reports/Screenshots
+        --variable SCREENSHOT_DIRECTORY:/tmp/reports/Screenshots
     depends_on:
       - frontend
     networks:
