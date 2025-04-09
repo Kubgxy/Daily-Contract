@@ -138,13 +138,13 @@ pipeline {
 
         stage('Build All Services') {
             steps {
-                sh 'docker-compose build'
+                bat 'docker-compose build'
             }
         }
 
         stage('Run Robot Tests') {
             steps {
-                sh 'docker-compose up --abort-on-container-exit robot'
+                bat 'docker-compose up --abort-on-container-exit robot'
             }
         }
 
