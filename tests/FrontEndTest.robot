@@ -8,7 +8,7 @@ Suite Teardown    Close Browser
 Test Login Employee
     [Tags]    LoginEmployee
     [Documentation]    Test Login For Employee
-    Set Screenshot Directory    ${EXECDIR}/results/results/Screenshots/Login
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Login
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    Login1.png

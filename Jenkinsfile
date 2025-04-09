@@ -135,10 +135,36 @@ pipeline {
                 }
             }
         }
+
+        stage('Build All Services') {
+            steps {
+                sh 'docker-compose build'
+            }
+        }
+
+        stage('Run Robot Tests') {
+            steps {
+                sh 'docker-compose up --abort-on-container-exit robot'
+            }
+        }
+
+        stage('Publish Robot Report') {
+            steps {
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'results',
+                    reportFiles: 'report.html',
+                    reportName: 'Robot Test Report'
+                ])
+            }
+        }
     }
+
     post {
         always {
-            echo '🏁 Pipeline Finished!'
+            archiveArtifacts artifacts: 'results/*.html', allowEmptyArchive: true
         }
     }
 }
