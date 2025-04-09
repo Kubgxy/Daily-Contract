@@ -148,6 +148,12 @@ pipeline {
             }
         }
 
+        stage('Copy Robot Test Results') {
+            steps {
+                bat 'docker cp robot-tester:/opt/robotframework/reports ./results'
+            }
+        }
+
         stage('Publish Robot Report') {
             steps {
                 publishHTML(target: [
