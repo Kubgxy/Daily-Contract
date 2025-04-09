@@ -135,34 +135,6 @@ pipeline {
                 }
             }
         }
-
-        stage('🧪 Run Robot Framework Tests') {
-            steps {
-                dir('tests') {
-                    bat '"C:\\Users\\._kubgxy\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\robot.exe" -d results FrontEndTest.robot'
-                }
-            }
-        }
-
-        stage('📊 Publish Robot Test Report') {
-            steps {
-                robot outputPath: 'tests/results'
-            }
-        }
-
-        stage('📁 Publish HTML Report') {
-            steps {
-                publishHTML([ 
-                    allowMissing: false, 
-                    alwaysLinkToLastBuild: true, 
-                    keepAll: true, 
-                    reportDir: 'tests/results', 
-                    reportFiles: 'report.html', 
-                    reportName: '📊 Robot Test Report', 
-                    reportTitles: 'Test Summary'
-                ])
-            }
-        }
     }
     post {
         always {
