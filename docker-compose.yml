@@ -62,6 +62,7 @@ services:
       context: .
       dockerfile: Dockerfile.robot
     container_name: robot-tester
+    user: root
     volumes:
       - ./tests:/opt/robotframework/tests
       - ./results:/opt/robotframework/reports
