@@ -7,4 +7,7 @@ RUN pip install --upgrade pip && \
 
 WORKDIR /opt/robotframework
 
+# ✅ เพิ่ม COPY tests เข้า image
+COPY ./tests ./tests
+
 ENTRYPOINT ["robot"]
