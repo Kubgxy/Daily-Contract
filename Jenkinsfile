@@ -136,41 +136,20 @@ pipeline {
             }
         }
 
-        stage('Build All Services') {
+        stage('Run Robot Framework') {
             steps {
-                bat 'docker-compose build'
-            }
-        }
-
-        stage('Run Robot Tests') {
-            steps {
-                bat 'docker-compose up --abort-on-container-exit robot'
-            }
-        }
-
-        stage('Copy Robot Test Results') {
-            steps {
-                bat 'docker cp robot-tester:/opt/robotframework/reports ./results'
-            }
-        }
-
-        stage('Publish Robot Report') {
-            steps {
-                publishHTML(target: [
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: 'results',
-                    reportFiles: 'report.html',
-                    reportName: 'Robot Test Report'
-                ])
+                bat '''
+                    set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+                    robot tests\\FrontEndTest.robot
+                '''
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'results/*.html', allowEmptyArchive: true
+            robot outputPath: 'results'
+            echo '🏁 Pipeline Finished!'
         }
     }
 }

@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 7.1.1 (Python 3.12.7 on linux)" name="Generator">
+<meta content="Robot Framework 7.2.2 (Python 3.13.2 on win32)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all">
 :root {
@@ -1328,7 +1328,7 @@ window.testdata = function () {
     var STATUSES = ['FAIL', 'PASS', 'SKIP', 'NOT RUN'];
     var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'ITERATION', 'IF',
                          'ELSE IF', 'ELSE', 'RETURN', 'VAR', 'TRY', 'EXCEPT', 'FINALLY',
-                         'WHILE', 'CONTINUE', 'BREAK', 'ERROR'];
+                         'WHILE', 'GROUP', 'CONTINUE', 'BREAK', 'ERROR'];
     function addElement(elem) {
         if (!elem.id)
             elem.id = uniqueId();
@@ -1887,22 +1887,22 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[0,0,1590,4],[],[[5,0,6,[7],[0,1553,1,8],[]],[9,0,10,[11],[0,1555,1,8],[]],[12,0,13,[14],[0,1557,4,8],[]],[15,0,16,[17],[0,1563,2,8],[]],[18,0,19,[20],[0,1566,3,8],[]],[21,0,22,[23],[0,1569,3,8],[]],[24,0,25,[26],[0,1573,4,8],[]],[27,0,28,[29],[0,1578,4,8],[]],[30,0,31,[32],[0,1584,4,8],[]]],[],[9,0,9,0]];
+window.output["suite"] = [1,2,3,0,[],[0,0,99441],[],[[4,0,5,[6],[1,30243,8877],[]],[7,0,8,[9],[1,39120,7422],[]],[10,0,11,[12],[0,46544,16162,13],[]],[14,0,15,[16],[0,62707,20285,17],[]],[18,0,19,[20,21],[0,82994,3,22],[]],[23,0,24,[20,25],[0,82998,3,22],[]],[26,0,27,[20,28],[0,83002,3,22],[]],[29,0,30,[20,31],[0,83006,3,22],[]],[32,0,33,[20,34],[0,83010,3,22],[]]],[],[9,2,7,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*FrontEndTest","*/opt/robotframework/tests/FrontEndTest.robot","*../tests/FrontEndTest.robot","eNpt09FumzAUBuB7nuJIlbpVqhrAgB16NbW93DQpvY+MOQ4oxI7sQ5u+/cySDSTMJf74ffzL7MaeEDzSeAYt+wHbOtmh9701vyy9OJSE7dtF4ZnCqxp+hjV5wDp88heBsQTqymp46Zw94S0IyIIn6agGvIRd2mDdSQ7D11MC8D0a8Iof79YO/oei/gN/W0egQxa0Fr35RlOQp4fp8/cO4eysCinXXUK+DruDus4wWCWnkWFjz7RxtrGknTzhp3XHTdObzc31PkwQtDmgAzca05vDI3h7O8urC3O4SUnvx1NYBOok/TtpJ30YXvoO26eHZEdSHclJhXVyl0J6KcOjtECVpRLuB3oezdHYT3N/oOfkLvsvipQXVboW+SxYm+eRDLYQQslyLYpZiCIrq7UoF4JxGRHVLDhvG7YWfBZFFY67FmIheIO4Ftu5sUawbRNpbFFqoxgTETK3KmSJjYqQfJmCDY+QuVchmizVETIXK1op8tgs5ZJsdaSVrFpcE6lFpPxs6pbrTFeKM121/Hrf99SFv6YN62JeV6xKFez3KlxoZMkfSpw7yQ==","*Test Login Employee","*<p>Test Login For Employee\x3c/p>","*LoginEmployee","eNpt011r2zAUBuB7/4oDhW6F0djxhxT3arS73Ci090EfR7GJIwXpuM3+/eQlmw2WL63Hr45e5Ffh0RKEsSeEgDSewYh+QN1mbxhC7+wvR88eBaH+cVF4pviqhZ9xTRywjZ/8RWAdgbqyFp477054CwJyEEh4agEvcRcdrT+JYfj9mAF8TQa84Me7c0P4rqj/wFfnCUzMAu0w2C80BQV6mD5/7xDO3qmYct0l5pu4O6jrDINTYhoZNu5MG++kI+PFCT+dP25kbzc314c4QdT2gB78aG1vD98guNtZXnycw09KhDCe4iJQJ+jfSTsR4vAidKgfH7I3EupIXihss7sc8ksdH2U4qiIXcD/Q02iP1n3a+wM9ZXfFf1HlrGrytdjOotTbbSKjXAiuRL0W1Sx4VdTNWtQLUTKREM0sGNOyXAs2i6qJx10LvhBMIq7Fbm5M8nInE40tSpWqLHmCzK1yUaNUCbJdpqBkCTL3yrkscpMgc7FcC75NzVIvyc4kWimaxTURhifKL6ZumSlMo1hpGs2u931PXfxrdFzn87oqm1zBfq/ihcYy+wOjOz5z","*Test Function On ProfilePage","*<p>Test Function On ProfilePage\x3c/p>","*ProfilePage_Seenotification","*Test Load WorkInfo Page","*<p>ทดสอบการโหลดหน้า Work Info ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน\x3c/p>","*WorkInfoLoadPage","*Test Show Task Options By Position","*<p>ทดสอบว่าการแสดงรายการงานใน dropdown ตรงกับตำแหน่งของผู้ใช้งาน\x3c/p>","*WorkInfoDropdown","*Test Submit Work Record Successfully","*<p>ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง พร้อมกดบันทึกสำเร็จ\x3c/p>","*WorkInfoSubmitPositive","*Test Submit Work With Note","*<p>ทดสอบการเพิ่มหมายเหตุและตรวจสอบว่าแสดงในประวัติได้ถูกต้อง\x3c/p>","*WorkInfoNoteSubmit","*Test Switch To Work History Tab","*<p>ทดสอบการกดสลับแท็บไปที่ “ประวัติการทำงาน” แล้วข้อมูลแสดงถูกต้อง\x3c/p>","*WorkInfoTabSwitchHistory","*Test Show Record Details In History","*<p>ทดสอบการกดปุ่ม “ดูรายละเอียด” ในประวัติแล้วข้อมูลแสดงถูกต้อง\x3c/p>","*WorkInfoHistoryDetails","*Test Show Tooltip Guidance","*<p>ทดสอบการแสดง Tooltip แนะนำเมื่อกดที่ไอคอน และสามารถปิด/เปิดได้\x3c/p>","*WorkInfoTooltipUI"]);
+window.output["strings"] = window.output["strings"].concat(["*","*FrontEndTest","*D:\\SPU\\Daily-Contract\\tests\\FrontEndTest.robot","*tests/FrontEndTest.robot","*Test Login Employee","*<p>Test Login For Employee\x3c/p>","*LoginEmployee","*Test Function On ProfilePage","*<p>Test Function On ProfilePage\x3c/p>","*ProfilePage_Seenotification","*Test Load WorkInfo Page","*<p>ทดสอบการโหลดหน้า Work Info ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน\x3c/p>","*WorkInfoLoadPage","*Element 'xpath=//*[@id=\"root\"]/div/div/div[1]/nav/div/div/div[2]/a[3]' not visible after 10 seconds.","*Test Show Task Options By Position","*<p>ทดสอบว่าการแสดงรายการงานใน dropdown ตรงกับตำแหน่งของผู้ใช้งาน\x3c/p>","*WorkInfoDropdown","*Execution terminated by signal","*Test Submit Work Record Successfully","*<p>ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง พร้อมกดบันทึกสำเร็จ\x3c/p>","*robot:exit","*WorkInfoSubmitPositive","*Test execution stopped due to a fatal error.","*Test Submit Work With Note","*<p>ทดสอบการเพิ่มหมายเหตุและตรวจสอบว่าแสดงในประวัติได้ถูกต้อง\x3c/p>","*WorkInfoNoteSubmit","*Test Switch To Work History Tab","*<p>ทดสอบการกดสลับแท็บไปที่ “ประวัติการทำงาน” แล้วข้อมูลแสดงถูกต้อง\x3c/p>","*WorkInfoTabSwitchHistory","*Test Show Record Details In History","*<p>ทดสอบการกดปุ่ม “ดูรายละเอียด” ในประวัติแล้วข้อมูลแสดงถูกต้อง\x3c/p>","*WorkInfoHistoryDetails","*Test Show Tooltip Guidance","*<p>ทดสอบการแสดง Tooltip แนะนำเมื่อกดที่ไอคอน และสามารถปิด/เปิดได้\x3c/p>","*WorkInfoTooltipUI"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:00","fail":9,"label":"All Tests","pass":0,"skip":0}],[{"elapsed":"00:00:00","fail":1,"label":"LoginEmployee","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"ProfilePage_Seenotification","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoDropdown","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoHistoryDetails","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoLoadPage","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoNoteSubmit","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoSubmitPositive","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoTabSwitchHistory","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoTooltipUI","pass":0,"skip":0}],[{"elapsed":"00:00:02","fail":9,"id":"s1","label":"FrontEndTest","name":"FrontEndTest","pass":0,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:53","fail":7,"label":"All Tests","pass":2,"skip":0}],[{"combined":"NOT robot:exit","elapsed":"00:00:53","fail":2,"info":"combined","label":"NOT robot:exit","pass":2,"skip":0},{"elapsed":"00:00:09","fail":0,"label":"LoginEmployee","pass":1,"skip":0},{"elapsed":"00:00:07","fail":0,"label":"ProfilePage_Seenotification","pass":1,"skip":0},{"elapsed":"00:00:20","fail":1,"label":"WorkInfoDropdown","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoHistoryDetails","pass":0,"skip":0},{"elapsed":"00:00:16","fail":1,"label":"WorkInfoLoadPage","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoNoteSubmit","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoSubmitPositive","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoTabSwitchHistory","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"WorkInfoTooltipUI","pass":0,"skip":0}],[{"elapsed":"00:01:39","fail":7,"id":"s1","label":"FrontEndTest","name":"FrontEndTest","pass":2,"skip":0}]];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1744215579893;
+window.output["baseMillis"] = 1744281043361;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 1638;
+window.output["generated"] = 99487;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
@@ -2354,7 +2354,7 @@ function hideHiddenDetailsColumns(elem) {
 
 <script type="text/x-jquery-tmpl" id="tagStatisticsRowTemplate">
   <tr onclick="tagDetailSelected('${label}')" class="row-${$item.index}">
-    <td class="stats-col-name" title="{{html doc}}">
+    <td class="stats-col-name" title="${doc}">
       <div class="stat-name">
         <a href="#tags?${label}">{{html label}}</a>
         {{if info}}(${info}){{/if}}

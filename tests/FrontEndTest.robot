@@ -24,7 +24,7 @@ Test Function On ProfilePage
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    ProfilePage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240003
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    ProfilePage2.png
     Click And Capture    xpath=/html/body/div/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/button    ProfilePage3.png
@@ -39,8 +39,8 @@ Test Load WorkInfo Page
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoLoadPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoLoadPage2.png
 
     # เช็คหน้าเพจว่าถูกโหลดสําเร็จ
@@ -61,8 +61,8 @@ Test Show Task Options By Position
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoDropdown1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoDropdown2.png
 
     # รอ dropdown ปรากฏ
@@ -93,8 +93,8 @@ Test Submit Work Record Successfully
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoSubmitPositive1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoSubmitPositive2.png
 
     # เข้าหน้า WorkInfo
@@ -119,8 +119,8 @@ Test Submit Work With Note
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoNoteSubmit1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoNoteSubmit2.png
 
     # เข้าหน้า WorkInfo
@@ -154,8 +154,8 @@ Test Switch To Work History Tab
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoTabSwitchHistory1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoTabSwitchHistory2.png
 
     # เข้าหน้า WorkInfo
@@ -176,8 +176,8 @@ Test Show Record Details In History
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoHistoryDetails1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoHistoryDetails2.png
 
     # เข้าหน้า WorkInfo
@@ -199,8 +199,8 @@ Test Show Tooltip Guidance
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoTooltipUI1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    Admin
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    2209Tnkoak
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoTooltipUI2.png
 
     # เข้าหน้า WorkInfo

@@ -57,24 +57,6 @@ services:
     depends_on:
       - backend
 
-  robot:
-    build:
-      context: .
-      dockerfile: Dockerfile.robot
-    container_name: robot-tester
-    user: root
-    environment:
-      ROBOT_OPTIONS: >
-        --outputdir /opt/robotframework/reports
-        --variable BROWSER:chrome
-        --variable SCREENSHOT_DIRECTORY:/opt/robotframework/reports/Screenshots
-    depends_on:
-      - frontend
-    networks:
-      - app-network
-    command: tests/FrontEndTest.robot
-    restart: "no"
-
 networks:
   app-network:
 volumes:
