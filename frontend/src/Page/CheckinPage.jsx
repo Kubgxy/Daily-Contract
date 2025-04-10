@@ -8,14 +8,13 @@ import L from "leaflet";
 import markerIconRed from "../../public/marker-icon-red.webp";
 import Navbar from "./../Components/Navbar";
 import MapController from "../Components/MapController";
-import baseURL from '../utils/api';
+import baseURL from "../utils/api";
 
 function CheckinPage() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [userPosition, setUserPosition] = useState({ lat: null, lon: null });
   const [checkinStatus, setCheckinStatus] = useState("");
-
-  const workPosition = { lat: 13.826271097270718, lon: 100.57623266993637 };
+  const [workConfig, setWorkConfig] = useState(null);
 
   const workIcon = new L.Icon({
     iconUrl: markerIconRed,
@@ -31,6 +30,25 @@ function CheckinPage() {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
+
+    // โหลดตำแหน่งที่ทำงาน
+    const fetchWorkConfig = async () => {
+      try {
+        const res = await axios.get(`${baseURL}/api/worklocation/location`, {
+          withCredentials: true,
+        });
+        setWorkConfig(res.data);
+      } catch (err) {
+        console.error("❌ Failed to fetch work config", err);
+        Swal.fire({
+          icon: "error",
+          title: "โหลดข้อมูลตำแหน่งไม่สำเร็จ",
+          text: "กรุณาลองใหม่หรือติดต่อผู้ดูแลระบบ",
+        });
+      }
+    };
+
+    fetchWorkConfig();
 
     return () => clearInterval(timer);
   }, []);
@@ -71,9 +89,20 @@ function CheckinPage() {
       const userLat = position.coords.latitude;
       const userLon = position.coords.longitude;
 
+      console.log("📍 พิกัดผู้ใช้:", userLat, userLon); // ✅ ตรวจจาก DevTools
+
       setUserPosition({ lat: userLat, lon: userLon });
 
-      if (isInWorkArea(userLat, userLon, workPosition.lat, workPosition.lon)) {
+      if (
+        workConfig &&
+        isInWorkArea(
+          userLat,
+          userLon,
+          workConfig.latitude,
+          workConfig.longitude,
+          workConfig.radius
+        )
+      ) {
         const response = await axios.post(
           `${baseURL}/api/data/checkIn`,
           {},
@@ -112,6 +141,15 @@ function CheckinPage() {
           text: "Unable to check in at this time.",
         });
       }
+      console.log(
+        "🔁 เช็คระยะ: user:",
+        userLat,
+        userLon,
+        "work:",
+        workLat,
+        workLon
+      );
+      console.log("📏 ระยะห่าง (เมตร):", distance);
     }
   };
 
@@ -123,7 +161,16 @@ function CheckinPage() {
 
       setUserPosition({ lat: userLat, lon: userLon });
 
-      if (isInWorkArea(userLat, userLon, workPosition.lat, workPosition.lon)) {
+      if (
+        workConfig &&
+        isInWorkArea(
+          userLat,
+          userLon,
+          workConfig.latitude,
+          workConfig.longitude,
+          workConfig.radius
+        )
+      ) {
         const response = await axios.post(
           `${baseURL}/api/data/checkOut`,
           {},
@@ -166,7 +213,7 @@ function CheckinPage() {
   };
 
   return (
-<div className="min-h-screen ">
+    <div className="min-h-screen ">
       <Navbar />
       <div className="container mx-auto px-4 py-8 flex justify-center items-center min-h-[calc(100vh-64px)]">
         <div className="bg-white w-full max-w-5xl rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
@@ -185,9 +232,9 @@ function CheckinPage() {
                 <div className="text-gray-600 font-medium">
                   {currentTime.toLocaleDateString("th-TH", {
                     weekday: "long",
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
                   })}
                 </div>
                 <div className="text-4xl font-bold text-indigo-600">
@@ -207,14 +254,18 @@ function CheckinPage() {
             <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
               <div className="flex items-center mb-4 gap-2">
                 <MapPin className="w-5 h-5 text-indigo-500" />
-                <h3 className="text-lg font-semibold text-gray-800">ตำแหน่งปัจจุบัน</h3>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  ตำแหน่งปัจจุบัน
+                </h3>
               </div>
               <div className="rounded-lg overflow-hidden shadow-md">
                 <MapContainer
                   center={
                     userPosition.lat && userPosition.lon
                       ? [userPosition.lat, userPosition.lon]
-                      : [workPosition.lat, workPosition.lon]
+                      : workConfig
+                      ? [workConfig.latitude, workConfig.longitude]
+                      : [13.826, 100.576] // fallback เผื่อยังโหลดไม่ทัน
                   }
                   zoom={15}
                   className="h-[300px] w-full"
@@ -229,9 +280,14 @@ function CheckinPage() {
                       <Popup>ตำแหน่งของคุณ</Popup>
                     </Marker>
                   )}
-                  <Marker position={[workPosition.lat, workPosition.lon]} icon={workIcon}>
-                    <Popup>สถานที่ทำงาน</Popup>
-                  </Marker>
+                  {workConfig && (
+                    <Marker
+                      position={[workConfig.latitude, workConfig.longitude]}
+                      icon={workIcon}
+                    >
+                      <Popup>สถานที่ทำงาน</Popup>
+                    </Marker>
+                  )}
                 </MapContainer>
               </div>
             </div>

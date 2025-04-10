@@ -20,6 +20,7 @@ import WorkInfo from "./Pages/Workinfo"
 import Login from "./Components/Login"
 import WorkRecordForm from "./Pages/WorkRecord"
 import RenewalRequests from "./Pages/RenewalRequests";
+import Configs from "./Pages/Configs";
 import { ThemeContext, ThemeProvider } from "./Context/ThemeContext"
 
 const ProtectedRoute = ({ children }) => {
@@ -238,7 +239,16 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/configs"
+                element={
+                  <ProtectedRoute>
+                    <Configs />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
+            
           </main>
         </div>
       </div>

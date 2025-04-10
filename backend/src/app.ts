@@ -128,17 +128,19 @@ mongoose.connect(process.env.MONGODB_URI as string)
   });
 
 // ✅ นำเข้า Route
-import data from './api/data/route';
 import auth from './api/auth/route';
+import data from './api/data/route';
+import renewal from "./api/renewal/route";
 import requests from "./api/requests/route";
 import WorkInfo from "./api/workinfo/route";
-import renewal from "./api/renewal/route";
+import worklocation from "./api/worklocation/route";
 
-app.use('/api/data', data);
 app.use('/api/auth', auth);
+app.use('/api/data', data);
+app.use('/api/renewal', renewal);
 app.use('/api/requests', requests);
 app.use('/api/workinfo', WorkInfo);
-app.use('/api/renewal', renewal);
+app.use('/api/worklocation', worklocation);
 
 // ✅ เริ่มต้นเซิร์ฟเวอร์ด้วย server.listen แทน app.listen
 const port = process.env.PORT || 3000;

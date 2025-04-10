@@ -22,7 +22,7 @@ declare global {
 
 // ✅ Middleware ตรวจสอบ JWT จาก Cookie
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
-  const token = req.cookies.employee_token;
+  const token =  req.cookies.employee_token;
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized: No token" });
