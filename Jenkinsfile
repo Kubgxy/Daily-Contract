@@ -138,7 +138,10 @@ pipeline {
 
         stage('Run Robot Framework') {
             steps {
-                bat '"C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\robot.bat" tests\\FrontEndTest.robot'
+                bat '''
+                    set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+                    robot tests\\FrontEndTest.robot
+                '''
             }
         }
     }
