@@ -111,8 +111,8 @@ pipeline {
         stage('🚀 Run Docker Compose') {
             steps {
                 dir('.') {
-                    bat 'docker-compose down || echo "No containers to stop"'
-                    bat 'docker-compose up -d --build'
+                    bat 'docker-compose -p daily-contract -f docker-compose.yml down'
+                    bat 'docker-compose -p daily-contract -f docker-compose.yml up -d --build'
                 }
             }
         }
@@ -121,7 +121,7 @@ pipeline {
             steps {
                 script {
                     def volumeExists = bat(
-                        script: 'docker volume ls --format "{{.Name}}" | findstr /C:"daily-contract-pipeline_mongo_data"',
+                        script: 'docker volume ls --format "{{.Name}}" | findstr /C:"daily-contract_mongo_data"',
                         returnStatus: true
                     ) == 0
 
