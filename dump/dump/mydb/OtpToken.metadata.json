@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"ref":{"$numberInt":"1"}},"name":"ref_1","background":true,"unique":true}],"uuid":"85706d3bc6cd461296aa137dae27012d","collectionName":"OtpToken","type":"collection"}
