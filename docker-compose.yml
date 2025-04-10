@@ -5,10 +5,9 @@ services:
     image: mongo
     container_name: mongo
     ports:
-      - "27017:27017"
+      - "3001:27017"
     volumes:
       - mongo_data:/data/db
-      - ./dump:/dump
     networks:
       - app-network
 
