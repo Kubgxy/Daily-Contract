@@ -23,19 +23,20 @@ pipeline {
 
                 echo 🔥 เริ่ม Restore ทีละ Collection...
                 docker run --rm ^
+                    --network=daily-contract_default ^
                     -v mongo_data:/data/db ^
                     -v "%CD%:/dump" ^
                     mongo ^
                     sh -c "for file in /dump/*.bson; do \
                     name=$(basename $file .bson); \
                     echo Restoring $name...; \
-                    mongorestore --host=mongo --port=27017 --db=mydb --collection=$name --drop $file; \
+                    mongorestore --host=mongo --port=27017 --db=mydb --collection=$name --drop \\$file; \
                     done"
                 '''
             }
             }
         }
-        }
+    }
 
     stage('📥 Install Frontend') {
       steps {
