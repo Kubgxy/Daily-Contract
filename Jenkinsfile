@@ -43,7 +43,7 @@ pipeline {
                 -v mongo_data:/data/db ^
                 -v "%CD%\\mydb:/restore" ^
                 alpine ^
-                sh -c "mkdir -p /data/db/mydb && cp -r /restore/* /data/db/mydb/ && ls /data/db/mydb"
+                sh -c "mkdir -p /data/db/mydb && cp -r /restore/* /data/db/mydb/ && ls -lh /data/db/mydb"
             '''
             }
             echo "✅ MongoDB volume has been restored."
