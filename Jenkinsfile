@@ -35,17 +35,18 @@ pipeline {
 
             // เปลี่ยน dir ไปยังโฟลเดอร์ dump
             dir('dump') {
-              bat '''
+            bat '''
                 echo 📂 DEBUG: Current dir is %CD%
                 dir %CD%\\mydb
 
                 docker run --rm ^
-                  -v mongo_data:/data/db ^
-                  -v "%CD%\\mydb:/dump" ^
-                  mongo ^
-                  mongorestore --dir=/dump --nsInclude=mydb.* --drop
-              '''
+                -v mongo_data:/data/db ^
+                -v "%CD%\\mydb:/restore" ^
+                alpine ^
+                sh -c "cp -r /restore /data/db/mydb && ls /data/db/mydb"
+            '''
             }
+            echo "✅ MongoDB volume has been restored."
           } else {
             echo "✅ MongoDB volume already has data. Skipping restore."
           }
