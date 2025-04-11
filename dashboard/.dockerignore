@@ -1,9 +1,8 @@
 # Dashboard
+# Ignore files that shouldn't be in Docker build
 node_modules
+dist
+.vite
 .env
-.git
-.vscode
-README.md
-Dockerfile
-*.xml
-*.html
+*.log
+.DS_Store

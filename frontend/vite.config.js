@@ -6,9 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    port: 5173, // หรือ 5174 สำหรับ dashboard
+    port: 5173
   },
-  define: {
-    'process.env': process.env, // ให้ใช้ ENV ตอน dev ได้ด้วย
-  }
-});
+  build: {
+    outDir: 'dist',
+  },
+})

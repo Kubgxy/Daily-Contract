@@ -1,13 +1,16 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  root: '.', // root ต้องเป็นที่มี index.html
+  build: {
+    outDir: 'dist',
+  },
   server: {
     host: '0.0.0.0',
-    port: 5174, // หรือ 5174 สำหรับ dashboard
-  },
-  define: {
-    'process.env': process.env, // ให้ใช้ ENV ตอน dev ได้ด้วย
+    port: 5174
   }
 });
+
