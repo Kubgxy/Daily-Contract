@@ -13,46 +13,29 @@ pipeline {
       }
     }
 
-    stage('📦 Check MongoDB Volume') {
-      steps {
-        script {
-          def exists = bat(script: "docker volume ls | findstr ${VOLUME_NAME}", returnStatus: true) == 0
-          if (!exists) {
-            echo "🆕 Creating volume ${VOLUME_NAME}"
-            bat "docker volume create ${VOLUME_NAME}"
-          }
+    stage('📦 Restore MongoDB (แบบทีละไฟล์)') {
+        steps {
+            script {
+            dir('dump/mydb') {
+                bat '''
+                echo 🔍 ตรวจสอบไฟล์ .bson ที่จะ restore...
+                dir *.bson
 
-          def checkData = bat(
-            script: '''docker run --rm ^
-              -v mongo_data:/data/db ^
-              alpine sh -c "ls -A /data/db | findstr ."
-            ''',
-            returnStatus: true
-          )
-
-          if (checkData != 0) {
-            echo "🧠 Volume ว่างอยู่ → กำลัง restore MongoDB..."
-
-            // เปลี่ยน dir ไปยังโฟลเดอร์ dump
-            dir('dump') {
-            bat '''
-                echo 📂 DEBUG: Current dir is %CD%
-                dir %CD%\\mydb
-
+                echo 🔥 เริ่ม Restore ทีละ Collection...
                 docker run --rm ^
-                -v mongo_data:/data/db ^
-                -v "%CD%\\mydb:/restore" ^
-                alpine ^
-                sh -c "mkdir -p /data/db/mydb && cp -r /restore/* /data/db/mydb/ && ls -lh /data/db/mydb"
-            '''
+                    -v mongo_data:/data/db ^
+                    -v "%CD%:/dump" ^
+                    mongo ^
+                    sh -c "for file in /dump/*.bson; do \
+                    name=$(basename $file .bson); \
+                    echo Restoring $name...; \
+                    mongorestore --host=mongo --port=27017 --db=mydb --collection=$name --drop $file; \
+                    done"
+                '''
             }
-            echo "✅ MongoDB volume has been restored."
-          } else {
-            echo "✅ MongoDB volume already has data. Skipping restore."
-          }
+            }
         }
-      }
-    }
+        }
 
     stage('📥 Install Frontend') {
       steps {
