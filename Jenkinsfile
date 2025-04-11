@@ -13,29 +13,37 @@ pipeline {
       }
     }
 
-stage('🔥 Restore MongoDB (แบบทีละไฟล์)') {
-  steps {
-    script {
-      echo '🧪 ตรวจสอบไฟล์ .bson ที่จะ restore...'
-      dir('dump/mydb') {
-        bat '''
-          echo 🔥 เริ่ม Restore ทีละ Collection...
-
-          docker run --rm ^
-            --network=app-network ^
-            -v mongo_data:/data/db ^
-            -v "%CD%:/restore" ^
-            mongo ^
-            bash -c "for file in /restore/dump/mydb/*.bson; do \
-              name=$(basename $file .bson); \
-              echo Restoring $name...; \
-              mongorestore --host=mongo --port=27017 --db=mydb --collection=$name --drop $file; \
-            done"
-        '''
+    stage('🚀 Start MongoDB') {
+      steps {
+        script {
+          echo '🚀 Starting MongoDB container...'
+          bat 'docker-compose up -d mongo'
+        }
       }
     }
-  }
-}
+
+    stage('🔥 Restore MongoDB (จากใน container จริง)') {
+      steps {
+        script {
+          echo '🧪 ตรวจสอบไฟล์ .bson ที่จะ restore...'
+
+          dir('dump/mydb') {
+            bat '''
+              echo 🔥 เริ่ม Restore ใน container 'mongo' ที่มีอยู่...
+
+              FOR %%f IN (*.bson) DO (
+                SET name=%%~nf
+                echo 🔁 Restoring collection %%~nf ...
+                docker cp %%f mongo:/tmp/%%f
+                docker exec mongo mongorestore --db=mydb --collection=%%~nf --drop /tmp/%%f
+              )
+
+              echo ✅ Restore เสร็จสมบูรณ์แล้ว
+            '''
+          }
+        }
+      }
+    }
 
     stage('📥 Install Frontend') {
       steps {
