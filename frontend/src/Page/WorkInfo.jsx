@@ -115,7 +115,7 @@ const WorkLogging = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedTask || !workHours || !detailwork) {
+    if (!selectedTask || !workHours ) {
       alert("กรุณากรอกข้อมูลให้ครบถ้วน");
       return;
     }

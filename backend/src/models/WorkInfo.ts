@@ -112,7 +112,6 @@ const WorkInfoSchema: Schema = new Schema(
     },
     note: {
       type: String,
-      required: false,
     },
     note_from_manager: {
       type: String,
