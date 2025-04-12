@@ -131,10 +131,10 @@ pipeline {
         '''
       }
     }
+  }
 
   post {
     always {
-      robot outputPath: 'results'
       echo '🎉 Jenkins Pipeline Completed!'
     }
   }
