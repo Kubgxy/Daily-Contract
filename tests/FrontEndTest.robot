@@ -133,7 +133,7 @@ Test Submit Work With Note
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[2]/div/textarea    ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]    WorkInfoNoteSubmit6.png
     Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    WorkInfoNoteSubmit7.png
-    Wait Until Element Contains    xpath=//h2[@class='swal2-title']    บันทึกสำเร็จ!    10s
+    Wait Until Element Contains    xpath=//h2[@class='swal2-title']    บันทึกสำเร็จ    10s
     Capture Page Screenshot    WorkInfoNoteSubmit8.png
 
     # รอให้ Swal หาย

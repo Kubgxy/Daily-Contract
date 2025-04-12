@@ -10,6 +10,7 @@ import {
 import Navbar from "./../Components/Navbar";
 import axios from "axios";
 import baseURL from '../utils/api';
+import Swal from "sweetalert2";
 
 const WorkLogging = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -115,12 +116,20 @@ const WorkLogging = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedTask || !workHours ) {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+    if (!selectedTask || !workHours) {
+      Swal.fire({
+        icon: "warning",
+        title: "กรอกข้อมูลไม่ครบ",
+        text: "กรุณากรอกข้อมูลให้ครบถ้วนก่อนส่ง",
+      });
       return;
     }
     if (note.length > 300) {
-      alert("หมายเหตุต้องไม่เกิน 300 ตัวอักษร");
+      Swal.fire({
+        icon: "error",
+        title: "หมายเหตุยาวเกินไป",
+        text: "หมายเหตุต้องไม่เกิน 300 ตัวอักษร",
+      });
       return;
     }
 
@@ -141,7 +150,13 @@ const WorkLogging = () => {
       console.log(response.data);
 
       if (response.data.status === "success") {
-        alert("บันทึกข้อมูลสำเร็จ");
+        Swal.fire({
+          icon: "success",
+          title: "บันทึกสำเร็จ",
+          text: "ข้อมูลของคุณถูกบันทึกเรียบร้อยแล้ว",
+          timer: 2000,
+          showConfirmButton: false,
+        });
         setSelectedTask("");
         setDetailWork("");
         setWorkHours("");
@@ -163,7 +178,11 @@ const WorkLogging = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert(error.response?.data?.message || "ไม่สามารถบันทึกข้อมูลได้");
+      Swal.fire({
+        icon: "error",
+        title: "เกิดข้อผิดพลาด",
+        text: error.response?.data?.message || "ไม่สามารถบันทึกข้อมูลได้",
+      });      
     } finally {
       setIsSubmitting(false);
     }
