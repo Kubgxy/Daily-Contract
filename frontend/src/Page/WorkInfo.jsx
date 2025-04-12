@@ -116,6 +116,7 @@ const WorkLogging = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (!selectedTask || !workHours) {
       Swal.fire({
         icon: "warning",
@@ -124,6 +125,7 @@ const WorkLogging = () => {
       });
       return;
     }
+  
     if (note.length > 300) {
       Swal.fire({
         icon: "error",
@@ -132,7 +134,18 @@ const WorkLogging = () => {
       });
       return;
     }
-
+  
+    const confirmResult = await Swal.fire({
+      title: "ยืนยันการบันทึก?",
+      text: "คุณต้องการบันทึกข้อมูลการทำงานใช่หรือไม่",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "ยืนยัน",
+      cancelButtonText: "ยกเลิก",
+    });
+  
+    if (!confirmResult.isConfirmed) return;
+  
     setIsSubmitting(true);
     try {
       const response = await axios.post(
@@ -145,10 +158,9 @@ const WorkLogging = () => {
           hours: parseFloat(workHours),
           status: "Pending",
         },
-        { withCredentials: true } // ✅ cookie-based token จะถูกส่งไปให้ backend
+        { withCredentials: true }
       );
-      console.log(response.data);
-
+  
       if (response.data.status === "success") {
         Swal.fire({
           icon: "success",
@@ -157,11 +169,14 @@ const WorkLogging = () => {
           timer: 2000,
           showConfirmButton: false,
         });
+  
+        // reset form
         setSelectedTask("");
         setDetailWork("");
         setWorkHours("");
         setNote("");
-        // รีเฟรชข้อมูลแทน reload
+  
+        // reload records
         const recordsResponse = await axios.get(
           `${baseURL}/api/workinfo/my-records`,
           { withCredentials: true }
@@ -182,11 +197,11 @@ const WorkLogging = () => {
         icon: "error",
         title: "เกิดข้อผิดพลาด",
         text: error.response?.data?.message || "ไม่สามารถบันทึกข้อมูลได้",
-      });      
+      });
     } finally {
       setIsSubmitting(false);
     }
-  };
+  };  
 
   return (
     <div className="min-h-screen">
