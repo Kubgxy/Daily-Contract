@@ -4,21 +4,28 @@ pipeline {
   environment {
     VOLUME_NAME = "mongo_data"
     DB_NAME = "mydb"
+    LINE_TOKEN = credentials('LINE_NOTIFY_TOKEN') // ✅ ใช้ Credentials ของ Jenkins แทน hardcode
   }
 
   stages {
+
     stage('📥 Clone Repository') {
       steps {
         checkout scm
       }
     }
 
+    stage('♻️ Cleanup Old Containers') {
+      steps {
+        echo '🧹 Cleanup container เก่าก่อนเริ่มใหม่'
+        bat 'docker-compose down --remove-orphans || echo "✅ ไม่มี container เก่า"'
+      }
+    }
+
     stage('🚀 Start MongoDB') {
       steps {
-        script {
-          echo '🚀 Starting MongoDB container...'
-          bat 'docker-compose up -d mongo'
-        }
+        echo '🚀 Starting MongoDB container...'
+        bat 'docker-compose up -d mongo'
       }
     }
 
@@ -52,50 +59,73 @@ pipeline {
       }
     }
 
-    stage('📥 Install Frontend') {
-      steps {
-        dir('frontend') {
-          bat 'npm install'
+    stage('📦 Install Dependencies') {
+      parallel {
+        stage('Frontend') {
+          steps {
+            dir('frontend') {
+              bat 'npm install'
+            }
+          }
+        }
+        stage('Dashboard') {
+          steps {
+            dir('dashboard') {
+              bat 'npm install'
+            }
+          }
+        }
+        stage('Backend') {
+          steps {
+            dir('backend') {
+              bat 'npm install'
+            }
+          }
         }
       }
     }
 
-    stage('📥 Install Dashboard') {
-      steps {
-        dir('dashboard') {
-          bat 'npm install'
+    stage('🔍 Lint Code (Frontend + Backend)') {
+      parallel {
+        stage('Lint Frontend') {
+          steps {
+            dir('frontend') {
+              bat 'npx eslint . || echo "⚠️ มี Warning หรือ Error ใน Lint"'
+            }
+          }
+        }
+        stage('Lint Backend') {
+          steps {
+            dir('backend') {
+              bat 'npx eslint . || echo "⚠️ มี Warning หรือ Error ใน Lint"'
+            }
+          }
         }
       }
     }
 
-    stage('📥 Install Backend') {
-      steps {
-        dir('backend') {
-          bat 'npm install'
+    stage('🧪 Run Test (Frontend / Dashboard / Backend)') {
+      parallel {
+        stage('Frontend') {
+          steps {
+            dir('frontend') {
+              bat 'echo "🧪 Frontend test not yet implemented"'
+            }
+          }
         }
-      }
-    }
-
-    stage('🧪 Test Frontend') {
-      steps {
-        dir('frontend') {
-          bat 'echo "No frontend test yet"'
+        stage('Dashboard') {
+          steps {
+            dir('dashboard') {
+              bat 'echo "🧪 Dashboard test not yet implemented"'
+            }
+          }
         }
-      }
-    }
-
-    stage('🧪 Test Dashboard') {
-      steps {
-        dir('dashboard') {
-          bat 'echo "No dashboard test yet"'
-        }
-      }
-    }
-
-    stage('🧪 Test Backend') {
-      steps {
-        dir('backend') {
-          bat 'echo "No backend test yet"'
+        stage('Backend') {
+          steps {
+            dir('backend') {
+              bat 'echo "🧪 Backend test not yet implemented"'
+            }
+          }
         }
       }
     }
@@ -116,17 +146,13 @@ pipeline {
 
     stage('🐳 Build Docker Images') {
       steps {
-        dir('.') {
-          bat 'docker-compose build'
-        }
+        bat 'docker-compose build'
       }
     }
 
     stage('🚀 Run Docker Services') {
       steps {
-        dir('.') {
-          bat 'docker-compose up -d'
-        }
+        bat 'docker-compose up -d'
       }
     }
 
@@ -138,13 +164,36 @@ pipeline {
         '''
       }
     }
-  }
+
+  } // end stages
 
   post {
     always {
+      echo '📦 Publish Robot Report'
       robot outputPath: 'results'
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
-      echo '🎉 Jenkins Pipeline Completed!'
+
+      echo '🎉 Pipeline Completed!'
+    }
+
+    success {
+      echo '✅ Build Success!'
+      bat '''
+        curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\\"content\\": \\"✅ Build สำเร็จใน Jenkins\\"}" \
+        https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
+      '''
+    }
+
+    failure {
+      echo '❌ Build Failed!'
+      bat '''
+        curl -H "Content-Type: application/json" \
+        -X POST \
+        -d "{\\"content\\": \\"❌ Jenkins Build ล้มเหลว - ตรวจสอบด่วน!\\"}" \
+        https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
+      '''
     }
   }
 }
