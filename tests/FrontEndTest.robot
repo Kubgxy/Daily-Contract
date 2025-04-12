@@ -104,7 +104,7 @@ Test Submit Work Record Successfully
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select    WorkInfoSubmitPositive4.png
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]    WorkInfoSubmitPositive5.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input    7
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[3]/button[2]    WorkInfoSubmitPositive6.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]    WorkInfoSubmitPositive6.png
     Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    WorkInfoSubmitPositive7.png
     Wait Until Element Contains    xpath=//h2[@class='swal2-title']    บันทึกสำเร็จ!    10s
 
@@ -131,7 +131,7 @@ Test Submit Work With Note
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]    WorkInfoNoteSubmit5.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input    7
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[2]/div/textarea    ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[3]/button[2]    WorkInfoNoteSubmit6.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]    WorkInfoNoteSubmit6.png
     Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    WorkInfoNoteSubmit7.png
     Wait Until Element Contains    xpath=//h2[@class='swal2-title']    บันทึกสำเร็จ!    10s
     Capture Page Screenshot    WorkInfoNoteSubmit8.png
