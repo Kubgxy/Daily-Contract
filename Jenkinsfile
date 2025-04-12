@@ -206,23 +206,6 @@ post {
   }
 
   success {
-    node('') {
-      powershell(script: '''
-        $OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-
-        $content = @"
-  ✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉
-  📦 โปรเจค: Daily-Contract
-  ⏰ เวลา: $(Get-Date -Format 'HH:mm:ss')
-  "@
-
-        $body = @{ content = $content } | ConvertTo-Json
-        Invoke-RestMethod -Uri "https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8" -Method POST -Body $body -ContentType "application/json"
-      ''', encoding: 'UTF-8')
-    }
-  }
-
-  success {
   node('') {
     powershell(script: '''
   $OutputEncoding = [System.Text.UTF8Encoding]::new($false)
