@@ -108,17 +108,25 @@ pipeline {
 
     stage('🔍 Lint Code') {
       parallel {
+
         stage('Frontend Lint') {
           steps {
             dir('frontend') {
-              bat 'npx eslint . || echo "⚠️ Warning หรือ Error ใน Lint (Frontend)"'
+              catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Frontend'
+                bat 'npx eslint .'
+              }
             }
           }
         }
+
         stage('Backend Lint') {
           steps {
             dir('backend') {
-              bat 'npx eslint . || echo "⚠️ Warning หรือ Error ใน Lint (Backend)"'
+              catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Backend'
+                bat 'npx eslint .'
+              }
             }
           }
         }
@@ -203,7 +211,7 @@ post {
       bat '''
         curl -H "Content-Type: application/json" ^
           -X POST ^
-          -d "{\\"content\\": \\"✅ Build สำเร็จใน Jenkins\\"}" ^
+          -d "{\\"content\\": \\"✅ Jenkins Build Success!\\"}" ^
           https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
       '''
     }
@@ -215,7 +223,7 @@ post {
       bat '''
         curl -H "Content-Type: application/json" ^
           -X POST ^
-          -d "{\\"content\\": \\"❌ Jenkins Build ล้มเหลว - ตรวจสอบด่วน!\\"}" ^
+          -d "{\\"content\\": \\"❌ Jenkins Build Failed - Please Check! 👀\\"}" ^
           https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
       '''
     }
