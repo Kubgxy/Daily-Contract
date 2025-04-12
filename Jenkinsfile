@@ -207,25 +207,33 @@ post {
 
 success {
   node('') {
-    powershell(script: '''
-$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-
-$msg = "✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉`n📦 โปรเจค: Daily-Contract`n⏰ เวลา: $(Get-Date -Format 'HH:mm:ss')"
-$body = @{ content = $msg } | ConvertTo-Json
-Invoke-RestMethod -Uri "https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8" -Method POST -Body $body -ContentType "application/json"
-''', encoding: 'UTF-8')
+    script {
+      def now = new Date().format("HH:mm:ss")
+      def message = """{
+        "content": "✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}"
+      }"""
+      writeFile file: 'discord_success.json', text: message
+    }
+    bat '''
+      curl -X POST -H "Content-Type: application/json" -d @discord_success.json ^
+      https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
+    '''
   }
 }
 
 failure {
   node('') {
-    powershell(script: '''
-$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-
-$msg = "❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨`n📦 โปรเจค: Daily-Contract`n⏰ เวลา: $(Get-Date -Format 'HH:mm:ss')"
-$body = @{ content = $msg } | ConvertTo-Json
-Invoke-RestMethod -Uri "https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8" -Method POST -Body $body -ContentType "application/json"
-''', encoding: 'UTF-8')
+    script {
+      def now = new Date().format("HH:mm:ss")
+      def message = """{
+        "content": "❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}"
+      }"""
+      writeFile file: 'discord_failure.json', text: message
+    }
+    bat '''
+      curl -X POST -H "Content-Type: application/json" -d @discord_failure.json ^
+      https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
+    '''
   }
 }
 
