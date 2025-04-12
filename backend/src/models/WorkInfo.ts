@@ -88,7 +88,6 @@ const WorkInfoSchema: Schema = new Schema(
     },
     detail_work: {
       type: String,
-      required: true,
     },
     position: {
       type: String,

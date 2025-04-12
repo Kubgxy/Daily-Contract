@@ -73,7 +73,7 @@ workinfo.post("/recordwork", verifyToken, async (req, res) => {
     // ✅ ดึง employee_id จาก token ที่ verify แล้ว
     const employee_id = req.user?.employee_id;
 
-    if (!employee_id || !detail_work || !position || !task || !hours) {
+    if (!employee_id || !position || !task || !hours) {
       return res.status(400).json({
         status: "error",
         message: "กรุณากรอกข้อมูลให้ครบถ้วน",
