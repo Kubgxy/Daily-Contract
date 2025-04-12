@@ -1,0 +1,1419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.2 on win32)" generated="2025-04-12T22:39:02.282702" rpa="false" schemaversion="5">
+<suite id="s1" name="FrontEndTest" source="C:\ProgramData\Jenkins\.jenkins\workspace\daily-contract-pipeline\tests\FrontEndTest.robot">
+<kw name="Open Browser And Maximize" owner="KeyWord" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:03.127505" level="INFO">Opening browser 'chrome' to base url 'http://localhost:5173/'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:03.126738" elapsed="3.349088"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-04-12T22:39:06.477739" elapsed="0.784331"/>
+</kw>
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.2s</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-04-12T22:39:07.262376" elapsed="0.003005"/>
+</kw>
+<status status="PASS" start="2025-04-12T22:39:03.124867" elapsed="4.140855"/>
+</kw>
+<test id="s1-t1" name="Test Login Employee" line="8">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/Login</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:39:07.267290" elapsed="0.000741"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:07.268628" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:07.268350" elapsed="0.307100"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:07.576983" elapsed="0.507128"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:10.947218" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/Login/Login1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/Login/Login1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:08.084611" elapsed="2.862887"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:10.948613" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:10.947935" elapsed="0.545925"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>Login1.png</arg>
+<status status="PASS" start="2025-04-12T22:39:07.576110" elapsed="3.918144"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:11.495053" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:11.494608" elapsed="0.818421"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:12.314521" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:39:12.786148" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:12.313665" elapsed="0.766818"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:13.081391" elapsed="0.437547"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:13.938684" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/Login/Login2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/Login/Login2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:13.519335" elapsed="0.419566"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:13.939718" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:13.939247" elapsed="0.548278"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>Login2.png</arg>
+<status status="PASS" start="2025-04-12T22:39:13.080888" elapsed="1.406982"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:14.489172" elapsed="0.857628"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:15.610076" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/Login/Login3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/Login/Login3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:15.347192" elapsed="0.263174"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:15.611688" level="INFO">Clicking element 'xpath=/html/body/div/div/div/div[2]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:15.610852" elapsed="0.509838"/>
+</kw>
+<arg>xpath=/html/body/div/div/div/div[2]</arg>
+<arg>Login3.png</arg>
+<status status="PASS" start="2025-04-12T22:39:14.488352" elapsed="1.632612"/>
+</kw>
+<doc>Test Login For Employee</doc>
+<tag>LoginEmployee</tag>
+<status status="PASS" start="2025-04-12T22:39:07.265985" elapsed="8.855338"/>
+</test>
+<test id="s1-t2" name="Test Function On ProfilePage" line="20">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/ProfilePage</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:39:16.123012" elapsed="0.000775"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:16.124507" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:16.124180" elapsed="0.355052"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:16.480222" elapsed="0.431999"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:17.184052" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/ProfilePage/ProfilePage1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/ProfilePage/ProfilePage1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:16.912604" elapsed="0.271658"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:17.185030" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:17.184579" elapsed="0.519889"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>ProfilePage1.png</arg>
+<status status="PASS" start="2025-04-12T22:39:16.479645" elapsed="1.225277"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:17.706161" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:17.705436" elapsed="0.782052"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:18.488552" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:39:18.954633" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:18.488027" elapsed="0.766040"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:19.255574" elapsed="0.433748"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:20.079405" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/ProfilePage/ProfilePage2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/ProfilePage/ProfilePage2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:19.689682" elapsed="0.389905"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:20.080341" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:20.079862" elapsed="0.508423"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>ProfilePage2.png</arg>
+<status status="PASS" start="2025-04-12T22:39:19.254709" elapsed="1.333965"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:20.591177" elapsed="0.486147"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:21.346852" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/ProfilePage/ProfilePage3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/ProfilePage/ProfilePage3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:21.077733" elapsed="0.269328"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:21.347793" level="INFO">Clicking element 'xpath=/html/body/div/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:21.347371" elapsed="0.522796"/>
+</kw>
+<arg>xpath=/html/body/div/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/button</arg>
+<arg>ProfilePage3.png</arg>
+<status status="PASS" start="2025-04-12T22:39:20.589676" elapsed="1.280707"/>
+</kw>
+<doc>Test Function On ProfilePage</doc>
+<tag>ProfilePage_Seenotification</tag>
+<status status="PASS" start="2025-04-12T22:39:16.121949" elapsed="5.748668"/>
+</test>
+<test id="s1-t3" name="Test Load WorkInfo Page" line="34">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoLoadPage</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:39:21.875013" elapsed="0.000422"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:21.875832" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:21.875637" elapsed="0.318084"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:22.194690" elapsed="0.431660"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:22.891562" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:22.626795" elapsed="0.265013"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:22.892605" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:22.892154" elapsed="0.513357"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoLoadPage1.png</arg>
+<status status="PASS" start="2025-04-12T22:39:22.194183" elapsed="1.211550"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:23.406347" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:23.405988" elapsed="0.753301"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:24.160444" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:39:24.621184" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:24.159975" elapsed="0.749346"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:24.910397" elapsed="0.442676"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:25.757498" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:25.353509" elapsed="0.404227"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:25.759050" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:25.758149" elapsed="0.516473"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoLoadPage2.png</arg>
+<status status="PASS" start="2025-04-12T22:39:24.909883" elapsed="1.365164"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:26.276017" elapsed="0.487222"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:27.026826" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:26.763664" elapsed="0.263336"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:27.027595" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:27.027248" elapsed="0.665269"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoLoadPage3.png</arg>
+<status status="PASS" start="2025-04-12T22:39:26.275398" elapsed="1.417384"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:27.693647" level="INFO">Verifying element 'xpath=//*[@id="root"]/div/div/div[2]/header/div[1]/div[2]/div/h1' contains exact text 'Work Info'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/header/div[1]/div[2]/div/h1</arg>
+<arg>Work Info</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-04-12T22:39:27.693115" elapsed="0.460160"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-12T22:39:29.154683" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-12T22:39:28.153835" elapsed="1.001120"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:29.425744" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoLoadPage/WorkInfoLoadPage4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoLoadPage4.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:29.155331" elapsed="0.270580"/>
+</kw>
+<doc>ทดสอบการโหลดหน้า Work Info ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน</doc>
+<tag>WorkInfoLoadPage</tag>
+<status status="PASS" start="2025-04-12T22:39:21.872186" elapsed="7.554001"/>
+</test>
+<test id="s1-t4" name="Test Show Task Options By Position" line="56">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoDropdown</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:39:29.429060" elapsed="0.000556"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:29.430072" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:29.429849" elapsed="0.335558"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:29.766237" elapsed="0.425565"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:30.464088" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:30.192138" elapsed="0.272187"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:30.465371" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:30.464818" elapsed="0.522166"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoDropdown1.png</arg>
+<status status="PASS" start="2025-04-12T22:39:29.765763" elapsed="1.221636"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:30.988164" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:30.987817" elapsed="0.768102"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:31.757056" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:39:32.218290" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:31.756547" elapsed="0.762450"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:32.520553" elapsed="0.429010"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:33.337422" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:32.949972" elapsed="0.387669"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:33.338413" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:33.337964" elapsed="0.508387"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoDropdown2.png</arg>
+<status status="PASS" start="2025-04-12T22:39:32.519602" elapsed="1.327140"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:33.847848" elapsed="0.842358"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:34.955709" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:34.690715" elapsed="0.265175"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:34.956651" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:34.956229" elapsed="0.651536"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoDropdown3.png</arg>
+<status status="PASS" start="2025-04-12T22:39:33.847175" elapsed="1.760927"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:35.609258" elapsed="0.440365"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:36.320715" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:36.050059" elapsed="0.271001"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:36.321907" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:36.321372" elapsed="0.527846"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select</arg>
+<arg>WorkInfoDropdown4.png</arg>
+<status status="PASS" start="2025-04-12T22:39:35.608513" elapsed="1.240983"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:36.850199" level="INFO">Verifying element 'xpath=//select/option[2]' contains exact text 'ผลิตสินค้า'.</msg>
+<arg>xpath=//select/option[2]</arg>
+<arg>ผลิตสินค้า</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-04-12T22:39:36.849825" elapsed="0.433515"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:37.284033" level="INFO">Verifying element 'xpath=//select/option[3]' contains exact text 'ตรวจสอบคุณภาพเบื้องต้น'.</msg>
+<arg>xpath=//select/option[3]</arg>
+<arg>ตรวจสอบคุณภาพเบื้องต้น</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-04-12T22:39:37.283649" elapsed="0.432222"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:37.716507" level="INFO">Verifying element 'xpath=//select/option[4]' contains exact text 'จัดเตรียมวัตถุดิบ'.</msg>
+<arg>xpath=//select/option[4]</arg>
+<arg>จัดเตรียมวัตถุดิบ</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-04-12T22:39:37.716199" elapsed="0.435314"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:38.152449" level="INFO">Verifying element 'xpath=//select/option[5]' contains exact text 'บำรุงรักษาเครื่องจักร'.</msg>
+<arg>xpath=//select/option[5]</arg>
+<arg>บำรุงรักษาเครื่องจักร</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-04-12T22:39:38.151965" elapsed="0.432573"/>
+</kw>
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:38.585572" level="INFO">Verifying element 'xpath=//select/option[6]' contains exact text 'จัดเก็บสินค้า'.</msg>
+<arg>xpath=//select/option[6]</arg>
+<arg>จัดเก็บสินค้า</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-04-12T22:39:38.585042" elapsed="0.432465"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:39.019151" level="INFO">Executing JavaScript:
+document.querySelector('select').setAttribute('size', '6')
+Without any arguments.</msg>
+<arg>document.querySelector('select').setAttribute('size', '6')</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2025-04-12T22:39:39.018014" elapsed="0.222270"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-12T22:39:40.241770" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-12T22:39:39.240618" elapsed="1.001334"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:40.505729" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown5.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoDropdown/WorkInfoDropdown5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoDropdown5.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:40.242274" elapsed="0.263662"/>
+</kw>
+<doc>ทดสอบว่าการแสดงรายการงานใน dropdown ตรงกับตำแหน่งของผู้ใช้งาน</doc>
+<tag>WorkInfoDropdown</tag>
+<status status="PASS" start="2025-04-12T22:39:29.426567" elapsed="11.079626"/>
+</test>
+<test id="s1-t5" name="Test Submit Work Record Successfully" line="88">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoSubmitPositive</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:39:40.509252" elapsed="0.000429"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:40.510042" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:40.509859" elapsed="0.347486"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:40.858312" elapsed="0.427166"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:41.556725" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:41.285808" elapsed="0.271093"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:41.557475" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:41.557156" elapsed="0.509112"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoSubmitPositive1.png</arg>
+<status status="PASS" start="2025-04-12T22:39:40.857824" elapsed="1.208752"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:42.067363" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:42.066900" elapsed="0.763120"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:42.831065" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:39:43.285457" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:42.830554" elapsed="0.740333"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:43.572228" elapsed="0.429521"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:44.384467" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:44.002251" elapsed="0.382484"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:44.385688" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:44.385153" elapsed="0.520257"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoSubmitPositive2.png</arg>
+<status status="PASS" start="2025-04-12T22:39:43.571439" elapsed="1.334321"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:44.906968" elapsed="0.470432"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:45.639519" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:45.377789" elapsed="0.261994"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:45.640846" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:45.640209" elapsed="0.644506"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoSubmitPositive3.png</arg>
+<status status="PASS" start="2025-04-12T22:39:44.906228" elapsed="1.378888"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:46.286260" elapsed="0.426699"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:46.974301" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:46.713618" elapsed="0.260943"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:46.975370" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:46.974923" elapsed="0.526716"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select</arg>
+<arg>WorkInfoSubmitPositive4.png</arg>
+<status status="PASS" start="2025-04-12T22:39:46.285557" elapsed="1.216372"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:47.502974" elapsed="0.430103"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:48.222986" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive5.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:47.933500" elapsed="0.289700"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:48.223895" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:48.223515" elapsed="0.461180"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]</arg>
+<arg>WorkInfoSubmitPositive5.png</arg>
+<status status="PASS" start="2025-04-12T22:39:47.502328" elapsed="1.182627"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:48.685519" level="INFO">Typing text '7' into text field 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input</arg>
+<arg>7</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:48.685212" elapsed="0.733082"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:49.419184" elapsed="0.430157"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:50.121773" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive6.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:49.849692" elapsed="0.272299"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:50.122667" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:50.122312" elapsed="0.539882"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]</arg>
+<arg>WorkInfoSubmitPositive6.png</arg>
+<status status="PASS" start="2025-04-12T22:39:49.418710" elapsed="1.243694"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:50.663195" elapsed="0.431520"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:51.392178" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive7.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:51.095069" elapsed="0.297415"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:51.393149" level="INFO">Clicking element 'xpath=/html/body/div[2]/div/div[6]/button[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:51.392796" elapsed="0.510088"/>
+</kw>
+<arg>xpath=/html/body/div[2]/div/div[6]/button[1]</arg>
+<arg>WorkInfoSubmitPositive7.png</arg>
+<status status="PASS" start="2025-04-12T22:39:50.662724" elapsed="1.240421"/>
+</kw>
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>xpath=//h2[@class='swal2-title']</arg>
+<arg>บันทึกสำเร็จ</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2025-04-12T22:39:51.903410" elapsed="0.432129"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:52.623625" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive8.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoSubmitPositive/WorkInfoSubmitPositive8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoSubmitPositive8.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:52.335995" elapsed="0.287825"/>
+</kw>
+<doc>ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง พร้อมกดบันทึกสำเร็จ</doc>
+<tag>WorkInfoSubmitPositive</tag>
+<status status="PASS" start="2025-04-12T22:39:40.506648" elapsed="12.117437"/>
+</test>
+<test id="s1-t6" name="Test Submit Work With Note" line="114">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoNoteSubmit</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:39:52.627324" elapsed="0.000443"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:52.628152" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:39:52.627951" elapsed="0.345632"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:52.974554" elapsed="0.426644"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:53.672457" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:53.401597" elapsed="0.271115"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:53.673519" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:53.673113" elapsed="0.512180"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoNoteSubmit1.png</arg>
+<status status="PASS" start="2025-04-12T22:39:52.973998" elapsed="1.211592"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:54.186526" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:54.185928" elapsed="0.770878"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:54.958002" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:39:55.445882" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:54.957413" elapsed="0.775360"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:55.734094" elapsed="0.443621"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:56.578274" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:56.178149" elapsed="0.400352"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:56.579201" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:56.578830" elapsed="0.533198"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoNoteSubmit2.png</arg>
+<status status="PASS" start="2025-04-12T22:39:55.733356" elapsed="1.379023"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:57.113622" elapsed="0.486617"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:57.872788" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:57.600638" elapsed="0.272383"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:57.873893" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:57.873413" elapsed="0.627953"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoNoteSubmit3.png</arg>
+<status status="PASS" start="2025-04-12T22:39:57.112824" elapsed="1.388906"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:58.503355" elapsed="0.429224"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:59.203463" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:39:58.933021" elapsed="0.270675"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:39:59.204484" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:39:59.204096" elapsed="0.513090"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select</arg>
+<arg>WorkInfoNoteSubmit4.png</arg>
+<status status="PASS" start="2025-04-12T22:39:58.502317" elapsed="1.215135"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:39:59.718531" elapsed="0.426735"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:00.407921" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit5.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:00.145677" elapsed="0.262479"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:00.408824" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:00.408480" elapsed="0.446859"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]</arg>
+<arg>WorkInfoNoteSubmit5.png</arg>
+<status status="PASS" start="2025-04-12T22:39:59.717830" elapsed="1.137716"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:00.856072" level="INFO">Typing text '7' into text field 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input</arg>
+<arg>7</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:00.855780" elapsed="0.729165"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:01.586037" level="INFO">Typing text 'ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง' into text field 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[2]/div/textarea'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[2]/div/textarea</arg>
+<arg>ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:01.585464" elapsed="0.911025"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:02.497359" elapsed="0.429318"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:03.185143" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit6.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:02.927222" elapsed="0.258187"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:03.186104" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:03.185756" elapsed="0.513310"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]</arg>
+<arg>WorkInfoNoteSubmit6.png</arg>
+<status status="PASS" start="2025-04-12T22:40:02.496884" elapsed="1.202480"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:03.700470" elapsed="0.430045"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:04.403250" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit7.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:04.130970" elapsed="0.272455"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:04.404003" level="INFO">Clicking element 'xpath=/html/body/div[2]/div/div[6]/button[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:04.403688" elapsed="0.505809"/>
+</kw>
+<arg>xpath=/html/body/div[2]/div/div[6]/button[1]</arg>
+<arg>WorkInfoNoteSubmit7.png</arg>
+<status status="PASS" start="2025-04-12T22:40:03.699774" elapsed="1.209996"/>
+</kw>
+<kw name="Wait Until Element Contains" owner="SeleniumLibrary">
+<arg>xpath=//h2[@class='swal2-title']</arg>
+<arg>บันทึกสำเร็จ</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" start="2025-04-12T22:40:04.910111" elapsed="0.434084"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:05.624571" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit8.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoNoteSubmit8.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:05.344659" elapsed="0.280198"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-12T22:40:10.626107" level="INFO">Slept 5 seconds.</msg>
+<arg>5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-12T22:40:05.625245" elapsed="5.001114"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:10.628193" elapsed="0.438845"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:11.342059" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit9.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:11.067452" elapsed="0.274897"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:11.343339" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[1]/button[2]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:11.342847" elapsed="0.525849"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[1]/button[2]</arg>
+<arg>WorkInfoNoteSubmit9.png</arg>
+<status status="PASS" start="2025-04-12T22:40:10.627128" elapsed="1.241826"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:11.869764" elapsed="0.431656"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:12.571970" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit10.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:12.301844" elapsed="0.270336"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:12.572904" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[2]/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:12.572489" elapsed="0.519109"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[2]/button</arg>
+<arg>WorkInfoNoteSubmit10.png</arg>
+<status status="PASS" start="2025-04-12T22:40:11.869297" elapsed="1.222532"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:13.370131" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit11.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoNoteSubmit/WorkInfoNoteSubmit11.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoNoteSubmit11.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:13.092089" elapsed="0.278244"/>
+</kw>
+<doc>ทดสอบการเพิ่มหมายเหตุและตรวจสอบว่าแสดงในประวัติได้ถูกต้อง</doc>
+<tag>WorkInfoNoteSubmit</tag>
+<status status="PASS" start="2025-04-12T22:39:52.624698" elapsed="20.745964"/>
+</test>
+<test id="s1-t7" name="Test Switch To Work History Tab" line="149">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:40:13.375995" elapsed="0.000607"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:13.377166" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:40:13.376874" elapsed="0.368477"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:13.746275" elapsed="0.426195"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:14.438451" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:14.172827" elapsed="0.265830"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:14.439324" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:14.438964" elapsed="0.513978"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoTabSwitchHistory1.png</arg>
+<status status="PASS" start="2025-04-12T22:40:13.745818" elapsed="1.207396"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:14.953985" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:14.953530" elapsed="0.767527"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:15.722375" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:40:16.189285" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:15.721767" elapsed="0.762381"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:16.485825" elapsed="0.429495"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:17.313258" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:16.915750" elapsed="0.397770"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:17.315294" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:17.314089" elapsed="0.513355"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoTabSwitchHistory2.png</arg>
+<status status="PASS" start="2025-04-12T22:40:16.484783" elapsed="1.343073"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:17.829685" elapsed="0.913458"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:19.004989" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:18.743561" elapsed="0.261710"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:19.006003" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:19.005596" elapsed="0.637597"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoTabSwitchHistory3.png</arg>
+<status status="PASS" start="2025-04-12T22:40:17.828450" elapsed="1.814993"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-12T22:40:20.644597" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-12T22:40:19.643729" elapsed="1.001070"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:20.646269" level="INFO">Clicking button 'xpath=//button[normalize-space(text())='ประวัติการบันทึก']'.</msg>
+<arg>xpath=//button[normalize-space(text())='ประวัติการบันทึก']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:20.645112" elapsed="1.180288"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:22.098083" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory/WorkInfoTabSwitchHistory4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoTabSwitchHistory4.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:21.825847" elapsed="0.272513"/>
+</kw>
+<doc>ทดสอบการกดสลับแท็บไปที่ “ประวัติการทำงาน” แล้วข้อมูลแสดงถูกต้อง</doc>
+<tag>WorkInfoTabSwitchHistory</tag>
+<status status="PASS" start="2025-04-12T22:40:13.371814" elapsed="8.726859"/>
+</test>
+<test id="s1-t8" name="Test Show Record Details In History" line="171">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoHistoryDetails</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:40:22.102004" elapsed="0.000564"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:22.103203" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:40:22.102913" elapsed="0.357732"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:22.461516" elapsed="0.429011"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:23.163838" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:22.890871" elapsed="0.273254"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:23.164775" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:23.164429" elapsed="0.509191"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoHistoryDetails1.png</arg>
+<status status="PASS" start="2025-04-12T22:40:22.461041" elapsed="1.212798"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:23.674539" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:23.674091" elapsed="0.759160"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:24.434296" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:40:24.891808" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:24.433774" elapsed="0.789571"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:25.224423" elapsed="0.433103"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:26.089085" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:25.657895" elapsed="0.431412"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:26.090114" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:26.089668" elapsed="0.520081"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoHistoryDetails2.png</arg>
+<status status="PASS" start="2025-04-12T22:40:25.223797" elapsed="1.386387"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:26.612001" elapsed="0.472486"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:27.359711" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:27.084972" elapsed="0.275268"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:27.361710" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:27.360850" elapsed="0.653105"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoHistoryDetails3.png</arg>
+<status status="PASS" start="2025-04-12T22:40:26.610945" elapsed="1.403219"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-12T22:40:29.015141" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-12T22:40:28.014388" elapsed="1.000978"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:29.015943" level="INFO">Clicking button 'xpath=//button[normalize-space(text())='ประวัติการบันทึก']'.</msg>
+<arg>xpath=//button[normalize-space(text())='ประวัติการบันทึก']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:29.015662" elapsed="1.147789"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:30.164542" elapsed="0.424991"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:30.853792" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:30.590061" elapsed="0.263939"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:30.854691" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[2]/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:30.854336" elapsed="0.507378"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div[1]/div[2]/button</arg>
+<arg>WorkInfoHistoryDetails4.png</arg>
+<status status="PASS" start="2025-04-12T22:40:30.163895" elapsed="1.198082"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:31.635588" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails5.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoHistoryDetails/WorkInfoHistoryDetails5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoHistoryDetails5.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:31.362255" elapsed="0.273530"/>
+</kw>
+<doc>ทดสอบการกดปุ่ม “ดูรายละเอียด” ในประวัติแล้วข้อมูลแสดงถูกต้อง</doc>
+<tag>WorkInfoHistoryDetails</tag>
+<status status="PASS" start="2025-04-12T22:40:22.099083" elapsed="9.536922"/>
+</test>
+<test id="s1-t9" name="Test Show Tooltip Guidance" line="194">
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoTooltipUI</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2025-04-12T22:40:31.638812" elapsed="0.000542"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:31.639834" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-12T22:40:31.639595" elapsed="0.332955"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:31.973706" elapsed="0.427696"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:32.671214" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI1.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:32.401802" elapsed="0.269659"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:32.672293" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[1]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:32.671913" elapsed="0.510985"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div/div[1]</arg>
+<arg>WorkInfoTooltipUI1.png</arg>
+<status status="PASS" start="2025-04-12T22:40:31.973101" elapsed="1.210061"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:33.183995" level="INFO">Typing text '20240008' into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input'.</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input</arg>
+<arg>20240008</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:33.183491" elapsed="0.783727"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:33.968422" level="INFO">Typing password into text field 'xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input'.</msg>
+<msg time="2025-04-12T22:40:34.429988" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input</arg>
+<arg>123456</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:33.967741" elapsed="0.760414"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:34.730033" elapsed="0.432567"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:35.609656" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI2.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:35.162933" elapsed="0.446989"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:35.610859" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div[2]/form/button'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:35.610328" elapsed="0.526280"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div/div[2]/form/button</arg>
+<arg>WorkInfoTooltipUI2.png</arg>
+<status status="PASS" start="2025-04-12T22:40:34.728914" elapsed="1.408193"/>
+</kw>
+<kw name="Click And Capture" owner="KeyWord">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:36.138650" elapsed="0.474297"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:36.888383" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI3.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${filename}</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:36.613436" elapsed="0.275178"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:36.889418" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:36.888962" elapsed="0.709601"/>
+</kw>
+<arg>xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]</arg>
+<arg>WorkInfoTooltipUI3.png</arg>
+<status status="PASS" start="2025-04-12T22:40:36.137735" elapsed="1.461051"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css=svg.lucide.lucide-circle-alert</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-12T22:40:37.599084" elapsed="0.435428"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:38.035534" level="INFO">Clicking element 'css=svg.lucide.lucide-circle-alert'.</msg>
+<arg>css=svg.lucide.lucide-circle-alert</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-12T22:40:38.035017" elapsed="0.523987"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-12T22:40:39.560148" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-12T22:40:38.559344" elapsed="1.000977"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-12T22:40:39.823109" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI4.png"&gt;&lt;img src="file:///C:/ProgramData/Jenkins/.jenkins/workspace/daily-contract-pipeline/results/Screenshots/WorkInfo/WorkInfoTooltipUI/WorkInfoTooltipUI4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>WorkInfoTooltipUI4.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-12T22:40:39.560580" elapsed="0.262727"/>
+</kw>
+<doc>ทดสอบการแสดง Tooltip แนะนำเมื่อกดที่ไอคอน และสามารถปิด/เปิดได้</doc>
+<tag>WorkInfoTooltipUI</tag>
+<status status="PASS" start="2025-04-12T22:40:31.636379" elapsed="8.187144"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-04-12T22:40:39.824358" elapsed="2.736644"/>
+</kw>
+<status status="PASS" start="2025-04-12T22:39:02.285924" elapsed="100.275283"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">LoginEmployee</stat>
+<stat pass="1" fail="0" skip="0">ProfilePage_Seenotification</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoDropdown</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoHistoryDetails</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoLoadPage</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoNoteSubmit</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoSubmitPositive</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoTabSwitchHistory</stat>
+<stat pass="1" fail="0" skip="0">WorkInfoTooltipUI</stat>
+</tag>
+<suite>
+<stat name="FrontEndTest" id="s1" pass="9" fail="0" skip="0">FrontEndTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

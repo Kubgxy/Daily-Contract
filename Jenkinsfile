@@ -134,7 +134,7 @@ pipeline {
       steps {
         bat '''
           set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
-          robot --outputdir D:\\SPU\\Daily-Contract\\results tests\\FrontEndTest.robot
+          robot --outputdir results tests\\FrontEndTest.robot
         '''
       }
     }
@@ -142,7 +142,7 @@ pipeline {
 
   post {
     always {
-      robot outputPath: 'results'
+      robot outputPath: 'results/output.xml'
       echo '🎉 Jenkins Pipeline Completed!'
     }
   }
