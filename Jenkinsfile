@@ -31,6 +31,29 @@ pipeline {
     stage('🔥 Restore MongoDB เฉพาะตอนที่ไม่มีข้อมูล') {
       steps {
         script {
+          echo '⏳ กำลังรอให้ MongoDB พร้อม...'
+
+          // ✅ loop รอจน Mongo พร้อม
+          def ready = false
+          for (int i = 0; i < 10; i++) {
+            def status = bat(script: '''
+              docker exec mongo mongosh --quiet --eval "db.adminCommand('ping')"
+            ''', returnStatus: true)
+
+            if (status == 0) {
+              ready = true
+              echo '✅ MongoDB พร้อมแล้ว!'
+              break
+            } else {
+              echo "❌ MongoDB ยังไม่พร้อม (รอรอบที่ ${i + 1})"
+              sleep(time: 3, unit: 'SECONDS')
+            }
+          }
+
+          if (!ready) {
+            error('💥 MongoDB ไม่พร้อมใช้งานในเวลาที่กำหนด')
+          }
+
           echo '🔎 ตรวจสอบว่า collection Employee มีข้อมูลหรือไม่...'
           def result = bat(script: '''
             docker exec mongo mongosh --quiet --eval "db.getSiblingDB('mydb').Employee.countDocuments()"
@@ -38,6 +61,7 @@ pipeline {
 
           if (result == "0") {
             echo '⚠️ ไม่พบข้อมูล → เริ่มทำการ restore...'
+
             dir('dump/mydb') {
               bat '''
                 FOR %%f IN (*.bson) DO (
@@ -180,7 +204,7 @@ post {
         curl -H "Content-Type: application/json" ^
           -X POST ^
           -d "{\\"content\\": \\"✅ Build สำเร็จใน Jenkins\\"}" ^
-          https://discordapp.com/api/webhooks/xxx
+          https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
       '''
     }
   }
@@ -192,7 +216,7 @@ post {
         curl -H "Content-Type: application/json" ^
           -X POST ^
           -d "{\\"content\\": \\"❌ Jenkins Build ล้มเหลว - ตรวจสอบด่วน!\\"}" ^
-          https://discordapp.com/api/webhooks/xxx
+          https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
       '''
     }
   }
