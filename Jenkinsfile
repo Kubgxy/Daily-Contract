@@ -22,24 +22,31 @@ pipeline {
       }
     }
 
-    stage('🔥 Restore MongoDB (จากใน container จริง)') {
+    stage('🔥 Restore MongoDB เฉพาะตอนที่ไม่มีข้อมูล') {
       steps {
         script {
-          echo '🧪 ตรวจสอบไฟล์ .bson ที่จะ restore...'
+          echo '🔎 ตรวจสอบว่า collection Employee มีข้อมูลหรือไม่...'
 
-          dir('dump/mydb') {
-            bat '''
-              echo 🔥 เริ่ม Restore ใน container 'mongo' ที่มีอยู่...
+          def result = bat(script: '''
+            docker exec mongo mongosh --quiet --eval "db.getSiblingDB('mydb').Employee.countDocuments()"
+          ''', returnStdout: true).trim()
 
-              FOR %%f IN (*.bson) DO (
-                SET name=%%~nf
-                echo 🔁 Restoring collection %%~nf ...
-                docker cp %%f mongo:/tmp/%%f
-                docker exec mongo mongorestore --db=mydb --collection=%%~nf --drop /tmp/%%f
-              )
+          if (result == "0") {
+            echo '⚠️ ไม่พบข้อมูล → เริ่มทำการ restore...'
 
-              echo ✅ Restore เสร็จสมบูรณ์แล้ว
-            '''
+            dir('dump/mydb') {
+              bat '''
+                FOR %%f IN (*.bson) DO (
+                  SET name=%%~nf
+                  echo 🔁 กำลัง Restore collection %%~nf ...
+                  docker cp %%f mongo:/tmp/%%f
+                  docker exec mongo mongorestore --db=mydb --collection=%%~nf --drop /tmp/%%f
+                )
+              '''
+            }
+            echo '✅ Restore สำเร็จเรียบร้อย!'
+          } else {
+            echo "✅ ข้อมูลมีอยู่แล้ว (${result} records) → ข้ามการ restore ไป"
           }
         }
       }
