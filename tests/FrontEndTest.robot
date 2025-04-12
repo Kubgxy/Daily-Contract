@@ -106,7 +106,7 @@ Test Submit Work Record Successfully
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input    7
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[4]/button[2]    WorkInfoSubmitPositive6.png
     Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    WorkInfoSubmitPositive7.png
-    Wait Until Element Contains    xpath=//h2[@class='swal2-title']    บันทึกสำเร็จ!    10s
+    Wait Until Element Contains    xpath=//h2[@class='swal2-title']    บันทึกสำเร็จ    10s
 
     # ถ่ายภาพทั้งหน้า
     Capture Page Screenshot          WorkInfoSubmitPositive8.png
