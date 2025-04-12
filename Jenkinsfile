@@ -164,37 +164,38 @@ pipeline {
 
   } // end stages
 
-  post {
-    always {
-      node {
-        echo '📦 สร้างรายงาน Robot Framework'
-        robot outputPath: 'results'
-        bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
-      }
-    }
-
-    success {
-      node {
-        echo '✅ Build สำเร็จ ส่งแจ้งเตือนไป Discord'
-        bat '''
-          curl -H "Content-Type: application/json" ^
-            -X POST ^
-            -d "{\\"content\\": \\"✅ Build สำเร็จใน Jenkins\\"}" ^
-            https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
-        '''
-      }
-    }
-
-    failure {
-      node {
-        echo '❌ Build ล้มเหลว ส่งแจ้งเตือนไป Discord'
-        bat '''
-          curl -H "Content-Type: application/json" ^
-            -X POST ^
-            -d "{\\"content\\": \\"❌ Jenkins Build ล้มเหลว - ตรวจสอบด่วน!\\"}" ^
-            https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
-        '''
-      }
+post {
+  always {
+    node('') { // หรือใช้ label ที่ใช้งานจริง เช่น node('master') หรือ node('windows')
+      echo '📦 สร้างรายงาน Robot Framework'
+      robot outputPath: 'results'
+      bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
     }
   }
+
+  success {
+    node('') {
+      echo '✅ Build สำเร็จ ส่งแจ้งเตือนไป Discord'
+      bat '''
+        curl -H "Content-Type: application/json" ^
+          -X POST ^
+          -d "{\\"content\\": \\"✅ Build สำเร็จใน Jenkins\\"}" ^
+          https://discordapp.com/api/webhooks/xxx
+      '''
+    }
+  }
+
+  failure {
+    node('') {
+      echo '❌ Build ล้มเหลว ส่งแจ้งเตือนไป Discord'
+      bat '''
+        curl -H "Content-Type: application/json" ^
+          -X POST ^
+          -d "{\\"content\\": \\"❌ Jenkins Build ล้มเหลว - ตรวจสอบด่วน!\\"}" ^
+          https://discordapp.com/api/webhooks/xxx
+      '''
+    }
+  }
+}
+  
 }
