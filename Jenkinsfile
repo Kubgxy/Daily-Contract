@@ -123,15 +123,18 @@ pipeline {
       }
     }
 
-    stage('🤖 Run Robot Framework Tests') {
+    stage('🤖 Run Robot Framework') {
       steps {
-        bat 'robot tests\\FrontEndTest.robot'
+        bat '''
+          set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+          robot --outputdir results tests\\FrontEndTest.robot
+        '''
       }
     }
-  }
 
   post {
     always {
+      robot outputPath: 'results'
       echo '🎉 Jenkins Pipeline Completed!'
     }
   }
