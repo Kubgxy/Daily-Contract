@@ -7,7 +7,6 @@ import dotenv from "dotenv";
 import Requests from "../../models/Request";
 import Overtime from "../../models/Overtime";
 import WorkInfo from "../../models/WorkInfo";
-import Attendance from "../../models/Attendance";
 import LeaveRecords from "../../models/LeaveRequest";
 
 //Middleware

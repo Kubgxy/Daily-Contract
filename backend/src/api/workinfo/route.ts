@@ -179,7 +179,14 @@ workinfo.get("/admin/all-records", requireManagerOrAdmin, async (req, res) => {
   try {
     const { work_date, position, status } = req.query;
 
-    let query: Record<string, any> = {};
+    const query: {
+      work_date?: {
+        $gte: Date;
+        $lte: Date;
+      };
+      position?: string;
+      status?: string;
+    } = {};
 
     if (work_date) {
       const startOfDay = moment(work_date as string, "YYYY-MM-DD").startOf(
@@ -194,11 +201,11 @@ workinfo.get("/admin/all-records", requireManagerOrAdmin, async (req, res) => {
     }
 
     if (position) {
-      query.position = position;
+      query.position = position as string;
     }
 
     if (status) {
-      query.status = status;
+      query.status = status as string;
     }
 
     const records = await WorkInfo.find(query).sort({ work_date: -1 });

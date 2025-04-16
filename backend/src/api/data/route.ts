@@ -8,7 +8,6 @@ import bcrypt from "bcryptjs";
 //Models
 import Employee from "../../models/Employee";
 import Attendance from "../../models/Attendance";
-import WorkInfo from "../../models/WorkInfo";
 import Notification from "../../models/Notification";
 import Requests from "../../models/Request";
 import Payroll from "../../models/Payroll";
@@ -85,8 +84,13 @@ data.patch("/settings", upload.single("avatar"), async (req: Request, res: Respo
     const employee_id = req.user?.employee_id;
     const { phone_number, address, avatar } = req.body;
 
-
-    const updateData: Record<string, any> = {};
+    interface UpdateData {
+      phone_number?: string;
+      address?: string;
+      avatar?: string;
+    }
+    
+    const updateData: UpdateData = {};    
     if (phone_number) {
       const phoneRegex = /^\d{10}$/;
       if (!phoneRegex.test(phone_number)) {
