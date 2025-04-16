@@ -171,7 +171,9 @@ pipeline {
       }
     }
 
-  } // end stages 
+  } // end stages block
+
+}
 
 post {
   always {
