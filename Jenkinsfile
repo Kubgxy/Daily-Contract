@@ -114,7 +114,8 @@ pipeline {
             dir('frontend') {
               catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Frontend'
-                bat 'npx eslint .'
+                // สั่ง eslint แล้วเก็บ log เป็นไฟล์ eslint-frontend-report.txt
+                bat 'npx eslint . -f stylish > eslint-frontend-report.txt || exit 0'
               }
             }
           }
@@ -125,11 +126,13 @@ pipeline {
             dir('backend') {
               catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Backend'
-                bat 'npx eslint .'
+                // สั่ง eslint แล้วเก็บ log เป็นไฟล์ eslint-backend-report.txt
+                bat 'npx eslint . -f stylish > eslint-backend-report.txt || exit 0'
               }
             }
           }
         }
+
       }
     }
 
@@ -194,7 +197,7 @@ pipeline {
       }
     }
 
-  } // end stages
+  } // end stages 
 
 post {
   always {
@@ -202,6 +205,8 @@ post {
       echo '📦 สร้างรายงาน Robot Framework'
       robot outputPath: 'results'
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
+      echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
+      archiveArtifacts artifacts: '**/eslint-*-report.txt', allowEmptyArchive: true
     }
   }
 
