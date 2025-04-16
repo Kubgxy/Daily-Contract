@@ -214,8 +214,9 @@ auth.get("/employees/me", verifyToken, async (req: Request, res: Response) => {
 
     res.status(200).json(employee);
   } catch (err) {
+    console.error("❌ Error:", err);
     res.status(500).json({ message: "Server error" });
-  }
+  }  
 });
 
 // API Logout
@@ -429,9 +430,10 @@ auth.get("/employees/:employee_id", async (req, res) => {
       return res.status(404).json({ message: "Employee not found" });
     }
     res.status(200).json({ data: employee });
-  } catch (error) {
+  } catch (err) {
+    console.error("❌ Error:", err);
     res.status(500).json({ message: "Server error" });
-  }
+  }  
 });
 
 // API เพื่อตรวจสอบประวัติการล็อกอินของพนักงานตาม employee_id

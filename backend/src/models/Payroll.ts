@@ -9,7 +9,7 @@ interface IPayroll extends Document {
   SalaryOfOvertime: number;
   TotalSalary: number;
   created_at: Date;
-  statusPayroll: { type: String, default: "UnPaid" },
+  statusPayroll: { type: string, default: "UnPaid" },
 }
 
 const PayrollSchema: Schema = new Schema(

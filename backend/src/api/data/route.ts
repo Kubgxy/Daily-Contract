@@ -1,8 +1,7 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import dotenv from "dotenv";
 import moment from "moment-timezone";
-import jwt from "jsonwebtoken";
 import path from "path";
 import multer from "multer";
 import bcrypt from "bcryptjs";
@@ -17,7 +16,6 @@ import Overtime from "../../models/Overtime";
 import LeaveRecords from "../../models/LeaveRequest";
 //Middleware
 import { verifyToken } from "../../middleware/verifyToken";
-import { requireManagerOrAdmin } from "../../middleware/requireManagerOrAdmin";
 
 const data = express.Router();
 data.use(verifyToken);
@@ -88,7 +86,7 @@ data.patch("/settings", upload.single("avatar"), async (req: Request, res: Respo
     const { phone_number, address, avatar } = req.body;
 
 
-    const updateData: any = {};
+    const updateData: Record<string, any> = {};
     if (phone_number) {
       const phoneRegex = /^\d{10}$/;
       if (!phoneRegex.test(phone_number)) {
@@ -552,19 +550,20 @@ data.post("/addNotification", async (req: Request, res: Response) => {
         notification,
       },
     });
-  } catch (error: any) {
-    console.error("Error creating notification:", error);
-
-    // ตรวจสอบข้อผิดพลาด Duplicate Key
-    if (error.code === 11000) {
-      return res.status(400).json({
-        code: "ERROR-02-0004",
-        status: "Error",
-        data: {
-          msg: "Duplicate key error: notification_id must be unique",
-          error,
-        },
-      });
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "code" in error) {
+      const err = error as { code?: number; message?: string };
+  
+      if (err.code === 11000) {
+        return res.status(400).json({
+          code: "ERROR-02-0004",
+          status: "Error",
+          data: {
+            msg: "Duplicate key error: notification_id must be unique",
+            error,
+          },
+        });
+      }
     }
 
     // ส่งข้อผิดพลาดทั่วไป
@@ -619,7 +618,6 @@ data.patch("/updateNotification/:id", async (req: Request, res: Response) => {
 
 // API สำหรับทำเครื่องหมายการแจ้งเตือนทั้งหมดเป็นอ่านแล้ว
 data.patch("/markAsRead/:_id", verifyToken, async (req: Request, res: Response) => {
-    const employeeId = req.user?.employee_id; // ✅ เปลี่ยนตรงนี้
     try {
       const idOfNoti = req.params._id;
 
@@ -776,7 +774,6 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
         attendance_date: reportDate,
       });
       const employeeData = await Employee.find();
-      const workInfoRecords = await WorkInfo.find({ work_date: reportDate });
       const leaveRecords = await LeaveRecords.find({
         start_date: { $lte: reportDate },
         end_date: { $gte: reportDate },

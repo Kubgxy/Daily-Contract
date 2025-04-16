@@ -2,7 +2,6 @@
 import express from "express";
 import LocationConfig from "../../models/LocationConfig";
 import { requireManagerOrAdmin } from "../../middleware/requireManagerOrAdmin";
-import { verifyToken } from "../../middleware/verifyToken";
 
 const worklocation = express.Router();
 

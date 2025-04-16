@@ -6,11 +6,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-
-    // ✅ เพิ่ม 2 บรรทัดนี้เข้าไป
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "typeRoots": ["./@types", "./node_modules/@types"]
   },
-  "include": ["src/**/*", "@types"],
+  "include": ["src", "@types"],
   "exclude": ["node_modules", "dist"]
 }

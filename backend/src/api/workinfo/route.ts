@@ -125,23 +125,22 @@ workinfo.post("/recordwork", verifyToken, async (req, res) => {
       message: "บันทึกข้อมูลสำเร็จ",
       data: workLog,
     });
-  } catch (error: any) {
-    // ตรวจสอบกรณีบันทึกซ้ำในวันเดียวกัน
-    if (error.code === 11000) {
-      return res.status(400).json({
-        status: "error",
-        message: "คุณได้บันทึกข้อมูลการทำงานของวันนี้ไปแล้ว",
-      });
-    }
-    console.error("🔥 Record Error:", error.message, error.stack);
+  } catch (error: unknown) {
+  const err = error as { code?: number; message?: string; stack?: string };
 
-    // บันทึก error สำหรับการตรวจสอบ (ควรใช้ logging library)
-    console.error("Error in recordwork:", error);
-
-    res.status(500).json({
+  if (err.code === 11000) {
+    return res.status(400).json({
       status: "error",
-      message: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
+      message: "คุณได้บันทึกข้อมูลการทำงานของวันนี้ไปแล้ว",
     });
+  }
+
+  console.error("🔥 Record Error:", err.message, err.stack);
+
+  res.status(500).json({
+    status: "error",
+    message: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
+  });
   }
 });
 
@@ -157,20 +156,30 @@ workinfo.get("/my-records", verifyToken, async (req, res) => {
       status: "success",
       data: records,
     });
-  } catch (error: any) {
-    res.status(400).json({
+  } catch (error: unknown) {
+  const err = error as { code?: number; message?: string; stack?: string };
+
+  if (err.code === 11000) {
+    return res.status(400).json({
       status: "error",
-      message: error.message,
+      message: "คุณได้บันทึกข้อมูลการทำงานของวันนี้ไปแล้ว",
     });
   }
-});
 
+  console.error("🔥 Record Error:", err.message, err.stack);
+
+  res.status(500).json({
+    status: "error",
+    message: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
+  });
+  }
+  });
 // 3. API สำหรับแอดมินดูข้อมูลทั้งหมด
 workinfo.get("/admin/all-records", requireManagerOrAdmin, async (req, res) => {
   try {
     const { work_date, position, status } = req.query;
 
-    let query: any = {};
+    let query: Record<string, any> = {};
 
     if (work_date) {
       const startOfDay = moment(work_date as string, "YYYY-MM-DD").startOf(
@@ -198,13 +207,24 @@ workinfo.get("/admin/all-records", requireManagerOrAdmin, async (req, res) => {
       status: "success",
       data: records,
     });
-  } catch (error: any) {
-    res.status(400).json({
+  } catch (error: unknown) {
+  const err = error as { code?: number; message?: string; stack?: string };
+
+  if (err.code === 11000) {
+    return res.status(400).json({
       status: "error",
-      message: error.message,
+      message: "คุณได้บันทึกข้อมูลการทำงานของวันนี้ไปแล้ว",
     });
   }
-});
+
+  console.error("🔥 Record Error:", err.message, err.stack);
+
+  res.status(500).json({
+    status: "error",
+    message: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
+  });
+  }
+  });
 
 // 4. API สำหรับ Manager ดูประวัติการทำงาน
 workinfo.get("/manager/records", requireManagerOrAdmin, async (req, res) => {

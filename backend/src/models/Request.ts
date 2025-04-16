@@ -8,7 +8,7 @@ interface IRequest extends Document {
   status: "Pending" | "Approved" | "Rejected";
   created_at: Date;
   updated_at: Date;
-  details: any;
+  details: Record<string, unknown>;
   approved_by: string;
 }
 

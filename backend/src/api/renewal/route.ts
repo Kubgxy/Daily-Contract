@@ -18,7 +18,7 @@ const SECRET_KEY =
 console.log("Your secret key is:", SECRET_KEY);
 
 // API สำหรับดูสถานะการต่อสัญญาของพนักงาน (แบบสั้น)
-renewal.get("/pending-count", requireManagerOrAdmin, async (req, res) => {
+renewal.get("/pending-count", requireManagerOrAdmin, async (req: Request, res: Response) => {
   try {
     const count = await Employee.countDocuments({ renewal_status: "Pending" });
     res.json({ status: "success", count });
@@ -29,7 +29,7 @@ renewal.get("/pending-count", requireManagerOrAdmin, async (req, res) => {
 });
 
 // API สำหรับดูสถานะการต่อสัญญาของพนักงาน
-renewal.get("/renewal-requests", requireManagerOrAdmin, async (req, res) => {
+renewal.get("/renewal-requests", requireManagerOrAdmin, async (req: Request, res: Response) => {
     try {
       const pendingRenewals = await Employee.find({
         renewal_status: "Pending"
@@ -46,7 +46,7 @@ renewal.get("/renewal-requests", requireManagerOrAdmin, async (req, res) => {
   });
   
 // API สำหรับอนุมัติการต่อสัญญาของพนักงาน
-renewal.patch("/renewal-approve/:id", requireManagerOrAdmin, async (req, res) => {
+renewal.patch("/renewal-approve/:id", requireManagerOrAdmin, async (req: Request, res: Response) => {
     try {
       const employee = await Employee.findById(req.params.id);
       if (!employee) return res.status(404).json({ message: "ไม่พบพนักงาน" });
@@ -70,7 +70,7 @@ renewal.patch("/renewal-approve/:id", requireManagerOrAdmin, async (req, res) =>
   });
   
 // API สำหรับปฏิเสธการต่อสัญญาของพนักงาน
-renewal.patch("/renewal-reject/:id", requireManagerOrAdmin, async (req, res) => {
+renewal.patch("/renewal-reject/:id", requireManagerOrAdmin, async (req: Request, res: Response) => {
     try {
       const employee = await Employee.findById(req.params.id);
       if (!employee) return res.status(404).json({ message: "ไม่พบพนักงาน" });

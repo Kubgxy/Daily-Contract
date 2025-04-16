@@ -1,16 +1,12 @@
 import express, { Request, Response } from "express";
 import multer from "multer";
 import path from "path";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 //Models
 import Requests from "../../models/Request";
-import Payroll from "../../models/Payroll";
 import Overtime from "../../models/Overtime";
 import WorkInfo from "../../models/WorkInfo";
-import WorkReport from "../../models/WorkReport";
-import Employee from "../../models/Employee";
 import Attendance from "../../models/Attendance";
 import LeaveRecords from "../../models/LeaveRequest";
 
@@ -21,9 +17,6 @@ import { requireManagerOrAdmin } from "../../middleware/requireManagerOrAdmin";
 const requests = express.Router();
 requests.use(verifyToken);
 dotenv.config();
-
-// กำหนด secret key ไว้ตรวจสอบ token
-const SECRET_KEY = process.env.SECRET_KEY || "japaitarmhasecrettummai-secretuyounii";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -470,6 +463,7 @@ requests.post("/updateRequestStatus", async (req: Request, res: Response) => {
                     overtimeData.end_time
                 );
             } catch (error) {
+                console.error("Error calculating overtime hours:", error);
                 return res.status(400).json({
                     code: "ERROR-01-0009",
                     status: "Error",
@@ -513,103 +507,103 @@ requests.post("/updateRequestStatus", async (req: Request, res: Response) => {
 });
 
 // API สำหรับอนุมัติคำขอและอัปเดตข้อมูลใน Attendance
-requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => {
-    const { requestId } = req.body;
+// requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => {
+//     const { requestId } = req.body;
 
-    if (!requestId) {
-        return res.status(400).json({
-            code: "ERROR-01-0004",
-            status: "Error",
-            data: {
-                msg: "Missing required field: requestId",
-            },
-        });
-    }
+//     if (!requestId) {
+//         return res.status(400).json({
+//             code: "ERROR-01-0004",
+//             status: "Error",
+//             data: {
+//                 msg: "Missing required field: requestId",
+//             },
+//         });
+//     }
 
-    try {
-        // ค้นหาคำขอที่ต้องการอนุมัติ
-        const request = await Requests.findById(requestId);
+//     try {
+//         // ค้นหาคำขอที่ต้องการอนุมัติ
+//         const request = await Requests.findById(requestId);
 
-        if (!request) {
-            return res.status(404).json({
-                code: "ERROR-01-0005",
-                status: "Error",
-                data: {
-                    msg: "Request not found",
-                },
-            });
-        }
+//         if (!request) {
+//             return res.status(404).json({
+//                 code: "ERROR-01-0005",
+//                 status: "Error",
+//                 data: {
+//                     msg: "Request not found",
+//                 },
+//             });
+//         }
 
-        // ตรวจสอบว่าเป็นประเภทคำขอแก้ไขข้อมูลการทำงาน (workInfoRequest)
-        if (request.type !== "workInfoRequest") {
-            return res.status(400).json({
-                code: "ERROR-01-0006",
-                status: "Error",
-                data: {
-                    msg: "Invalid request type",
-                },
-            });
-        }
+//         // ตรวจสอบว่าเป็นประเภทคำขอแก้ไขข้อมูลการทำงาน (workInfoRequest)
+//         if (request.type !== "workInfoRequest") {
+//             return res.status(400).json({
+//                 code: "ERROR-01-0006",
+//                 status: "Error",
+//                 data: {
+//                     msg: "Invalid request type",
+//                 },
+//             });
+//         }
 
-        // อัปเดตสถานะคำขอเป็น "approved"
-        request.status = "Approved";
-        await request.save();
+//         // อัปเดตสถานะคำขอเป็น "approved"
+//         request.status = "Approved";
+//         await request.save();
 
-        // ตรวจสอบวันที่จาก original_check_in
-        const attendanceDate = request.details.original_check_in.split("T")[0];
+//         // ตรวจสอบวันที่จาก original_check_in
+//         const attendanceDate = request.details.original_check_in.split("T")[0];
 
-        // อัปเดตข้อมูลใน Attendance
-        const updatedAttendance = await Attendance.findOneAndUpdate(
-            {
-                employee_id: request.employee_id,
-                attendance_date: attendanceDate, // ตรวจสอบว่า attendance_date ตรงกับคำขอ
-            },
-            {
-                check_in_time: request.details.corrected_check_in, // เวลาเข้างานใหม่
-                check_out_time: request.details.corrected_check_out, // เวลาออกงานใหม่
-            },
-            { new: true } // ส่งคืนข้อมูลที่อัปเดตแล้ว
-        );
+//         // อัปเดตข้อมูลใน Attendance
+//         const updatedAttendance = await Attendance.findOneAndUpdate(
+//             {
+//                 employee_id: request.employee_id,
+//                 attendance_date: attendanceDate, // ตรวจสอบว่า attendance_date ตรงกับคำขอ
+//             },
+//             {
+//                 check_in_time: request.details.corrected_check_in, // เวลาเข้างานใหม่
+//                 check_out_time: request.details.corrected_check_out, // เวลาออกงานใหม่
+//             },
+//             { new: true } // ส่งคืนข้อมูลที่อัปเดตแล้ว
+//         );
 
-        if (!updatedAttendance) {
-            return res.status(404).json({
-                code: "ERROR-01-0008",
-                status: "Error",
-                data: {
-                    msg: "Attendance record not found",
-                },
-            });
-        }
+//         if (!updatedAttendance) {
+//             return res.status(404).json({
+//                 code: "ERROR-01-0008",
+//                 status: "Error",
+//                 data: {
+//                     msg: "Attendance record not found",
+//                 },
+//             });
+//         }
 
-        // คำนวณ work_hours
-        const checkIn = new Date(request.details.corrected_check_in);
-        const checkOut = new Date(request.details.corrected_check_out);
+//         // คำนวณ work_hours
+//         const checkIn = new Date(request.details.corrected_check_in);
+//         const checkOut = new Date(request.details.corrected_check_out);
 
-        const workHours = Math.abs((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60)); // เปลี่ยน ms -> ชั่วโมง
+//         const workHours = Math.abs((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60)); // เปลี่ยน ms -> ชั่วโมง
 
-        // อัปเดต work_hours ใน Attendance
-        updatedAttendance.work_hours = workHours.toFixed(2); // จำกัดทศนิยม 2 ตำแหน่ง
-        await updatedAttendance.save();
+//         // อัปเดต work_hours ใน Attendance
+//         updatedAttendance.work_hours = workHours.toFixed(2); // จำกัดทศนิยม 2 ตำแหน่ง
+//         await updatedAttendance.save();
 
-        return res.status(200).json({
-            code: "Success-01-0004",
-            status: "Success",
-            data: {
-                msg: "WorkInfo and Attendance updated successfully",
-                updatedAttendance,
-            },
-        });
-    } catch (error) {
-        console.error("Error approving request and updating Attendance:", error);
-        res.status(500).json({
-            code: "ERROR-01-0007",
-            status: "Error",
-            data: {
-                msg: "An error occurred while approving the request and updating Attendance",
-            },
-        });
-    }
-});
+//         return res.status(200).json({
+//             code: "Success-01-0004",
+//             status: "Success",
+//             data: {
+//                 msg: "WorkInfo and Attendance updated successfully",
+//                 updatedAttendance,
+//             },
+//         });
+//     } catch (error) {
+//         console.error("Error approving request and updating Attendance:", error);
+//         res.status(500).json({
+//             code: "ERROR-01-0007",
+//             status: "Error",
+//             data: {
+//                 msg: "An error occurred while approving the request and updating Attendance",
+//             },
+//         });
+//     }
+// });
 
 // API สำหรับอนุมัติคำขอและอัปเดตข้อมูลใน LeaveRecords
 requests.post("/approveLeaveRequest", async (req: Request, res: Response) => {

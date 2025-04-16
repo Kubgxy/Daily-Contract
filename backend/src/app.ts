@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";

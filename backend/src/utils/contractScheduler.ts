@@ -1,7 +1,6 @@
 import cron from 'node-cron';
 import Employee from '../models/Employee';
 import Notification from '../models/Notification';
-import mongoose from 'mongoose';
 import { io } from '../app'; // ✅ เพิ่ม import Socket.IO server
 
 // 🔁 รันทุกวันตอนเที่ยงคืน

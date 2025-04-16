@@ -12,14 +12,6 @@ interface JwtPayload {
   position: string; // ✅ เพิ่มตรงนี้เลย
 }
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: JwtPayload;
-    }
-  }
-}
-
 // ✅ Middleware ตรวจสอบ JWT จาก Cookie
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const token =  req.cookies.employee_token;
@@ -33,6 +25,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     req.user = decoded;
     next();
   } catch (err) {
+    console.error("❌ Token verification error:", err);
     return res.status(403).json({ message: "Invalid token" });
   }
 };
