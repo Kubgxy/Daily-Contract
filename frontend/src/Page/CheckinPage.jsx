@@ -141,15 +141,6 @@ function CheckinPage() {
           text: "Unable to check in at this time.",
         });
       }
-      console.log(
-        "🔁 เช็คระยะ: user:",
-        userLat,
-        userLon,
-        "work:",
-        workLat,
-        workLon
-      );
-      console.log("📏 ระยะห่าง (เมตร):", distance);
     }
   };
 

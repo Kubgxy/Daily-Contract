@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import * as jwt from "jwt-decode";
 import Swal from "sweetalert2";
 import {
   LucidePlusCircle,

@@ -14,7 +14,6 @@ import Swal from "sweetalert2";
 
 const WorkLogging = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [userDepartment, setUserDepartment] = useState("");
   const [selectedTask, setSelectedTask] = useState("");
   const [detailwork, setDetailWork] = useState("");
@@ -105,7 +104,6 @@ const WorkLogging = () => {
         setCompletedJobs(success);
       } catch (error) {
         console.error("Error:", error);
-        setError("ไม่สามารถดึงข้อมูลได้");
       } finally {
         setIsLoading(false);
       }

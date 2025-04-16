@@ -2,9 +2,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useLocation,
-  useNavigate,
-  Link,
 } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -28,13 +25,10 @@ import VerifyOtp from "./Page/VerifyOtp";
 import ResetPassword from "./Page/ResetPassword";
 
 function App() {
-    const [employeeId, setEmployeeId] = useState("");
-  
     useEffect(() => {
       const fetchEmployeeInfo = async () => {
         try {
           const res = await axios.get(`${baseURL}/api/auth/employees/me`, { withCredentials: true });
-          setEmployeeId(res.data.employee_id);
   
           // ✅ หลังได้ employee_id → ส่งผ่าน socket
           socket.emit("register", res.data.employee_id);
