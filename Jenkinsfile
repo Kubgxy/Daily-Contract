@@ -173,8 +173,6 @@ pipeline {
 
   } // end stages block
 
-}
-
 post {
   always {
     node('') { // หรือใช้ label ที่ใช้งานจริง เช่น node('master') หรือ node('windows')
@@ -224,3 +222,4 @@ failure {
 }
   
 }
+} // end pipeline block
