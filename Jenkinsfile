@@ -166,7 +166,7 @@ pipeline {
       steps {
         bat '''
           set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
-          robot --outputdir results tests\\FrontEndTest.robot
+          robot --outputdir %WORKSPACE%\\results tests\\FrontEndTest.robot
         '''
       }
     }
