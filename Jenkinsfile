@@ -114,7 +114,8 @@ pipeline {
             dir('frontend') {
               catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Frontend'
-                bat 'npx eslint . -f stylish > D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt || exit 0'
+                bat 'npx eslint src --ext .js,.jsx -f stylish > D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt || exit 0'
+                bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt'
               }
             }
           }
@@ -126,37 +127,12 @@ pipeline {
               catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Backend'
                 bat 'npx eslint . -f stylish > D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-backend-report.txt || exit 0'
-             }
+                bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-backend-report.txt'
+              }
             }
           }
         }
 
-      }
-    }
-
-    stage('🧪 Run Tests') {
-      parallel {
-        stage('Frontend Test') {
-          steps {
-            dir('frontend') {
-              bat 'echo "🧪 ยังไม่มี Frontend test"'
-            }
-          }
-        }
-        stage('Dashboard Test') {
-          steps {
-            dir('dashboard') {
-              bat 'echo "🧪 ยังไม่มี Dashboard test"'
-            }
-          }
-        }
-        stage('Backend Test') {
-          steps {
-            dir('backend') {
-              bat 'echo "🧪 ยังไม่มี Backend test"'
-            }
-          }
-        }
       }
     }
 
