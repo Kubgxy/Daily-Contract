@@ -33,7 +33,6 @@ pipeline {
         script {
           echo '⏳ กำลังรอให้ MongoDB พร้อม...'
 
-          // ✅ loop รอจน Mongo พร้อม
           def ready = false
           for (int i = 0; i < 10; i++) {
             def status = bat(script: '''
@@ -108,7 +107,6 @@ pipeline {
 
     stage('🔍 Lint Code') {
       parallel {
-
         stage('Frontend Lint') {
           steps {
             dir('frontend') {
@@ -132,7 +130,6 @@ pipeline {
             }
           }
         }
-
       }
     }
 
@@ -172,30 +169,24 @@ pipeline {
       }
     }
 
-  } // end stages block
+  } // end stages
 
-post {
-  always {
-    node('') {
+  post {
+    always {
       echo '📦 สร้างรายงาน Robot Framework'
+      robot outputPath: 'results'
 
-      dir("${WORKSPACE}") {
-        robot outputPath: 'results'
+      bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
 
-        // คัดลอกผลลัพธ์
-        bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
+      echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
+      archiveArtifacts artifacts: '**/eslint-*-report.txt', allowEmptyArchive: true
+      bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt'
+      bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-backend-report.txt'
 
-        echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
-        archiveArtifacts artifacts: '**/eslint-*-report.txt', allowEmptyArchive: true
-        bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt'
-        bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-backend-report.txt'
-      }
-
-      // ส่ง Discord แจ้งเตือน
       script {
         def now = new Date().format("HH:mm:ss")
         def isSuccess = currentBuild.result == null || currentBuild.result == 'SUCCESS'
-        def message = isSuccess ?
+        def message = isSuccess ? 
           """{ "content": "✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}" }""" :
           """{ "content": "❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}" }"""
 
@@ -209,6 +200,5 @@ post {
       }
     }
   }
-}
 
-} // end pipeline block
+} // END pipeline
