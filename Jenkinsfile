@@ -175,51 +175,39 @@ pipeline {
 
 post {
   always {
-    node('') { // หรือใช้ label ที่ใช้งานจริง เช่น node('master') หรือ node('windows')
+    node('') {
       echo '📦 สร้างรายงาน Robot Framework'
+
       dir("${WORKSPACE}") {
-      robot outputPath: 'results'
-      bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
-      echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
-      archiveArtifacts artifacts: '**/eslint-*-report.txt', allowEmptyArchive: true
-      bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt'
-      bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-backend-report.txt'
-    }
-  }
+        robot outputPath: 'results'
 
-success {
-  node('') {
-    script {
-      def now = new Date().format("HH:mm:ss")
-      def message = """{
-        "content": "✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}"
-      }"""
-      writeFile file: 'discord_success.json', text: message
-    }
-    bat '''
-      curl -X POST -H "Content-Type: application/json" -d @discord_success.json ^
-      https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
-    '''
-  }
-}
+        // คัดลอกผลลัพธ์
+        bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
 
-failure {
-  node('') {
-    script {
-      def now = new Date().format("HH:mm:ss")
-      def message = """{
-        "content": "❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}"
-      }"""
-      writeFile file: 'discord_failure.json', text: message
+        echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
+        archiveArtifacts artifacts: '**/eslint-*-report.txt', allowEmptyArchive: true
+        bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt'
+        bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-backend-report.txt'
+      }
+
+      // ส่ง Discord แจ้งเตือน
+      script {
+        def now = new Date().format("HH:mm:ss")
+        def isSuccess = currentBuild.result == null || currentBuild.result == 'SUCCESS'
+        def message = isSuccess ?
+          """{ "content": "✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}" }""" :
+          """{ "content": "❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}" }"""
+
+        def file = isSuccess ? 'discord_success.json' : 'discord_failure.json'
+        writeFile file: file, text: message
+
+        bat """
+          curl -X POST -H "Content-Type: application/json" -d @${file} ^
+          https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
+        """
+      }
     }
-    bat '''
-      curl -X POST -H "Content-Type: application/json" -d @discord_failure.json ^
-      https://discordapp.com/api/webhooks/1360721938003263538/w-d79xvOtQC0gn4PN4N2NYuF-Td9ub2fNvFQPtzuYSuLtDp1iP6x4nyAwgokPkKeXVx8
-    '''
   }
 }
 
-}
-  
-}
 } // end pipeline block
