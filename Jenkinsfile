@@ -114,7 +114,7 @@ pipeline {
             dir('frontend') {
               catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 echo '🚨 เริ่มตรวจสอบ Lint โค้ดฝั่ง Frontend'
-                bat 'npx eslint src --ext .js,.jsx -f stylish > D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt || exit 0'
+                bat 'npx eslint src --ext .js,.jsx --config .eslintrc.cjs --no-warn-ignored -f stylish > D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt || exit 0'
                 bat 'type D:\\SPU\\Daily-Contract\\logs_eslint\\eslint-frontend-report.txt'
               }
             }
