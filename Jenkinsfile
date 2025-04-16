@@ -177,6 +177,7 @@ post {
   always {
     node('') { // หรือใช้ label ที่ใช้งานจริง เช่น node('master') หรือ node('windows')
       echo '📦 สร้างรายงาน Robot Framework'
+      dir("${WORKSPACE}") {
       robot outputPath: 'results'
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\results'
       echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
