@@ -87,7 +87,7 @@ Test Notification Page
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    NotificationPage1.png
     Input Text           xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240010
-    Input Password       xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Input Password       xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button              NotificationPage2.png
 
     # ✅ เข้าหน้า Notification อย่างปลอดภัย
