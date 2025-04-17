@@ -445,16 +445,13 @@ requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => 
       return res.status(400).json({
         code: "ERROR-01-0004",
         status: "Error",
-        data: {
-          msg: "Missing required field: requestId",
-        },
+        data: { msg: "Missing required field: requestId" },
       });
     }
   
     try {
       // ✅ ค้นหาคำขอ
       const request = await Requests.findById(requestId);
-  
       if (!request) {
         return res.status(404).json({
           code: "ERROR-01-0005",
@@ -472,25 +469,32 @@ requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => 
         });
       }
   
-      // ✅ แปลงชนิดข้อมูลให้ TypeScript เข้าใจ
+      // ✅ แปลงเป็น type ที่ปลอดภัย
       const details = request.details as WorkInfoDetails;
   
-      // ✅ อัปเดตสถานะคำขอ
+      // ✅ แปลง original_check_in เป็น Date และเคลียร์เวลา
+      const attendanceDate = new Date(details.original_check_in);
+      attendanceDate.setHours(0, 0, 0, 0); // ตั้งให้ตรงกับค่าที่ Mongo เก็บไว้
+  
+      // ✅ Debug log ช่วยตรวจสอบ
+      console.log("🟦 Matching Attendance:", {
+        employee_id: request.employee_id,
+        attendance_date: attendanceDate,
+      });
+  
+      // ✅ อัปเดตคำขอ
       request.status = "Approved";
       await request.save();
   
-      // ✅ แยกวันที่จาก original_check_in
-      const attendanceDate = details.original_check_in.split("T")[0];
-  
-      // ✅ อัปเดตข้อมูลใน Attendance
+      // ✅ ค้นหาและอัปเดต Attendance
       const updatedAttendance = await Attendance.findOneAndUpdate(
         {
           employee_id: request.employee_id,
           attendance_date: attendanceDate,
         },
         {
-          check_in_time: details.corrected_check_in,
-          check_out_time: details.corrected_check_out,
+          check_in_time: new Date(details.corrected_check_in),
+          check_out_time: new Date(details.corrected_check_out),
         },
         { new: true }
       );
@@ -503,7 +507,7 @@ requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => 
         });
       }
   
-      // ✅ คำนวณเวลาทำงาน (ชั่วโมง)
+      // ✅ คำนวณเวลาทำงาน
       const checkIn = new Date(details.corrected_check_in);
       const checkOut = new Date(details.corrected_check_out);
       const workHours = Math.abs((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60));
@@ -520,13 +524,11 @@ requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => 
         },
       });
     } catch (error) {
-      console.error("Error approving request and updating Attendance:", error);
+      console.error("❌ Error approving work info request:", error);
       return res.status(500).json({
         code: "ERROR-01-0007",
         status: "Error",
-        data: {
-          msg: "An error occurred while approving the request and updating Attendance",
-        },
+        data: { msg: "Internal server error while approving request" },
       });
     }
   });
