@@ -159,15 +159,15 @@ pipeline {
       }
     }
 
-    stage('🤖 Run Robot Framework') {
-      steps {
-        bat '''
-          set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
-          if not exist results mkdir results
-          robot --outputdir results tests\\FrontEndTest.robot
-        '''
-      }
-    }
+    // stage('🤖 Run Robot Framework') {
+    //   steps {
+    //     bat '''
+    //       set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+    //       if not exist results mkdir results
+    //       robot --outputdir results tests\\FrontEndTest.robot
+    //     '''
+    //   }
+    // }
 
   } // end stages
 

@@ -1,7 +1,7 @@
 
 C:\ProgramData\Jenkins\.jenkins\workspace\daily-contract-pipeline\backend\src\api\requests\route.ts
   388:38  error  'overtimeData' is assigned a value but never used  @typescript-eslint/no-unused-vars
-  637:15  error  'startOfDay' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  639:15  error  'startOfDay' is assigned a value but never used    @typescript-eslint/no-unused-vars
 
 ✖ 2 problems (2 errors, 0 warnings)
 
