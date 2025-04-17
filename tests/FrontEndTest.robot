@@ -90,7 +90,9 @@ Test Notification Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    NotificationPage2.png
 
     # เข้าหน้า Notification
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]   NotificationPage3.png
+    Wait Until Element Is Visible    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]    10s
+    Click And Capture                xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]   NotificationPage3.png
+
 
     # เช็คว่ามสามารถกดงปุ่มติ๊กถูกเพื่อกดว่าอ่านแล้วได้
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div/button    NotificationPage4.png
