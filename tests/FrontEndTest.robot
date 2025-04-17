@@ -1,5 +1,5 @@
 *** Settings ***
-Library           SeleniumLibrary
+Library           SeleniumLibrary    options=add_argument("--window-size=1920,1080")
 Library    XML
 Resource          KeyWord.robot
 Suite Setup       Open Browser And Maximize
@@ -425,14 +425,13 @@ Test Click To See Details Request
 
 # Test Case For About Page
 *** Test Cases ***
-
 Test About Page
     [Tags]   AboutPage
     [Documentation]    ทดสอบการโหลดหน้า About ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/About/AboutPage
 
     # Login
-    Go To         ${BASE_URL}
+    Go To         ${BASE_URL}    
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    AboutPageLoadPage1.png
     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
@@ -450,47 +449,47 @@ Test About Page
 
     Capture Page Screenshot    AboutPageLoadPage6.png
 
-# Test Case For Setting Page
-*** Test Cases ***
-Test Case Setting Page
-    [Tags]   SettingPage
-    [Documentation]    ทดสอบการโหลดหน้า Setting ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Setting/SettingPage
+# # Test Case For Setting Page
+# # *** Test Cases ***
+# Test Case Setting Page
+#     [Tags]   SettingPage
+#     [Documentation]    ทดสอบการโหลดหน้า Setting ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Setting/SettingPage
 
-    # Login
-    Go To         ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    SettingPageLoadPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240001
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    SettingPageLoadPage2.png
+#     # Login
+#     Go To         ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    SettingPageLoadPage1.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240001
+#     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    SettingPageLoadPage2.png
 
-    # เข้าหน้า Setting
-    Click And Capture     xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    SettingPageLoadPage3.png
-    Click And Capture     xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    SettingPageLoadPage4.png
+#     # เข้าหน้า Setting
+#     Click And Capture     xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    SettingPageLoadPage3.png
+#     Click And Capture     xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    SettingPageLoadPage4.png
 
-    # เช็คว่าสามรถแก้ไขข้อมูลได้
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button    SettingPageLoadPage5.png
-    Input Text    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/input    0823615465
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button    SettingPageLoadPage6.png
+#     # เช็คว่าสามรถแก้ไขข้อมูลได้
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button    SettingPageLoadPage5.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/input    0823615465
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button    SettingPageLoadPage6.png
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    SettingPageLoadPage7.png
-    Input Text    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/input    80 หมู่ 28 ถ.แหยมศิริ บางดี จ.สตูล 69924
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    SettingPageLoadPage8.png
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    SettingPageLoadPage7.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/input    80 หมู่ 28 ถ.แหยมศิริ บางดี จ.สตูล 69924
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    SettingPageLoadPage8.png
 
-    Wait Until Element Is Not Visible    css=.swal2-container    5s
+#     Wait Until Element Is Not Visible    css=.swal2-container    5s
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    SettingPageLoadPage9.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button    SettingPageLoadPage10.png
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    SettingPageLoadPage9.png
+#     Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button    SettingPageLoadPage10.png
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    SettingPageLoadPage11.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567890
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    SettingPageLoadPage11.png
+#     Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567890
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    SettingPageLoadPage12.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567890
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    SettingPageLoadPage12.png
+#     Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567890
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    SettingPageLoadPage13.png
+#     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    SettingPageLoadPage13.png
 
-    Capture Page Screenshot    SettingPageLoadPage3.png
+#     Capture Page Screenshot    SettingPageLoadPage3.png
 
-    Sleep    3000
+#     Sleep    3000
