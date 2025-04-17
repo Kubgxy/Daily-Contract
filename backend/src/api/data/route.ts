@@ -134,7 +134,7 @@ data.patch("/settings", upload.single("avatar"), async (req: Request, res: Respo
 
 // API สำหรับการเปลี่ยนรหัสผ่าน
 data.patch("/change-password", async (req: Request, res: Response) => {
-    const { employee_id } = req.body;
+    const employee_id = req.user?.employee_id;
     const { password, new_password, confirm_password } = req.body;
 
     try {
