@@ -44,7 +44,7 @@ Test Check In Page
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckInPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240003
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240004
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckInPage2.png
 
@@ -64,7 +64,7 @@ Test Check Out Page
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckOutPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240003
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240004
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckOutPage2.png
 
@@ -467,7 +467,7 @@ Test Case Setting Page
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    SettingPageLoadPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240003
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240004
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    SettingPageLoadPage2.png
 
