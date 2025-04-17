@@ -91,10 +91,7 @@ Test Notification Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button              NotificationPage2.png
 
     # ✅ เข้าหน้า Notification อย่างปลอดภัย
-    Wait Until Element Is Visible   xpath=//a[@href="/notifications"]    10s
-    Scroll Element Into View        xpath=//a[@href="/notifications"]
-    Click And Capture               xpath=//a[@href="/notifications"]    NotificationPage3.png
-
+    Click And Capture               xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]   NotificationPage3.png
 
     # ✅ ติ๊กอ่านแล้ว (ปุ่มติ๊กถูก)
     Wait Until Element Is Visible   xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div/button    5s
