@@ -54,7 +54,7 @@ Test Check In Page
     # เช็คปุ่มกด CheckIn สามารถใช้ได้
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[1]    CheckInPage4.png
     Wait Until Element Is Visible    xpath=//button[text()="OK"]    5s
-    Click Button    xpath=//button[text()="OK"]
+    Click And Capture    xpath=//button[text()="OK"]    CheckInPage5.png
     Sleep    5s
 
 Test Check In Page
@@ -74,7 +74,7 @@ Test Check In Page
     # เช็คปุ่มกด CheckIn สามารถใช้ได้
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[2]    CheckOutPage4.png
     Wait Until Element Is Visible    xpath=//button[text()="OK"]    5s
-    Click Button    xpath=//button[text()="OK"]
+    Click And Capture    xpath=//button[text()="OK"]    CheckOutPage5.png
 
 # Test Cases For Notification Page
 *** Test Cases ***
@@ -97,10 +97,10 @@ Test Notification Page
 
     # เช็คว่ากดดูรายละเอียดการแจ้งเตือนได้
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[1]/button[text()="ดูเพิ่มเติม..."]   NotificationPage4.png
-    Click Element    xpath=//button[contains(., "ซ่อนข้อมูล")]
+    Click And Capture    xpath=//button[contains(., "ซ่อนข้อมูล")]    NotificationPage5.png
     Wait Until Page Contains Element    xpath=//button[contains(., "ดูเพิ่มเติม")]    5s
 
-    Capture Page Screenshot    NotificationPage5.png
+    Capture Page Screenshot    NotificationPage6.png
 
 
 # WorkInfo (Positive Case)
@@ -309,22 +309,22 @@ Test Sent Request On Request Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    RequestSent3.png
 
     # เทสการส่งคำขอแบบฟอร์มขอลาหยุด
-    Click Element    xpath=//*[@id="formType"]
-    Click Element    xpath=//*[@id="formType"]/option[2]
+    Click And Capture    xpath=//*[@id="formType"]    RequestSent4.png
+    Click And Capture    xpath=//*[@id="formType"]/option[2]    RequestSent5.png
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/select
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/select/option[2]
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/select    RequestSent6.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/select/option[2]    RequestSent7.png
     
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]    RequestSent8.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]    04/16/2025
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]    RequestSent9.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]    04/20/2025
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    RequestSent10.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    กูจะนอน
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div/form/button
-    Click Button    xpath=/html/body/div[2]/div/div[6]/button[1]
-    Click Button    xpath=/html/body/div[2]/div/div[6]/button[1]  
-    Capture Page Screenshot    RequestSent4.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/button    RequestSent11.png
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    RequestSent12.png
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]     RequestSent13.png 
+    Capture Page Screenshot    RequestSent14.png
 
 Test Sent Request On Request Page 
     [Tags]    RequestSentOvertime
@@ -342,24 +342,24 @@ Test Sent Request On Request Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    OvertimeRequest3.png
 
     # เทสการส่งคำขอแบบฟอร์มขอทำงานล่วงเวลา
-    Click Element    xpath=//*[@id="formType"]
-    Click Element    xpath=//*[@id="formType"]/option[3]
+    Click And Capture     xpath=//*[@id="formType"]    OvertimeRequest4.png
+    Click And Capture     xpath=//*[@id="formType"]/option[3]    OvertimeRequest5.png
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]    OvertimeRequest6.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]    17/04/2025
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]    OvertimeRequest7.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]    09:00
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    OvertimeRequest8.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    17:00
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[4]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[4]    OvertimeRequest9.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[4]    ระบบมีปัญหา
 
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div/form/button
-    Click Button    xpath=/html/body/div[2]/div/div[6]/button[1]
-    Click Button    xpath=/html/body/div[2]/div/div[6]/button[1]
-    Capture Page Screenshot    OvertimeRequest4.png
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/button    OvertimeRequest10.png
+    Click And Capture     xpath=/html/body/div[2]/div/div[6]/button[1]    OvertimeRequest11.png
+    Click And Capture     xpath=/html/body/div[2]/div/div[6]/button[1]    OvertimeRequest12.png
+    Capture Page Screenshot    OvertimeRequest13.png
 
 Test Sent Request On Request Page 
     [Tags]    RequestSentEditdatawork
@@ -377,29 +377,29 @@ Test Sent Request On Request Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    Editdatawork3.png
 
     # เทสการส่งคำขอแบบฟอร์มขอแก้ไขข้อมูลการทำงาน
-    Click Element    xpath=//*[@id="formType"]
-    Click Element    xpath=//*[@id="formType"]/option[4]
+    Click And Capture     xpath=//*[@id="formType"]    Editdatawork4.png
+    Click And Capture     xpath=//*[@id="formType"]/option[4]    Editdatawork5.png
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]    Editdatawork6.png
     Execute JavaScript    var input = document.querySelectorAll('input')[0]; var nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set; nativeSetter.call(input, '2025-04-17T09:00'); input.dispatchEvent(new Event('input', { bubbles: true }));
     
     
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]    Editdatawork7.png
     Execute JavaScript    var input = document.querySelectorAll('input')[1]; var nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set; nativeSetter.call(input, '2025-04-17T17:00'); input.dispatchEvent(new Event('input', { bubbles: true }));
     
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    Editdatawork8.png
     Execute JavaScript    var input = document.querySelectorAll('input')[2]; var nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set; nativeSetter.call(input, '2025-04-17T09:50'); input.dispatchEvent(new Event('input', { bubbles: true }));   
     
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[4]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[4]    Editdatawork9.png
     Execute JavaScript    var input = document.querySelectorAll('input')[3]; var nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set; nativeSetter.call(input, '2025-04-17T17:50'); input.dispatchEvent(new Event('input', { bubbles: true }))
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[5]
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[5]    Editdatawork10.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[5]    ระบบมเช็คอินมีปัญหา
 
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div/form/button
-    Click Button    xpath=/html/body/div[2]/div/div[6]/button[1]
-    Click Button    xpath=/html/body/div[2]/div/div[6]/button[1]
-    Capture Page Screenshot    OvertimeRequest4.png
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/form/button    Editdatawork11.png
+    Click And Capture     xpath=/html/body/div[2]/div/div[6]/button[1]    Editdatawork12.png
+    Click And Capture     xpath=/html/body/div[2]/div/div[6]/button[1]    Editdatawork13.png
+    Capture Page Screenshot    OvertimeRequest14.png
 
 Test Click To See Details Request
     [Tags]    RequestClickSeeDetails
@@ -417,11 +417,11 @@ Test Click To See Details Request
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    ClickSeeDetails3.png
 
     # กดปุ่มดูรายละเอียดการส่งคำขอ
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[1]/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[1]/button    ClickSeeDetails4.png
     Wait Until Element Is Visible    xpath=//button[text()="ปิด"]    5s
-    Click Button    xpath=//button[text()="ปิด"]
+    Click And Capture     xpath=//button[text()="ปิด"]    ClickSeeDetails5.png
 
-    Capture Page Screenshot    ClickSeeDetails4.png
+    Capture Page Screenshot    ClickSeeDetails6.png
 
 # Test Case For About Page
 *** Test Cases ***
@@ -442,11 +442,13 @@ Test About Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[5]    AboutPageLoadPage3.png
 
     # เช็คหน้าเพจว่าถูกโหลดสําเร็จ และ กดดูข้อมูลได้
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/div[2]/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/div[2]/button    AboutPageLoadPage4.png
     Wait Until Element Is Visible    xpath=//button[text()="ปิด"]    5s
-    Click Button    xpath=//button[text()="ปิด"]
+    Scroll Element Into View         xpath=//button[text()="ปิด"]
+    Click And Capture    xpath=//button[text()="ปิด"]    AboutPageLoadPage5.png
 
-    Capture Page Screenshot    AboutPageLoadPage4.png
+
+    Capture Page Screenshot    AboutPageLoadPage6.png
 
 # Test Case For Setting Page
 *** Test Cases ***
@@ -463,31 +465,31 @@ Test Case Setting Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    SettingPageLoadPage2.png
 
     # เข้าหน้า Setting
-    Click Button    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button
-    Click Element    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]
+    Click And Capture     xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    SettingPageLoadPage3.png
+    Click And Capture     xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    SettingPageLoadPage4.png
 
     # เช็คว่าสามรถแก้ไขข้อมูลได้
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button    SettingPageLoadPage5.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/input    0823615465
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[3]/div/div/button    SettingPageLoadPage6.png
 
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    SettingPageLoadPage7.png
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/input    80 หมู่ 28 ถ.แหยมศิริ บางดี จ.สตูล 69924
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    SettingPageLoadPage8.png
 
     Wait Until Element Is Not Visible    css=.swal2-container    5s
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    SettingPageLoadPage9.png
     Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
-    Click Button    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button    SettingPageLoadPage10.png
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    SettingPageLoadPage11.png
     Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567890
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    SettingPageLoadPage12.png
     Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567890
 
-    Click Element    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    SettingPageLoadPage13.png
 
     Capture Page Screenshot    SettingPageLoadPage3.png
 
