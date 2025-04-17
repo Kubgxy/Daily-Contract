@@ -36,6 +36,22 @@ const storage = multer.diskStorage({
     corrected_check_in: string;
     corrected_check_out: string;
   };
+
+  const calculateHours = (start: string, end: string): number => {
+    const [sh, sm] = start.split(":").map(Number);
+    const [eh, em] = end.split(":").map(Number);
+  
+    let startDate = new Date(0, 0, 0, sh, sm);
+    let endDate = new Date(0, 0, 0, eh, em);
+  
+    // ถ้าเลยเที่ยงคืน
+    if (endDate <= startDate) endDate.setDate(endDate.getDate() + 1);
+  
+    const diff = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
+    return parseFloat(diff.toFixed(2));
+  };
+  
+  
   
 // API สำหรับดึงข้อมูลคำขอของพนักงาน
 /**
@@ -425,6 +441,22 @@ requests.post("/updateRequestStatus", async (req: Request, res: Response) => {
           await updatedAttendance.save();
         }
       }
+
+      if (type === "overtimeRequest" && action === "approved") {
+        const overtime = new Overtime({
+          employee_id: overtimeData.employee_id,
+          overtime_date: new Date(overtimeData.overtime_date),
+          start_time: overtimeData.start_time,
+          end_time: overtimeData.end_time,
+          overtime_hours: calculateHours(overtimeData.start_time, overtimeData.end_time),
+          approved_by,
+        });
+      
+        await overtime.save(); // สำคัญมาก!
+        console.log("✅ บันทึก overtime สำเร็จแล้ว");
+      }
+      
+      
   
       return res.status(200).json({
         status: "Success",
