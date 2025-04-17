@@ -2,9 +2,12 @@
 Documentation    KeyWords.
 Library    SeleniumLibrary
 
+
 *** Variables ***
 ${BROWSER}    chrome
 ${BASE_URL}    http://localhost:5173/
+${GEO_LAT}    14.123456
+${GEO_LNG}    100.987654
 
 *** Keywords ***
 Open Browser And Maximize
@@ -17,3 +20,10 @@ Click And Capture
     Wait Until Element Is Visible    ${locator}    timeout=10s
     Capture Page Screenshot    ${filename}
     Click Element    ${locator}
+
+Set Geolocation
+    [Arguments]    ${lat}    ${lng}
+    ${params}=    Create Dictionary
+    ...    latitude=${lat}
+    ...    longitude=${lng}
+    ...    accuracy=100

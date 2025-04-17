@@ -1,9 +1,0 @@
-
-C:\ProgramData\Jenkins\.jenkins\workspace\daily-contract-pipeline\backend\src\api\requests\route.ts
-   44:9   error  'startDate' is never reassigned. Use 'const' instead  prefer-const
-   45:9   error  'endDate' is never reassigned. Use 'const' instead    prefer-const
-  671:15  error  'startOfDay' is assigned a value but never used       @typescript-eslint/no-unused-vars
-
-✖ 3 problems (3 errors, 0 warnings)
-  2 errors and 0 warnings potentially fixable with the `--fix` option.
-
