@@ -467,8 +467,8 @@ Test Case Setting Page
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    SettingPageLoadPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240001
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567890
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240002
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    SettingPageLoadPage2.png
 
     # เข้าหน้า Setting
@@ -487,17 +487,15 @@ Test Case Setting Page
     Wait Until Element Is Not Visible    css=.swal2-container    5s
 
     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    SettingPageLoadPage9.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    1234567890
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button    SettingPageLoadPage10.png
 
     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    SettingPageLoadPage11.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    123456
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567
 
     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    SettingPageLoadPage12.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    123456
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567
 
     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    SettingPageLoadPage13.png
 
     Capture Page Screenshot    SettingPageLoadPage3.png
-
-    Sleep    3000
