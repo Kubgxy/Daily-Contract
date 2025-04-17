@@ -639,10 +639,7 @@ requests.get('/overtime', async (req: Request, res: Response) => {
         endOfDay.setDate(endOfDay.getDate() + 1); // เพิ่มเป็นวันถัดไป
   
         query = {
-          overtime_date: {
-            $gte: startOfDay,
-            $lt: endOfDay,
-          },
+            overtime_date: date,
         };
       }
   

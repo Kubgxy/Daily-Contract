@@ -33,7 +33,7 @@ function Header() {
       await axios.post("http://localhost:3000/api/auth/logout", {
         withCredentials: true,
       })
-      navigate("/login")
+      window.location.href = "http://localhost:5173/"
     } catch (error) {
       console.error("Logout ผิดพลาด:", error)
     }
