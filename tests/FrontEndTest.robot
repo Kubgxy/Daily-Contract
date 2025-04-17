@@ -1,5 +1,5 @@
 *** Settings ***
-Library           SeleniumLibrary    options=add_argument("--window-size=1920,1080")
+Library           SeleniumLibrary
 Library    XML
 Resource          KeyWord.robot
 Suite Setup       Open Browser And Maximize
@@ -430,24 +430,27 @@ Test About Page
     [Documentation]    ทดสอบการโหลดหน้า About ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/About/AboutPage
 
-    # Login
+    # ✅ Login
     Go To         ${BASE_URL}    
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    AboutPageLoadPage1.png
     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    AboutPageLoadPage2.png
 
-    # เข้าหน้า Request
+    # ✅ เข้าหน้า Request
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[5]    AboutPageLoadPage3.png
 
-    # เช็คหน้าเพจว่าถูกโหลดสําเร็จ และ กดดูข้อมูลได้
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/div[2]/button    AboutPageLoadPage4.png
+    # ✅ เปิด Modal About
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/div[2]/button    AboutPageLoadPage4.png
+
+    # ✅ รอปุ่ม "ปิด" แล้วคลิกแบบ JS กันพลาด
     Wait Until Element Is Visible    xpath=//button[text()="ปิด"]    5s
-    Scroll Element Into View         xpath=//button[text()="ปิด"]
-    Click And Capture    xpath=//button[text()="ปิด"]    AboutPageLoadPage5.png
+    Execute JavaScript    [...document.querySelectorAll("button")].find(b => b.textContent.includes("ปิด")).scrollIntoView({block: 'center'})
+    Execute JavaScript    [...document.querySelectorAll("button")].find(b => b.textContent.includes("ปิด")).click()
 
+    # ✅ ถ่าย screenshot หลังปิด
+    Capture Page Screenshot    AboutPageLoadPage5.png
 
-    Capture Page Screenshot    AboutPageLoadPage6.png
 
 # # Test Case For Setting Page
 # # *** Test Cases ***
