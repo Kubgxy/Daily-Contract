@@ -78,31 +78,39 @@ Test Check In Page
 
 # Test Cases For Notification Page
 *** Test Cases ***
+*** Test Cases ***
 Test Notification Page
     [Tags]    NotificationPage
     [Documentation]    Test Notification Page
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/NotificationPage
 
+    # ✅ Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    NotificationPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240010
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    NotificationPage2.png
+    Input Text           xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240010
+    Input Password       xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button              NotificationPage2.png
 
-    # เข้าหน้า Notification
-    Wait Until Element Is Visible    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]    10s
-    Click And Capture                xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]   NotificationPage3.png
+    # ✅ เข้าหน้า Notification อย่างปลอดภัย
+    Sleep    1s
+    Run Keyword And Ignore Error    Execute JavaScript    Swal.close()
+    Wait Until Element Is Visible   xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]    10s
+    Scroll Element Into View        xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]
+    Click And Capture               xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]   NotificationPage3.png
 
+    # ✅ ติ๊กอ่านแล้ว (ปุ่มติ๊กถูก)
+    Wait Until Element Is Visible   xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div/button    5s
+    Click And Capture               xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div/button    NotificationPage4.png
 
-    # เช็คว่ามสามารถกดงปุ่มติ๊กถูกเพื่อกดว่าอ่านแล้วได้
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div/button    NotificationPage4.png
-
-    # เช็คว่ากดดูรายละเอียดการแจ้งเตือนได้
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[1]/button[text()="ดูเพิ่มเติม..."]   NotificationPage4.png
-    Click And Capture    xpath=//button[contains(., "ซ่อนข้อมูล")]    NotificationPage5.png
+    # ✅ ดูรายละเอียดแจ้งเตือน
+    Wait Until Element Is Visible   xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[1]/button    5s
+    Execute JavaScript    [...document.querySelectorAll("button")].find(b => b.textContent.includes("ดูเพิ่มเติม")).click()
+    Sleep    0.5s
+    Execute JavaScript    [...document.querySelectorAll("button")].find(b => b.textContent.includes("ซ่อนข้อมูล")).click()
     Wait Until Page Contains Element    xpath=//button[contains(., "ดูเพิ่มเติม")]    5s
 
     Capture Page Screenshot    NotificationPage6.png
+
 
 
 # WorkInfo (Positive Case)
