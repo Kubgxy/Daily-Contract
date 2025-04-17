@@ -41,8 +41,8 @@ const storage = multer.diskStorage({
     const [sh, sm] = start.split(":").map(Number);
     const [eh, em] = end.split(":").map(Number);
   
-    let startDate = new Date(0, 0, 0, sh, sm);
-    let endDate = new Date(0, 0, 0, eh, em);
+    const startDate = new Date(0, 0, 0, sh, sm);
+    const endDate = new Date(0, 0, 0, eh, em);
   
     // ถ้าเลยเที่ยงคืน
     if (endDate <= startDate) endDate.setDate(endDate.getDate() + 1);
@@ -668,7 +668,6 @@ requests.get('/overtime', async (req: Request, res: Response) => {
   
       let query = {};
       if (date) {
-        const startOfDay = new Date(date);
         const endOfDay = new Date(date);
         endOfDay.setDate(endOfDay.getDate() + 1); // เพิ่มเป็นวันถัดไป
   
