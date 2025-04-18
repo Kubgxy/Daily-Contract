@@ -196,6 +196,7 @@ function Setting() {
                 <div className="flex items-center ml-auto">
                   <input
                     type="text"
+                    name="address"
                     className="p-2 border rounded mr-4"
                     value={employee.address}
                     onChange={(e) =>
@@ -230,6 +231,7 @@ function Setting() {
             <Lock className="absolute top-1/2 transform -translate-y-1/2 left-2 text-blue-500" />
             <input
               type={showPassword ? "text" : "password"}
+              name="password"
               className="p-2 pl-10 border rounded w-full"
               placeholder="Enter current password"
               value={password}

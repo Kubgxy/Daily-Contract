@@ -299,6 +299,31 @@ Test Case For SettingPage Edit Phone Number
     Element Should Contain    xpath=/html/body/div[2]/div    Failed to update Phone Number.
     Element Should Contain    xpath=/html/body/div[2]/div    หมายเลขโทรศัพท์ต้องมีความยาว 10 ตัว
 
+Test Case For Request Page Edit Address
+    [Tags]    EditAddress
+    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลที่อยู่
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/EditAddress
+
+    Go To         ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    EditAddress1.png
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    EditAddress2.png
+
+    #เข้าหน้าการตั้งค่า
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    EditAddress3.png 
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    EditAddress4.png
+
+    #ทดสอบเมื่อไม่ได้กรอกข้อมูลที่อยู่
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    EditAddress5.png
+    Wait Until Element Is Visible    css:input.p-2.border.rounded.mr-4    timeout=3s
+    Execute Javascript    var el = document.querySelector('input.p-2.border.rounded.mr-4'); el.value = ''; el.dispatchEvent(new Event('input', { bubbles: true }));
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    EditAddress6.png
+
+    # 🔴 ตรวจสอบว่า Swal เตือนขึ้นมา
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div    timeout=5s
+    Element Should Contain    xpath=/html/body/div[2]/div    ไม่สามารถบันทึกได้
+    Element Should Contain    xpath=/html/body/div[2]/div    กรุณากรอกที่อยู่ก่อนบันทึก
 
     
 
