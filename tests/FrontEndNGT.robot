@@ -316,14 +316,113 @@ Test Case For Request Page Edit Address
 
     #ทดสอบเมื่อไม่ได้กรอกข้อมูลที่อยู่
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    EditAddress5.png
-    Wait Until Element Is Visible    css:input.p-2.border.rounded.mr-4    timeout=3s
-    Execute Javascript    var el = document.querySelector('input.p-2.border.rounded.mr-4'); el.value = ''; el.dispatchEvent(new Event('input', { bubbles: true }));
+    Wait Until Element Is Visible    css:input[name="address"]    timeout=3s
+    Execute Javascript
+    ...  var el = document.querySelector('input[name="address"]');
+    ...  var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+    ...  setter.call(el, '');
+    ...  el.dispatchEvent(new Event('input', { bubbles: true }));
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[1]/div[4]/div/div/button    EditAddress6.png
 
     # 🔴 ตรวจสอบว่า Swal เตือนขึ้นมา
     Wait Until Element Is Visible    xpath=/html/body/div[2]/div    timeout=5s
     Element Should Contain    xpath=/html/body/div[2]/div    ไม่สามารถบันทึกได้
     Element Should Contain    xpath=/html/body/div[2]/div    กรุณากรอกที่อยู่ก่อนบันทึก
+
+Test Case For Setting Page When Old Password Empty
+    [Tags]    OldPasswordEmpty
+    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลรหัสผ่านเก่า
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/OldPasswordEmpty
+
+    Go To         ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    OldPasswordEmpty1.png
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    OldPasswordEmpty2.png
+
+    #เข้าหน้าการตั้งค่า
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    OldPasswordEmpty3.png
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    OldPasswordEmpty4.png
+
+    #กรอกข้อมูลรหัสผ่านเก่าไม่ถูกต้อง
+    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    OldPasswordEmpty5.png
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    OldPasswordEmpty6.png
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    OldPasswordEmpty7.png
+
+    # 🔴 ตรวจสอบว่า Swal เตือนขึ้นมา
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div    timeout=5s
+    Element Should Contain    xpath=/html/body/div[2]/div    Failed to update password.
+    Element Should Contain    xpath=/html/body/div[2]/div    รหัสผ่านไม่ถูกต้อง.
+
+    Capture Page Screenshot    OldPasswordEmpty8.png
+    Sleep    5s
+
+Test Case For Setting Page When New Password Empty
+    [Tags]    NewPasswordEmpty
+    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลรหัสผ่านใหม่
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/NewPasswordEmpty
+
+    Go To         ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    NewPasswordEmpty1.png
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    NewPasswordEmpty2.png
+
+    #เข้าหน้าการตั้งค่า
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    NewPasswordEmpty3.png
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    NewPasswordEmpty4.png
+
+    #ไม่ได้กรอกรหัถสผ่านลงไป
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    NewPasswordEmpty5.png
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    NewPasswordEmpty6.png
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567
+    
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    NewPasswordEmpty7.png
+
+    # 🔴 ตรวจสอบว่า Swal เตือนขึ้นมา
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div    timeout=5s
+    Element Should Contain    xpath=/html/body/div[2]/div    Failed to update password.
+    Element Should Contain    xpath=/html/body/div[2]/div    รหัสผ่านใหม่ต้องมีความยาวอย่างน้อย 6 ตัวอักษร
+
+    Capture Page Screenshot    NewPasswordEmpty8.png
+    Sleep    5s
+
+Test Case For Setting Page When Confirm Password Empty
+    [Tags]    ConfirmPasswordEmpty
+    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลยืนยันรหัสผ่านใหม่
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/ConfirmPasswordEmpty
+
+    Go To         ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    ConfirmPasswordEmpty1.png
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    ConfirmPasswordEmpty2.png
+
+    #เข้าหน้าการตั้งค่า
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[1]/button    ConfirmPasswordEmpty3.png
+    Click And Capture    xpath=/html/body/div/div/div/div[1]/nav/div/div/div[3]/div/div[2]/a[2]    ConfirmPasswordEmpty4.png
+
+    #ไม่ได้กรอกรหัสผ่านยืนยันลงไป
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    ConfirmPasswordEmpty5.png
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    ConfirmPasswordEmpty6.png
+    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    ConfirmPasswordEmpty7.png
+
+    # 🔴 ตรวจสอบว่า Swal เตือนขึ้นมา
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div    timeout=5s
+    Element Should Contain    xpath=/html/body/div[2]/div    Failed to update password.
+    Element Should Contain    xpath=/html/body/div[2]/div    รหัสผ่านใหม่และยืนยันรหัสผ่านไม่ตรงกัน
+
+
 
     
 
