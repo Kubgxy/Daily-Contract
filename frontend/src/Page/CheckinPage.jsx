@@ -6,6 +6,7 @@ import { MapContainer, Popup, TileLayer, Marker } from "react-leaflet";
 import { LogIn, LogOut, MapPin } from "lucide-react";
 import L from "leaflet";
 import markerIconRed from "../../public/marker-icon-red.webp";
+import markerIconBlue from "../../public/marker-icon-blue.png";
 import Navbar from "./../Components/Navbar";
 import MapController from "../Components/MapController";
 import baseURL from "../utils/api";
@@ -18,6 +19,16 @@ function CheckinPage() {
 
   const workIcon = new L.Icon({
     iconUrl: markerIconRed,
+    iconSize: [40, 45],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+    shadowSize: [55, 45],
+  });
+
+  const userIcon = new L.Icon({
+    iconUrl: markerIconBlue,
     iconSize: [40, 45],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -267,7 +278,9 @@ function CheckinPage() {
                     attribution="&copy; OpenStreetMap contributors"
                   />
                   {userPosition.lat && userPosition.lon && (
-                    <Marker position={[userPosition.lat, userPosition.lon]}>
+                    <Marker 
+                      position={[userPosition.lat, userPosition.lon]}
+                      icon={userIcon}>
                       <Popup>ตำแหน่งของคุณ</Popup>
                     </Marker>
                   )}
