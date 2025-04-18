@@ -113,6 +113,15 @@ function Setting() {
 
   const handleAddressEdit = () => setIsEditingAddress(true);
   const handleAddressSave = () => {
+    if (!employee.address.trim()) {
+      Swal.fire({
+        icon: "warning",
+        title: "ไม่สามารถบันทึกได้",
+        text: "กรุณากรอกที่อยู่ก่อนบันทึก",
+      });
+      return;
+    }
+  
     setIsEditingAddress(false);
     updateEmployeeSetting("Address");
   };

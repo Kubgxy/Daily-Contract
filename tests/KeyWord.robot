@@ -27,3 +27,12 @@ Set Geolocation
     ...    latitude=${lat}
     ...    longitude=${lng}
     ...    accuracy=100
+
+Should Field Be Invalid
+    [Arguments]    ${locator}
+    ${is_valid}=   Execute Javascript    return document.querySelector(`${locator}`).checkValidity();
+    Should Be Equal    ${is_valid}    ${False}
+
+
+
+
