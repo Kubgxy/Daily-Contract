@@ -29,7 +29,7 @@ function CheckinPage() {
 
   const userIcon = new L.Icon({
     iconUrl: markerIconBlue,
-    iconSize: [40, 45],
+    iconSize: [55, 55],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
     shadowUrl:
