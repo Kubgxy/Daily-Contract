@@ -712,25 +712,29 @@ requests.get("/getLeaveRequests", async (req: Request, res: Response) => {
 // ✅ Attendance Request: type = workInfoRequest
 requests.get("/attendance", async (req: Request, res: Response) => {
   try {
-    const { date } = req.query
+    const { date } = req.query;
+    
+    const query: any = {
+      type: "workInfoRequest"
+    };
 
-    // แปลง date เป็นช่วงวันนั้นทั้งวัน
-    const start = new Date(date as string)
-    start.setHours(0, 0, 0, 0)
-    const end = new Date(start)
-    end.setHours(23, 59, 59, 999)
+    if (date) {
+      const start = new Date(date as string);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(start);
+      end.setHours(23, 59, 59, 999);
 
-    const data = await Requests.find({
-      type: "workInfoRequest",
-      updated_at: { $gte: start, $lte: end },
-    }).sort({ created_at: -1 })
+      query.updated_at = { $gte: start, $lte: end };
+    }
 
-    res.status(200).json({ success: true, data })
+    const data = await Requests.find(query).sort({ updated_at: -1 }); // ✅ เปลี่ยน sort ให้ match กับ query ด้วย
+    res.status(200).json({ success: true, data });
   } catch (error) {
-    console.error("❌ Attendance request fetch failed:", error)
-    res.status(500).json({ success: false, message: "Server Error" })
+    console.error("❌ Attendance request fetch failed:", error);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
-})
+});
+
   
 export { upload }
 export default requests
