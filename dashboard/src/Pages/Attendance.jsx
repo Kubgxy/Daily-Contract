@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 const Attendance = () => {
   const [records, setRecords] = useState([]);
   const [searchUserId, setSearchUserId] = useState("");
-  const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const [selectedDate, setSelectedDate] = useState("");
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRecord, setSelectedRecord] = useState(null);
