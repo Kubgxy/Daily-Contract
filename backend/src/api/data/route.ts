@@ -826,18 +826,6 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
 
 // สร้าง API สำหรับคำนวณค่าเงินรายวันของพนักงาน
 data.get("/payroll", async (req: Request, res: Response) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(401).json({
-      code: "ERROR-02-0001",
-      status: "Error",
-      data: {
-        msg: "Unauthorized",
-      },
-    });
-  }
-
   try {
     const currentDate = new Date();
 
