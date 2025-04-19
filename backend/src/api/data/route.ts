@@ -805,34 +805,33 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
     // ✅ รวมข้อมูลทั้งหมดเป็น report
     const report = attendanceRecords.map((attendance) => {
       const empId = attendance.employee_id.toString().trim();
-
+    
       const employee = employeeData.find(
         (e) => e.employee_id.toString().trim() === empId
-      ) || { first_name: "N/A", last_name: "N/A" };
-
+      ) || { first_name: "N/A", last_name: "N/A", position: "N/A", detail: "N/A" };
+    
       const leaveInfo = leaveRecords.find(
         (l) => l.employee_id.toString().trim() === empId
       ) || { leave_type: "N/A" };
-
+    
       const otInfo = overtimeRecords.filter(
         (ot) => ot.employee_id.toString().trim() === empId
       );
-
+    
       const totalOvertimeHours = otInfo.reduce(
         (sum, ot) => sum + (ot.overtime_hours || 0),
         0
       );
-
+    
       const matchedWorks = workInfoRecords.filter((w) =>
         w.employee_id.toString().trim() === empId &&
         w.work_date.toISOString().slice(0, 10) === targetDateStr
       );
-
+    
       const latestWork = matchedWorks.sort((a, b) =>
         +new Date(b.work_date) - +new Date(a.work_date)
       )[0];
-
-      // ✅ สร้าง report object
+    
       return {
         report_id: `WR-${Date.now()}`,
         employee_id: empId,
@@ -843,8 +842,8 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
         overtime_hours: totalOvertimeHours || "N/A",
         leave_type: leaveInfo.leave_type || "N/A",
         status: attendance.status || "N/A",
-        position: latestWork?.position || "N/A",
-        detail_work: latestWork?.detail_work || "N/A",
+        position: latestWork?.position || employee.position || "ไม่ระบุ",
+        detail_work: latestWork?.detail_work || employee.detail || "ไม่ระบุ",
       };
     });
 
