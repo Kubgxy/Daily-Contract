@@ -1,94 +1,145 @@
-// ✅ Attendance.jsx (1000% สมบูรณ์)
+// ✅ Attendance.jsx (เวอร์ชันปรับ UI สถานะ + เวลาให้สวยงาม)
 
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import axios from "axios"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { motion } from "framer-motion";
 
 const Attendance = () => {
-  const [records, setRecords] = useState([])
-  const [searchUserId, setSearchUserId] = useState("")
-  const [selectedDate, setSelectedDate] = useState(getTodayDate())
-  const [loading, setLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [selectedRecord, setSelectedRecord] = useState(null)
-  const [openDialog, setOpenDialog] = useState(false)
-  const itemsPerPage = 10
+  const [records, setRecords] = useState([]);
+  const [searchUserId, setSearchUserId] = useState("");
+  const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedRecord, setSelectedRecord] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const itemsPerPage = 10;
 
   function getTodayDate() {
-    const today = new Date()
-    return today.toISOString().split("T")[0]
+    const today = new Date();
+    return today.toISOString().split("T")[0];
   }
 
   const fetchRecords = async (date) => {
     try {
-      setLoading(true)
-      const response = await axios.get("http://localhost:3000/api/requests/attendance", {
-        params: { date },
-        withCredentials: true,
-      })
-      setRecords(response.data.data || [])
+      setLoading(true);
+      const response = await axios.get(
+        "http://localhost:3000/api/requests/attendance",
+        {
+          params: { date },
+          withCredentials: true,
+        }
+      );
+      setRecords(response.data.data || []);
     } catch (error) {
-      console.error("❌ Error fetching attendance requests:", error)
+      console.error("❌ Error fetching attendance requests:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchRecords(selectedDate)
-  }, [selectedDate])
+    fetchRecords(selectedDate);
+  }, [selectedDate]);
 
   const handleDateChange = (e) => {
-    setSelectedDate(e.target.value)
-    setCurrentPage(1)
-  }
+    setSelectedDate(e.target.value);
+    setCurrentPage(1);
+  };
 
   const handleSearchChange = (e) => {
-    setSearchUserId(e.target.value)
-    setCurrentPage(1)
-  }
+    setSearchUserId(e.target.value);
+    setCurrentPage(1);
+  };
 
   const handleRowClick = (record) => {
-    setSelectedRecord(record)
-    setOpenDialog(true)
-  }
+    setSelectedRecord(record);
+    setOpenDialog(true);
+  };
 
   const handleCloseDialog = () => {
-    setOpenDialog(false)
-    setSelectedRecord(null)
-  }
+    setOpenDialog(false);
+    setSelectedRecord(null);
+  };
 
-  const filtered = records.filter((r) => r.employee_id.includes(searchUserId))
-  const indexOfLast = currentPage * itemsPerPage
-  const indexOfFirst = indexOfLast - itemsPerPage
-  const currentItems = filtered.slice(indexOfFirst, indexOfLast)
-  const totalPages = Math.ceil(filtered.length / itemsPerPage)
+  const filtered = records.filter((r) => r.employee_id.includes(searchUserId));
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentItems = filtered.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
 
-  const formatDate = (str) => new Date(str).toLocaleDateString("th-TH", { year: "numeric", month: "short", day: "numeric" })
+  const formatDate = (str) =>
+    new Date(str).toLocaleDateString("th-TH", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  const formatTime = (str) => str?.split("T")[1]?.slice(0, 5) || "-";
+
+  const renderStatusBadge = (status) => {
+    const base =
+      "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
+    switch (status) {
+      case "Approved":
+        return (
+          <span className={`${base} bg-green-100 text-green-800`}>
+            Approved
+          </span>
+        );
+      case "Pending":
+        return (
+          <span className={`${base} bg-yellow-100 text-yellow-800`}>
+            Pending
+          </span>
+        );
+      case "Rejected":
+        return (
+          <span className={`${base} bg-red-100 text-red-800`}>Rejected</span>
+        );
+      default:
+        return (
+          <span className={`${base} bg-gray-100 text-gray-800`}>{status}</span>
+        );
+    }
+  };
 
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
-    )
+    );
   }
 
   return (
-    <motion.div className="p-6 max-w-7xl mx-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.div
+      className="p-6 max-w-7xl mx-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <h1 className="text-2xl font-bold mb-6">คำขอแก้ไขเวลาเข้า-ออกงาน</h1>
 
       <div className="bg-white rounded-xl shadow-md p-6 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium">วันที่</label>
-            <input type="date" value={selectedDate} onChange={handleDateChange} className="form-input w-full" />
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={handleDateChange}
+              className="form-input w-full"
+            />
           </div>
           <div>
             <label className="text-sm font-medium">ค้นหาพนักงาน</label>
-            <input type="text" placeholder="Employee ID" value={searchUserId} onChange={handleSearchChange} className="form-input w-full" />
+            <input
+              type="text"
+              placeholder="Employee ID"
+              value={searchUserId}
+              onChange={handleSearchChange}
+              className="form-input w-full"
+            />
           </div>
         </div>
       </div>
@@ -106,17 +157,33 @@ const Attendance = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems.length > 0 ? currentItems.map((r) => (
-              <tr key={r._id} onClick={() => handleRowClick(r)} className="hover:bg-gray-50 cursor-pointer">
-                <td className="px-4 py-2">{r.employee_id}</td>
-                <td className="px-4 py-2">{formatDate(r.created_at)}</td>
-                <td className="px-4 py-2">{r.details?.original_check_in} - {r.details?.original_check_out}</td>
-                <td className="px-4 py-2">{r.details?.corrected_check_in} - {r.details?.corrected_check_out}</td>
-                <td className="px-4 py-2">{r.details?.reason}</td>
-                <td className="px-4 py-2">{r.status}</td>
+            {currentItems.length > 0 ? (
+              currentItems.map((r) => (
+                <tr
+                  key={r._id}
+                  onClick={() => handleRowClick(r)}
+                  className="hover:bg-gray-50 cursor-pointer"
+                >
+                  <td className="px-4 py-2">{r.employee_id}</td>
+                  <td className="px-4 py-2">{formatDate(r.updated_at)}</td>
+                  <td className="px-4 py-2">
+                    {formatTime(r.details?.original_check_in)} -{" "}
+                    {formatTime(r.details?.original_check_out)}
+                  </td>
+                  <td className="px-4 py-2">
+                    {formatTime(r.details?.corrected_check_in)} -{" "}
+                    {formatTime(r.details?.corrected_check_out)}
+                  </td>
+                  <td className="px-4 py-2">{r.details?.reason}</td>
+                  <td className="px-4 py-2">{renderStatusBadge(r.status)}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="text-center py-4">
+                  ไม่พบข้อมูล
+                </td>
               </tr>
-            )) : (
-              <tr><td colSpan="6" className="text-center py-4">ไม่พบข้อมูล</td></tr>
             )}
           </tbody>
         </table>
@@ -128,7 +195,9 @@ const Attendance = () => {
             <button
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              className={`px-3 py-1 rounded ${currentPage === i + 1 ? "bg-blue-600 text-white" : "bg-gray-100"}`}
+              className={`px-3 py-1 rounded ${
+                currentPage === i + 1 ? "bg-blue-600 text-white" : "bg-gray-100"
+              }`}
             >
               {i + 1}
             </button>
@@ -141,22 +210,39 @@ const Attendance = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg w-full max-w-lg">
             <h2 className="text-xl font-bold mb-4">รายละเอียดคำขอ</h2>
-            <p><strong>รหัสพนักงาน:</strong> {selectedRecord.employee_id}</p>
-            <p><strong>วันที่:</strong> {formatDate(selectedRecord.created_at)}</p>
-            <p><strong>เวลาเดิม:</strong> {selectedRecord.details.original_check_in} - {selectedRecord.details.original_check_out}</p>
-            <p><strong>เวลาแก้ไข:</strong> {selectedRecord.details.corrected_check_in} - {selectedRecord.details.corrected_check_out}</p>
-            <p><strong>เหตุผล:</strong> {selectedRecord.details.reason}</p>
             <p>
-              <strong>ไฟล์แนบ:</strong> <a href={`/uploads/${selectedRecord.details.attachment}`} target="_blank" className="text-blue-500 underline">ดูไฟล์</a>
+              <strong>รหัสพนักงาน:</strong> {selectedRecord.employee_id}
             </p>
+            <p>
+              <strong>วันที่:</strong> {formatDate(selectedRecord.updated_at)}
+            </p>
+            <p>
+              <strong>เวลาเดิม:</strong>{" "}
+              {formatTime(selectedRecord.details.original_check_in)} -{" "}
+              {formatTime(selectedRecord.details.original_check_out)}
+            </p>
+            <p>
+              <strong>เวลาแก้ไข:</strong>{" "}
+              {formatTime(selectedRecord.details.corrected_check_in)} -{" "}
+              {formatTime(selectedRecord.details.corrected_check_out)}
+            </p>
+            <p>
+              <strong>เหตุผล:</strong> {selectedRecord.details.reason}
+            </p>
+            <p></p>
             <div className="mt-4 flex justify-end">
-              <button onClick={handleCloseDialog} className="px-4 py-2 bg-gray-200 rounded">ปิด</button>
+              <button
+                onClick={handleCloseDialog}
+                className="px-4 py-2 bg-gray-200 rounded"
+              >
+                ปิด
+              </button>
             </div>
           </div>
         </div>
       )}
     </motion.div>
-  )
-}
+  );
+};
 
-export default Attendance
+export default Attendance;
