@@ -81,7 +81,10 @@ data.delete("/deleteEmployee/:id", async (req, res) => {
 });
 
 // API สำหรับการตั้งค่าข้อมูลของพนักงาน
-data.patch("/settings", upload.single("avatar"), async (req: Request, res: Response) => {
+data.patch(
+  "/settings",
+  upload.single("avatar"),
+  async (req: Request, res: Response) => {
     const employee_id = req.user?.employee_id;
     const { phone_number, address, avatar } = req.body;
 
@@ -90,8 +93,8 @@ data.patch("/settings", upload.single("avatar"), async (req: Request, res: Respo
       address?: string;
       avatar?: string;
     }
-    
-    const updateData: UpdateData = {};    
+
+    const updateData: UpdateData = {};
     if (phone_number) {
       const phoneRegex = /^\d{10}$/;
       if (!phoneRegex.test(phone_number)) {
@@ -135,52 +138,50 @@ data.patch("/settings", upload.single("avatar"), async (req: Request, res: Respo
 
 // API สำหรับการเปลี่ยนรหัสผ่าน
 data.patch("/change-password", async (req: Request, res: Response) => {
-    const employee_id = req.user?.employee_id;
-    const { password, new_password, confirm_password } = req.body;
+  const employee_id = req.user?.employee_id;
+  const { password, new_password, confirm_password } = req.body;
 
-    try {
-      // ตรวจสอบว่าพนักงานมีอยู่ในระบบหรือไม่
-      const employee = await Employee.findOne({ employee_id });
-      if (!employee) {
-        return res.status(404).json({ message: "ไม่พบพนักงาน" });
-      }
-
-      // ตรวจสอบว่ารหัสผ่านเดิมถูกต้องหรือไม่
-      const isPasswordValid = await bcrypt.compare(password, employee.password);
-      if (!isPasswordValid) {
-        return res.status(400).json({ message: "รหัสผ่านไม่ถูกต้อง." });
-      }
-
-      // ตรวจสอบเงื่อนไขของ new_password: ต้องมีความยาวอย่างน้อย 6 ตัวอักษร
-      const passwordRegex = /^.{6,}$/; // เช็คเฉพาะความยาวที่ต้องไม่น้อยกว่า 6 ตัว
-      if (!passwordRegex.test(new_password)) {
-        return res.status(400).json({
-          message: "รหัสผ่านใหม่ต้องมีความยาวอย่างน้อย 6 ตัวอักษร",
-        });
-      }
-
-      // ตรวจสอบว่ารหัสผ่านใหม่และยืนยันรหัสผ่านตรงกันหรือไม่
-      if (new_password !== confirm_password) {
-        return res
-          .status(400)
-          .json({ message: "รหัสผ่านใหม่และยืนยันรหัสผ่านไม่ตรงกัน" });
-      }
-
-      // เข้ารหัสรหัสผ่านใหม่
-      const hashedNewPassword = await bcrypt.hash(new_password, 10);
-
-      // อัปเดตรหัสผ่านใหม่ในฐานข้อมูล
-      employee.password = hashedNewPassword;
-      await employee.save();
-
-      res.json({ message: "อัปเดตรหัสผ่านเรียบร้อยแล้ว" });
-    } catch (error) {
-      const errMessage =
-        error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Server error", error: errMessage });
+  try {
+    // ตรวจสอบว่าพนักงานมีอยู่ในระบบหรือไม่
+    const employee = await Employee.findOne({ employee_id });
+    if (!employee) {
+      return res.status(404).json({ message: "ไม่พบพนักงาน" });
     }
+
+    // ตรวจสอบว่ารหัสผ่านเดิมถูกต้องหรือไม่
+    const isPasswordValid = await bcrypt.compare(password, employee.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: "รหัสผ่านไม่ถูกต้อง." });
+    }
+
+    // ตรวจสอบเงื่อนไขของ new_password: ต้องมีความยาวอย่างน้อย 6 ตัวอักษร
+    const passwordRegex = /^.{6,}$/; // เช็คเฉพาะความยาวที่ต้องไม่น้อยกว่า 6 ตัว
+    if (!passwordRegex.test(new_password)) {
+      return res.status(400).json({
+        message: "รหัสผ่านใหม่ต้องมีความยาวอย่างน้อย 6 ตัวอักษร",
+      });
+    }
+
+    // ตรวจสอบว่ารหัสผ่านใหม่และยืนยันรหัสผ่านตรงกันหรือไม่
+    if (new_password !== confirm_password) {
+      return res
+        .status(400)
+        .json({ message: "รหัสผ่านใหม่และยืนยันรหัสผ่านไม่ตรงกัน" });
+    }
+
+    // เข้ารหัสรหัสผ่านใหม่
+    const hashedNewPassword = await bcrypt.hash(new_password, 10);
+
+    // อัปเดตรหัสผ่านใหม่ในฐานข้อมูล
+    employee.password = hashedNewPassword;
+    await employee.save();
+
+    res.json({ message: "อัปเดตรหัสผ่านเรียบร้อยแล้ว" });
+  } catch (error) {
+    const errMessage = error instanceof Error ? error.message : "Unknown error";
+    res.status(500).json({ message: "Server error", error: errMessage });
   }
-);
+});
 
 // API สำหรับดึงข้อมูลการเช็คอิน-เอาท์ทั้งหมด
 data.get("/attendance", async (req, res) => {
@@ -240,7 +241,10 @@ data.get("/attendance", async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลการเช็คอินและเช็คเอาท์รายบุคคล
-data.get("/getNotifications", verifyToken, async (req: Request, res: Response) => {
+data.get(
+  "/getNotifications",
+  verifyToken,
+  async (req: Request, res: Response) => {
     const employeeId = req.user?.employee_id;
     try {
       const notifications = await Notification.find({
@@ -464,7 +468,6 @@ data.get("/getNotifications", async (req: Request, res: Response) => {
 
 // API สำหรับดึงข้อมูลการแจ้งเตือนทั้งหมด
 data.get("/getAllNotifications", async (req: Request, res: Response) => {
-
   try {
     const notifications = await Notification.find().sort({ created_at: -1 });
     res.status(200).json({
@@ -555,7 +558,7 @@ data.post("/addNotification", async (req: Request, res: Response) => {
   } catch (error: unknown) {
     if (typeof error === "object" && error !== null && "code" in error) {
       const err = error as { code?: number; message?: string };
-  
+
       if (err.code === 11000) {
         return res.status(400).json({
           code: "ERROR-02-0004",
@@ -619,7 +622,10 @@ data.patch("/updateNotification/:id", async (req: Request, res: Response) => {
 });
 
 // API สำหรับทำเครื่องหมายการแจ้งเตือนทั้งหมดเป็นอ่านแล้ว
-data.patch("/markAsRead/:_id", verifyToken, async (req: Request, res: Response) => {
+data.patch(
+  "/markAsRead/:_id",
+  verifyToken,
+  async (req: Request, res: Response) => {
     try {
       const idOfNoti = req.params._id;
 
@@ -687,7 +693,10 @@ data.delete("/deleteNotification/:id", async (req: Request, res: Response) => {
 });
 
 // สร้าง API สำหรับการดึงข้อมูลหน้า Dashboard //
-data.get("/db/employees/count", verifyToken, async (req: Request, res: Response) => {
+data.get(
+  "/db/employees/count",
+  verifyToken,
+  async (req: Request, res: Response) => {
     try {
       const count = await Employee.countDocuments();
       res.status(200).json({ count });
@@ -699,7 +708,10 @@ data.get("/db/employees/count", verifyToken, async (req: Request, res: Response)
 );
 
 // สร้าง API สำหรับการดึงข้อมูลหน้า Dashboard //
-data.get("/db/attendance/today", verifyToken, async (req: Request, res: Response) => {
+data.get(
+  "/db/attendance/today",
+  verifyToken,
+  async (req: Request, res: Response) => {
     try {
       const today = new Date();
       today.setHours(0, 0, 0, 0); // ตั้งค่าเป็นเที่ยงคืนของวันนี้
@@ -719,7 +731,10 @@ data.get("/db/attendance/today", verifyToken, async (req: Request, res: Response
 );
 
 // สร้าง API สำหรับการดึงข้อมูลหน้า Dashboard //
-data.get("/db/requests/leaves", verifyToken, async (req: Request, res: Response) => {
+data.get(
+  "/db/requests/leaves",
+  verifyToken,
+  async (req: Request, res: Response) => {
     try {
       const today = new Date();
       today.setHours(0, 0, 0, 0); // ตั้งค่าเป็นเที่ยงคืนของวันนี้
@@ -741,7 +756,10 @@ data.get("/db/requests/leaves", verifyToken, async (req: Request, res: Response)
 );
 
 // สร้าง API สำหรับการดึงข้อมูลหน้า Dashboard //
-data.get("/db/requests/overtimes", verifyToken, async (req: Request, res: Response) => {
+data.get(
+  "/db/requests/overtimes",
+  verifyToken,
+  async (req: Request, res: Response) => {
     try {
       const today = new Date();
       today.setHours(0, 0, 0, 0); // ตั้งค่าเป็นเที่ยงคืนของวันนี้
@@ -763,25 +781,33 @@ data.get("/db/requests/overtimes", verifyToken, async (req: Request, res: Respon
 );
 
 // สร้าง API เพื่อแสดงรายงานรายวัน
-data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response) => {
-  if (req.user?.role !== "Admin") {
-    return res.status(403).json({ message: "Forbidden: Admin only" });
-  }
+data.get(
+  "/daily-report/:date",
+  verifyToken,
+  async (req: Request, res: Response) => {
+    if (req.user?.role !== "Admin") {
+      return res.status(403).json({ message: "Forbidden: Admin only" });
+    }
 
-  try {
-    const { date } = req.params;
-    const reportDate = new Date(date);
-    const targetDateStr = reportDate.toISOString().slice(0, 10);
+    try {
+      const { date } = req.params;
+      const reportDate = new Date(date);
+      const targetDateStr = reportDate.toISOString().slice(0, 10);
 
-    const startOfDay = new Date(reportDate);
-    startOfDay.setUTCHours(0, 0, 0, 0);
+      const startOfDay = new Date(reportDate);
+      startOfDay.setUTCHours(0, 0, 0, 0);
 
-    const endOfDay = new Date(reportDate);
-    endOfDay.setUTCHours(23, 59, 59, 999);
+      const endOfDay = new Date(reportDate);
+      endOfDay.setUTCHours(23, 59, 59, 999);
 
-    // ✅ โหลดทุก collections ที่เกี่ยวข้อง
-    const [attendanceRecords, employeeData, leaveRecords, overtimeRecords, workInfoRecords] =
-      await Promise.all([
+      // ✅ โหลดทุก collections ที่เกี่ยวข้อง
+      const [
+        attendanceRecords,
+        employeeData,
+        leaveRecords,
+        overtimeRecords,
+        workInfoRecords,
+      ] = await Promise.all([
         Attendance.find({ attendance_date: reportDate }),
         Employee.find(),
         LeaveRecords.find({
@@ -791,70 +817,83 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
         Overtime.find({ overtime_date: reportDate }),
         WorkInfo.find({
           work_date: { $gte: startOfDay, $lte: endOfDay },
-        }),
+          detail_work: { $ne: null },    }),
       ]);
 
-    // ✅ Final Log: ตรวจสอบว่า workInfoRecords มีอะไรบ้าง
-    console.log("✅ WorkInfoRecords on", targetDateStr, workInfoRecords.map(w => ({
-      emp: w.employee_id,
-      date: w.work_date.toISOString(),
-      pos: w.position,
-      det: w.detail_work,
-    })));
+      // ✅ Final Log: ตรวจสอบว่า workInfoRecords มีอะไรบ้าง
+      console.log(
+        "✅ WorkInfoRecords on",
+        targetDateStr,
+        workInfoRecords.map((w) => ({
+          emp: w.employee_id,
+          date: w.work_date.toISOString(),
+          pos: w.position,
+          det: w.detail_work,
+        }))
+      );
 
-    // ✅ รวมข้อมูลทั้งหมดเป็น report
-    const report = attendanceRecords.map((attendance) => {
-      const empId = attendance.employee_id.toString().trim();
-    
-      const employee = employeeData.find(
-        (e) => e.employee_id.toString().trim() === empId
-      ) || { first_name: "N/A", last_name: "N/A", position: "N/A", detail: "N/A" };
-    
-      const leaveInfo = leaveRecords.find(
-        (l) => l.employee_id.toString().trim() === empId
-      ) || { leave_type: "N/A" };
-    
-      const otInfo = overtimeRecords.filter(
-        (ot) => ot.employee_id.toString().trim() === empId
-      );
-    
-      const totalOvertimeHours = otInfo.reduce(
-        (sum, ot) => sum + (ot.overtime_hours || 0),
-        0
-      );
-    
-      const matchedWorks = workInfoRecords.filter((w) =>
-        w.employee_id.toString().trim() === empId &&
-        w.work_date.toISOString().slice(0, 10) === targetDateStr
-      );
-    
-      const latestWork = matchedWorks.sort((a, b) =>
-        +new Date(b.work_date) - +new Date(a.work_date)
-      )[0];
-    
-      return {
-        report_id: `WR-${Date.now()}`,
-        employee_id: empId,
-        employee_name: `${employee.first_name} ${employee.last_name}`,
-        check_in: attendance.check_in_time || "N/A",
-        check_out: attendance.check_out_time || "N/A",
-        total_hours: attendance.work_hours || "N/A",
-        overtime_hours: totalOvertimeHours || "N/A",
-        leave_type: leaveInfo.leave_type || "N/A",
-        status: attendance.status || "N/A",
-        position: latestWork?.position || employee.position || "ไม่ระบุ",
-        detail_work: latestWork?.detail_work || employee.detail || "ไม่ระบุ",
-      };
-    });
+      // ✅ รวมข้อมูลทั้งหมดเป็น report
+      const report = attendanceRecords.map((attendance) => {
+        const empId = attendance.employee_id.toString().trim();
 
-    console.log("🚀 Final Report Output:", report);
-    res.json({ data: report });
-  } catch (error) {
-    console.error("❌ Error generating report:", error);
-    res.status(500).json({ message: "Error generating report" });
+        const employee = employeeData.find(
+          (e) => e.employee_id.toString().trim() === empId
+        ) || {
+          first_name: "N/A",
+          last_name: "N/A",
+          position: "N/A",
+        };
+
+        const leaveInfo = leaveRecords.find(
+          (l) => l.employee_id.toString().trim() === empId
+        ) || { leave_type: "N/A" };
+
+        const WorkInfo = workInfoRecords.find(
+          (w) => w.employee_id.toString().trim() === empId
+        ) || { detail_work: "N/A" };
+
+        const otInfo = overtimeRecords.filter(
+          (ot) => ot.employee_id.toString().trim() === empId
+        );
+
+        const totalOvertimeHours = otInfo.reduce(
+          (sum, ot) => sum + (ot.overtime_hours || 0),
+          0
+        );
+
+        const matchedWorks = workInfoRecords.filter(
+          (w) =>
+            w.employee_id.toString().trim() === empId &&
+            w.work_date.toISOString().slice(0, 10) === targetDateStr
+        );
+
+        const latestWork = matchedWorks.sort(
+          (a, b) => +new Date(b.work_date) - +new Date(a.work_date)
+        )[0];
+
+        return {
+          report_id: `WR-${Date.now()}`,
+          employee_id: empId,
+          employee_name: `${employee.first_name} ${employee.last_name}`,
+          check_in: attendance.check_in_time || "N/A",
+          check_out: attendance.check_out_time || "N/A",
+          total_hours: attendance.work_hours || "N/A",
+          overtime_hours: totalOvertimeHours || "N/A",
+          leave_type: leaveInfo.leave_type || "N/A",
+          status: attendance.status || "N/A",
+          position: latestWork?.position || employee.position || "ไม่ระบุ",
+          detail_work: latestWork?.detail_work  || "ไม่ระบุ",
+        };
+      });
+
+      console.log("🚀 Final Report Output:", report);
+      res.json({ data: report });
+    } catch (error) {
+      console.error("❌ Error generating report:", error);
+      res.status(500).json({ message: "Error generating report" });
+    }
   }
-});
-
+);
 
 // สร้าง API สำหรับคำนวณค่าเงินรายวันของพนักงาน
 data.get("/payroll", verifyToken, async (req: Request, res: Response) => {
