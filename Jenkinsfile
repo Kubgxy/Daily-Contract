@@ -174,7 +174,7 @@ pipeline {
   post {
     always {
       echo '📦 สร้างรายงาน Robot Framework'
-      robot outputPath: 'results'
+      robot outputPath: 'results' , allowEmptyResults: true
 
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\tests\\results'
 
@@ -187,8 +187,8 @@ pipeline {
         def now = new Date().format("HH:mm:ss")
         def isSuccess = currentBuild.result == null || currentBuild.result == 'SUCCESS'
         def message = isSuccess ? 
-          """{ "content": "✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}" }""" :
-          """{ "content": "❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}" }"""
+          """{ "content": "======================================\\n✅ Build สำเร็จแล้ว! เย้ดีใจสุด ๆ 🚀🎉\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}\\n======================================" }""" :
+          """{ "content": "======================================\\n❌ Build ล้มเหลว - รีบตรวจสอบด่วน! 🔥🧨\\n📦 โปรเจค: Daily-Contract\\n⏰ เวลา: ${now}\\n======================================" }"""
 
         def file = isSuccess ? 'discord_success.json' : 'discord_failure.json'
         writeFile file: file, text: message
