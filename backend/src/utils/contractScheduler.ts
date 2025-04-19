@@ -1,17 +1,23 @@
 import cron from 'node-cron';
 import Employee from '../models/Employee';
 import Notification from '../models/Notification';
-import { io } from '../app'; // ✅ เพิ่ม import Socket.IO server
 
-// 🔁 รันทุกวันตอนเที่ยงคืน
-cron.schedule('0 0 * * *', async () => {
+// 👉 ลอง require แบบ lazy load เฉพาะตอนใช้งาน
+let io: any;
+try {
+  io = require('../app').io;
+} catch (e) {
+  console.warn('⚠️ No io loaded (testing mode)');
+}
+
+// ✅ export function ไว้ให้ test เรียก
+export const checkContractStatus = async () => {
   console.log('📅 เริ่มตรวจสอบสัญญาพนักงาน...');
 
   try {
     const today = new Date();
     const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
 
-    // ดึงพนักงานที่ยัง Active
     const employees = await Employee.find({ status: 'Active' });
 
     for (const employee of employees) {
@@ -19,23 +25,19 @@ cron.schedule('0 0 * * *', async () => {
 
       const timeDiff = new Date(employee.contract_end_date).getTime() - today.getTime();
 
-      // 💡 ถ้าเหลือไม่เกิน 7 วัน และยังไม่มีสถานะต่อสัญญา
-      if (timeDiff <= SEVEN_DAYS) {
-        if (!employee.renewal_status || employee.renewal_status === 'None') {
-          employee.renewal_status = 'Pending';
-          await employee.save();
+      if (timeDiff <= SEVEN_DAYS && (!employee.renewal_status || employee.renewal_status === 'None')) {
+        employee.renewal_status = 'Pending';
+        await employee.save();
 
-          console.log(`🔔 แจ้งเตือน: พนักงาน ${employee.employee_id} ใกล้หมดสัญญา → รอการอนุมัติ`);
+        await Notification.create({
+          employee_id: "20240001",
+          category: 'contract',
+          message: 'มีพนักงานรอการต่อสัญญา',
+          details: `พนักงาน ${employee.first_name} (${employee.employee_id}) ใกล้หมดสัญญา`,
+        });
 
-          // ✅ เพิ่ม Notification ลงฐานข้อมูล
-          await Notification.create({
-            employee_id: null, // ส่งถึง Admin ทุกคน
-            category: 'contract',
-            message: 'มีพนักงานรอการต่อสัญญา',
-            details: `พนักงาน ${employee.first_name} (${employee.employee_id}) ใกล้หมดสัญญา`,
-          });
-
-          // ✅ ส่งแจ้งเตือนผ่าน Socket
+        // ✅ Emit แบบมีเงื่อนไข (ถ้าไม่ได้โหลด io ก็ไม่พัง)
+        if (io) {
           io.emit('contract_renewal_pending', {
             message: 'มีพนักงานรอการต่อสัญญา',
             employee: {
@@ -45,16 +47,19 @@ cron.schedule('0 0 * * *', async () => {
             },
           });
         }
+
+        console.log(`🔔 แจ้งเตือน: ${employee.employee_id} → Pending`);
       }
 
-      // ❌ ถ้าเลยวันหมดสัญญา และยังไม่กดยืนยัน
       if (timeDiff < 0 && employee.renewal_status !== 'Approved') {
         employee.status = 'Inactive';
         await employee.save();
-        console.log(`⛔ ปิดใช้งาน: พนักงาน ${employee.employee_id} หมดสัญญาแล้ว`);
+        console.log(`⛔ หมดสัญญา: ${employee.employee_id}`);
       }
     }
   } catch (err) {
-    console.error('❌ ตรวจสอบสัญญาล้มเหลว:', err);
+    console.error('❌ contractScheduler error:', err);
   }
-});
+};
+
+cron.schedule('0 0 * * *', checkContractStatus);

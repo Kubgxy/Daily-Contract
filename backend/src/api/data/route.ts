@@ -239,10 +239,7 @@ data.get("/attendance", async (req, res) => {
 });
 
 // API สำหรับดึงข้อมูลการเช็คอินและเช็คเอาท์รายบุคคล
-data.get(
-  "/getNotifications",
-  verifyToken,
-  async (req: Request, res: Response) => {
+data.get("/getNotifications", verifyToken, async (req: Request, res: Response) => {
     const employeeId = req.user?.employee_id;
     try {
       const notifications = await Notification.find({

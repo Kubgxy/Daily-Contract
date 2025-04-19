@@ -118,7 +118,7 @@ app.post("/api/upload", uploadMiddleware, ((req, res) => {
 app.get("/", (req, res) => {
   res.send("Hello from Express + Socket.IO! 🚀");
 });
-
+if (require.main === module) {
 // ✅ เชื่อม MongoDB
 mongoose.connect(process.env.MONGODB_URI as string)
   .then(() => console.log("✅ Connected to MongoDB"))
@@ -126,7 +126,7 @@ mongoose.connect(process.env.MONGODB_URI as string)
     console.error("❌ MongoDB connection error:", err);
     process.exit(1);
   });
-
+}
 // ✅ นำเข้า Route
 import auth from './api/auth/route';
 import data from './api/data/route';

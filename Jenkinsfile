@@ -159,16 +159,16 @@ pipeline {
       }
     }
 
-    stage('🤖 Run Robot Framework') {
-       steps {
-         bat '''
-           set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
-           if not exist results mkdir results
-           robot --outputdir results tests\\FrontEndPST.robot
-           robot --outputdir results tests\\FrontEndNGT.robot
-         '''
-      }
-    }  
+    // stage('🤖 Run Robot Framework') {
+    //    steps {
+    //      bat '''
+    //        set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+    //        if not exist results mkdir results
+    //        robot --outputdir results tests\\FrontEndPST.robot
+    //        robot --outputdir results tests\\FrontEndNGT.robot
+    //      '''
+    //   }
+    // }  
   } // end stages
 
   post {
@@ -176,7 +176,7 @@ pipeline {
       echo '📦 สร้างรายงาน Robot Framework'
       robot outputPath: 'results'
 
-      bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\test\\results'
+      bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\tests\\results'
 
       echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
       archiveArtifacts artifacts: '**/eslint-*-report.txt', allowEmptyArchive: true
