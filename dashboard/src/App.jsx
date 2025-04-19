@@ -20,6 +20,7 @@ import WorkInfo from "./Pages/Workinfo"
 import Login from "./Components/Login"
 import WorkRecordForm from "./Pages/WorkRecord"
 import RenewalRequests from "./Pages/RenewalRequests";
+import Attendance from "./Pages/Attendance"
 import Configs from "./Pages/Configs";
 import { ThemeContext, ThemeProvider } from "./Context/ThemeContext"
 
@@ -184,7 +185,15 @@ function App() {
                 }
               />
               <Route
-                path="/overtime"
+                path="/attendance-requests"
+                element={
+                  <ProtectedRoute>
+                    <Attendance />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/overtime-requests"
                 element={
                   <ProtectedRoute>
                     <OverTime />

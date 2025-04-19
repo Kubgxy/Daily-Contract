@@ -468,7 +468,6 @@ requests.post("/updateRequestStatus", async (req: Request, res: Response) => {
     }
   });
   
-
 // API สำหรับอนุมัติคำขอและอัปเดตข้อมูลใน Attendance
 requests.post("/approveWorkInfoRequest", async (req: Request, res: Response) => {
     const { requestId } = req.body;
@@ -709,6 +708,29 @@ requests.get("/getLeaveRequests", async (req: Request, res: Response) => {
         return res.status(500).json
     }
 });
+
+// ✅ Attendance Request: type = workInfoRequest
+requests.get("/attendance", async (req: Request, res: Response) => {
+  try {
+    const { date } = req.query
+
+    // แปลง date เป็นช่วงวันนั้นทั้งวัน
+    const start = new Date(date as string)
+    start.setHours(0, 0, 0, 0)
+    const end = new Date(start)
+    end.setHours(23, 59, 59, 999)
+
+    const data = await Requests.find({
+      type: "workInfoRequest",
+      updated_at: { $gte: start, $lte: end },
+    }).sort({ created_at: -1 })
+
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    console.error("❌ Attendance request fetch failed:", error)
+    res.status(500).json({ success: false, message: "Server Error" })
+  }
+})
   
 export { upload }
 export default requests

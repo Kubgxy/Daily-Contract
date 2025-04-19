@@ -291,7 +291,8 @@ const Sidebar = () => {
                 className={`sidebar-item w-full text-left ${
                   isActive("/requests") ||
                   isActive("/leave-requests") ||
-                  isActive("/overtime")
+                  isActive("/attendance-requests") ||
+                  isActive("/overtime-requests")
                     ? "active"
                     : ""
                 }`}
