@@ -784,12 +784,16 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
         overtime_date: reportDate,
       });
 
+      const startOfDay = new Date(reportDate);
+      startOfDay.setUTCHours(0, 0, 0, 0);
+
+      const endOfDay = new Date(reportDate);
+      endOfDay.setUTCHours(23, 59, 59, 999);
+
       const workInfoRecords = await WorkInfo.find({
-        work_date: {
-          $gte: new Date(date + "T00:00:00.000Z"),
-          $lte: new Date(date + "T23:59:59.999Z"),
-        },
-      })
+        work_date: { $gte: startOfDay, $lte: endOfDay },
+});
+
       
 
       // รวมข้อมูลจากทุก collections
@@ -812,10 +816,16 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           0
         );
 
-        const workInfo = workInfoRecords.find((w) =>
-          w.employee_id === attendance.employee_id &&
-          new Date(w.work_date).toDateString() === reportDate.toDateString()
+        const workInfo = workInfoRecords.find(
+          (w) => w.employee_id === attendance.employee_id
         ) || { position: "N/A", detail_work: "N/A" };
+        
+        console.log("✅ workInfoRecords for", date, workInfoRecords.map(w => ({
+          emp: w.employee_id,
+          date: w.work_date.toISOString(),
+          pos: w.position,
+        })));
+        
         
         return {
           report_id: `WR-${Date.now()}`, // กำหนด ID สำหรับรายงาน
