@@ -173,9 +173,16 @@ pipeline {
 
   post {
     always {
-      echo '📦 สร้างรายงาน Robot Framework'
-      robot outputPath: 'results', allowEmptyResults: true
-
+      echo '📂 สร้างรายงาน Robot Framework'
+      // เช็คว่ามีผลลัพธ์ก่อนรัน robot publisher
+      script {
+        def resultFile = new File("${env.WORKSPACE}/results/output.xml")
+        if (resultFile.exists()) {
+          robot outputPath: 'results'
+        } else {
+          echo '⚠️ ไม่พบไฟล์ output.xml จึงไม่สามารถสร้างรายงาน Robot Framework ได้'
+        }
+      }
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\tests\\results'
 
       echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
