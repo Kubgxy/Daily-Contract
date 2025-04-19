@@ -293,7 +293,7 @@ const WorkReport = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400">
-                        {report.type_work || "N/A"}
+                        {report.position || "N/A"}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">

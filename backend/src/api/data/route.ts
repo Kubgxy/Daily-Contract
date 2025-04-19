@@ -812,11 +812,11 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           0
         );
 
-        const workInfo = workInfoRecords.find(
-          (w) => w.employee_id === attendance.employee_id
+        const workInfo = workInfoRecords.find((w) =>
+          w.employee_id === attendance.employee_id &&
+          new Date(w.work_date).toDateString() === reportDate.toDateString()
         ) || { position: "N/A", detail_work: "N/A" };
-
-
+        
         return {
           report_id: `WR-${Date.now()}`, // กำหนด ID สำหรับรายงาน
           employee_id: attendance.employee_id,
