@@ -816,15 +816,13 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           0
         );
 
+        const targetDateStr = reportDate.toISOString().slice(0, 10);
+
         const workInfo = workInfoRecords.find(w =>
           w.employee_id === attendance.employee_id &&
-          new Date(w.work_date).toDateString() === reportDate.toDateString()
+          w.work_date.toISOString().startsWith(targetDateStr)
         ) as { position?: string; detail_work?: string };
 
-        const { position, detail_work } = workInfo || {};
-
-        
-        
         console.log("✅ workInfoRecords for", date, workInfoRecords.map(w => ({
           emp: w.employee_id,
           date: w.work_date.toISOString(),
