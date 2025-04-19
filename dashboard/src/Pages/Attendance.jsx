@@ -114,46 +114,50 @@ const Attendance = () => {
 
   return (
     <motion.div
-      className="p-6 max-w-7xl mx-auto"
+      className="p-6 max-w-7xl mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-300"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
       <h1 className="text-2xl font-bold mb-6">คำขอแก้ไขเวลาเข้า-ออกงาน</h1>
-
-      <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+  
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="text-sm font-medium">วันที่</label>
+            <label className="text-sm font-medium dark:text-gray-300">วันที่</label>
             <input
               type="date"
               value={selectedDate}
               onChange={handleDateChange}
-              className="form-input w-full"
+              className="form-input w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600"
             />
           </div>
           <div>
-            <label className="text-sm font-medium">ค้นหาพนักงาน</label>
+            <label className="text-sm font-medium dark:text-gray-300">
+              ค้นหาพนักงาน
+            </label>
             <input
               type="text"
               placeholder="Employee ID"
               value={searchUserId}
               onChange={handleSearchChange}
-              className="form-input w-full"
+              className="form-input w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600"
             />
           </div>
         </div>
       </div>
-
-      <div className="overflow-x-auto bg-white shadow rounded-xl">
+  
+      <div className="overflow-x-auto bg-white dark:bg-gray-800 shadow rounded-xl">
         <table className="min-w-full">
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 dark:bg-gray-700">
             <tr>
-              <th className="px-4 py-2 text-left">พนักงาน</th>
-              <th className="px-4 py-2 text-left">วันที่</th>
-              <th className="px-4 py-2 text-left">เวลาเดิม</th>
-              <th className="px-4 py-2 text-left">เวลาแก้ไข</th>
-              <th className="px-4 py-2 text-left">เหตุผล</th>
-              <th className="px-4 py-2 text-left">สถานะ</th>
+              <th className="px-4 py-2 text-left dark:text-gray-300">พนักงาน</th>
+              <th className="px-4 py-2 text-left dark:text-gray-300">วันที่</th>
+              <th className="px-4 py-2 text-left dark:text-gray-300">เวลาเดิม</th>
+              <th className="px-4 py-2 text-left dark:text-gray-300">
+                เวลาแก้ไข
+              </th>
+              <th className="px-4 py-2 text-left dark:text-gray-300">เหตุผล</th>
+              <th className="px-4 py-2 text-left dark:text-gray-300">สถานะ</th>
             </tr>
           </thead>
           <tbody>
@@ -162,7 +166,7 @@ const Attendance = () => {
                 <tr
                   key={r._id}
                   onClick={() => handleRowClick(r)}
-                  className="hover:bg-gray-50 cursor-pointer"
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
                 >
                   <td className="px-4 py-2">{r.employee_id}</td>
                   <td className="px-4 py-2">{formatDate(r.updated_at)}</td>
@@ -188,7 +192,7 @@ const Attendance = () => {
           </tbody>
         </table>
       </div>
-
+  
       {totalPages > 1 && (
         <div className="flex justify-end mt-4 space-x-2">
           {[...Array(totalPages)].map((_, i) => (
@@ -196,7 +200,9 @@ const Attendance = () => {
               key={i}
               onClick={() => setCurrentPage(i + 1)}
               className={`px-3 py-1 rounded ${
-                currentPage === i + 1 ? "bg-blue-600 text-white" : "bg-gray-100"
+                currentPage === i + 1
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 dark:bg-gray-700 dark:text-gray-300"
               }`}
             >
               {i + 1}
@@ -204,36 +210,40 @@ const Attendance = () => {
           ))}
         </div>
       )}
-
+  
       {/* Dialog */}
       {openDialog && selectedRecord && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-full max-w-lg">
-            <h2 className="text-xl font-bold mb-4">รายละเอียดคำขอ</h2>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-full max-w-lg">
+            <h2 className="text-xl font-bold mb-4 dark:text-gray-300">
+              รายละเอียดคำขอ
+            </h2>
             <p>
-              <strong>รหัสพนักงาน:</strong> {selectedRecord.employee_id}
+              <strong className="dark:text-gray-300">รหัสพนักงาน:</strong>{" "}
+              {selectedRecord.employee_id}
             </p>
             <p>
-              <strong>วันที่:</strong> {formatDate(selectedRecord.updated_at)}
+              <strong className="dark:text-gray-300">วันที่:</strong>{" "}
+              {formatDate(selectedRecord.updated_at)}
             </p>
             <p>
-              <strong>เวลาเดิม:</strong>{" "}
+              <strong className="dark:text-gray-300">เวลาเดิม:</strong>{" "}
               {formatTime(selectedRecord.details.original_check_in)} -{" "}
               {formatTime(selectedRecord.details.original_check_out)}
             </p>
             <p>
-              <strong>เวลาแก้ไข:</strong>{" "}
+              <strong className="dark:text-gray-300">เวลาแก้ไข:</strong>{" "}
               {formatTime(selectedRecord.details.corrected_check_in)} -{" "}
               {formatTime(selectedRecord.details.corrected_check_out)}
             </p>
             <p>
-              <strong>เหตุผล:</strong> {selectedRecord.details.reason}
+              <strong className="dark:text-gray-300">เหตุผล:</strong>{" "}
+              {selectedRecord.details.reason}
             </p>
-            <p></p>
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleCloseDialog}
-                className="px-4 py-2 bg-gray-200 rounded"
+                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 dark:text-gray-300 rounded"
               >
                 ปิด
               </button>

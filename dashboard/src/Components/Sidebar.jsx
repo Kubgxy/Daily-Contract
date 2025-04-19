@@ -391,7 +391,7 @@ const Sidebar = () => {
                   <a
                     href="/overtime"
                     className={`sidebar-item-nested ${
-                      isActive("/overtime") ? "active" : ""
+                      isActive("/overtime-requests") ? "active" : ""
                     }`}
                   >
                     <svg

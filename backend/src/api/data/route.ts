@@ -817,7 +817,7 @@ data.get(
         Overtime.find({ overtime_date: reportDate }),
         WorkInfo.find({
           work_date: { $gte: startOfDay, $lte: endOfDay },
-          detail_work: { $ne: null },    }),
+        }),
       ]);
 
       // ✅ Final Log: ตรวจสอบว่า workInfoRecords มีอะไรบ้าง
@@ -833,58 +833,54 @@ data.get(
       );
 
       // ✅ รวมข้อมูลทั้งหมดเป็น report
-      const report = attendanceRecords.map((attendance) => {
-        const empId = attendance.employee_id.toString().trim();
+    const report = attendanceRecords.map((attendance) => {
+      const empId = attendance.employee_id.toString().trim();
+    
+      const employee = employeeData.find(
+        (e) => e.employee_id.toString().trim() === empId
+      ) || { first_name: "N/A", last_name: "N/A", position: "N/A" };
 
-        const employee = employeeData.find(
-          (e) => e.employee_id.toString().trim() === empId
-        ) || {
-          first_name: "N/A",
-          last_name: "N/A",
-          position: "N/A",
-        };
-
-        const leaveInfo = leaveRecords.find(
-          (l) => l.employee_id.toString().trim() === empId
-        ) || { leave_type: "N/A" };
-
-        const WorkInfo = workInfoRecords.find(
-          (w) => w.employee_id.toString().trim() === empId
-        ) || { detail_work: "N/A" };
-
-        const otInfo = overtimeRecords.filter(
-          (ot) => ot.employee_id.toString().trim() === empId
-        );
-
-        const totalOvertimeHours = otInfo.reduce(
-          (sum, ot) => sum + (ot.overtime_hours || 0),
-          0
-        );
-
-        const matchedWorks = workInfoRecords.filter(
-          (w) =>
-            w.employee_id.toString().trim() === empId &&
-            w.work_date.toISOString().slice(0, 10) === targetDateStr
-        );
-
-        const latestWork = matchedWorks.sort(
-          (a, b) => +new Date(b.work_date) - +new Date(a.work_date)
-        )[0];
-
-        return {
-          report_id: `WR-${Date.now()}`,
-          employee_id: empId,
-          employee_name: `${employee.first_name} ${employee.last_name}`,
-          check_in: attendance.check_in_time || "N/A",
-          check_out: attendance.check_out_time || "N/A",
-          total_hours: attendance.work_hours || "N/A",
-          overtime_hours: totalOvertimeHours || "N/A",
-          leave_type: leaveInfo.leave_type || "N/A",
-          status: attendance.status || "N/A",
-          position: latestWork?.position || employee.position || "ไม่ระบุ",
-          detail_work: latestWork?.detail_work  || "ไม่ระบุ",
-        };
-      });
+      const WorkInfo = workInfoRecords.find(
+        (w) => w.employee_id.toString().trim() === empId &&
+        w.work_date.toISOString().slice(0, 10) === targetDateStr
+      ) || { detail_work: "N/A" };
+    
+      const leaveInfo = leaveRecords.find(
+        (l) => l.employee_id.toString().trim() === empId
+      ) || { leave_type: "N/A" };
+    
+      const otInfo = overtimeRecords.filter(
+        (ot) => ot.employee_id.toString().trim() === empId
+      );
+    
+      const totalOvertimeHours = otInfo.reduce(
+        (sum, ot) => sum + (ot.overtime_hours || 0),
+        0
+      );
+    
+      const matchedWorks = workInfoRecords.filter((w) =>
+        w.employee_id.toString().trim() === empId &&
+        w.work_date.toISOString().slice(0, 10) === targetDateStr
+      );
+    
+      const latestWork = matchedWorks.sort((a, b) =>
+        +new Date(b.work_date) - +new Date(a.work_date)
+      )[0];
+    
+      return {
+        report_id: `WR-${Date.now()}`,
+        employee_id: empId,
+        employee_name: `${employee.first_name} ${employee.last_name}`,
+        check_in: attendance.check_in_time || "N/A",
+        check_out: attendance.check_out_time || "N/A",
+        total_hours: attendance.work_hours || "N/A",
+        overtime_hours: totalOvertimeHours || "N/A",
+        leave_type: leaveInfo.leave_type || "N/A",
+        status: attendance.status || "N/A",
+        position: latestWork?.position || employee.position || "ไม่ระบุ",
+        detail_work: latestWork?.detail_work || WorkInfo.detail_work || "ไม่ระบุ",
+      };
+    });
 
       console.log("🚀 Final Report Output:", report);
       res.json({ data: report });
