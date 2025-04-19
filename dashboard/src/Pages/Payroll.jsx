@@ -20,9 +20,8 @@ const PayrollPage = () => {
     const fetchPayrollData = async () => {
       try {
         setLoading(true)
-        const response = await axios.get("http://localhost:3000/api/data/payroll", {
-          headers: { Authorization: "Bearer your-auth-token" },
-        }, { withCredentials: true })
+        const response = await axios.get("http://localhost:3000/api/data/payroll",
+          { withCredentials: true })
         setPayrolls(response.data.data || [])
       } catch (error) {
         console.error("Error fetching payroll data:", error)
