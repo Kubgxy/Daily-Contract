@@ -389,7 +389,7 @@ const Sidebar = () => {
                     <span>Attendance Requests</span>
                   </a>
                   <a
-                    href="/overtime"
+                    href="/overtime-requests"
                     className={`sidebar-item-nested ${
                       isActive("/overtime-requests") ? "active" : ""
                     }`}
