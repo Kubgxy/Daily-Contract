@@ -764,98 +764,98 @@ data.get("/db/requests/overtimes", verifyToken, async (req: Request, res: Respon
 
 // สร้าง API เพื่อแสดงรายงานรายวัน
 data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response) => {
-    if (req.user?.role !== "Admin") {
-      return res.status(403).json({ message: "Forbidden: Admin only" });
-    }
-    try {
-      const { date } = req.params;
-      const reportDate = new Date(date);
+  if (req.user?.role !== "Admin") {
+    return res.status(403).json({ message: "Forbidden: Admin only" });
+  }
 
-      // ดึงข้อมูลจาก collections
-      const attendanceRecords = await Attendance.find({
-        attendance_date: reportDate,
-      });
-      const employeeData = await Employee.find();
-      const leaveRecords = await LeaveRecords.find({
-        start_date: { $lte: reportDate },
-        end_date: { $gte: reportDate },
-      });
-      const overtimeRecords = await Overtime.find({
-        overtime_date: reportDate,
-      });
+  try {
+    const { date } = req.params;
+    const reportDate = new Date(date);
+    const targetDateStr = reportDate.toISOString().slice(0, 10);
 
-      const startOfDay = new Date(reportDate);
-      startOfDay.setUTCHours(0, 0, 0, 0);
+    const startOfDay = new Date(reportDate);
+    startOfDay.setUTCHours(0, 0, 0, 0);
 
-      const endOfDay = new Date(reportDate);
-      endOfDay.setUTCHours(23, 59, 59, 999);
+    const endOfDay = new Date(reportDate);
+    endOfDay.setUTCHours(23, 59, 59, 999);
 
-      const workInfoRecords = await WorkInfo.find({
-        work_date: { $gte: startOfDay, $lte: endOfDay },
+    // ✅ โหลดทุก collections ที่เกี่ยวข้อง
+    const [attendanceRecords, employeeData, leaveRecords, overtimeRecords, workInfoRecords] =
+      await Promise.all([
+        Attendance.find({ attendance_date: reportDate }),
+        Employee.find(),
+        LeaveRecords.find({
+          start_date: { $lte: reportDate },
+          end_date: { $gte: reportDate },
+        }),
+        Overtime.find({ overtime_date: reportDate }),
+        WorkInfo.find({
+          work_date: { $gte: startOfDay, $lte: endOfDay },
+        }),
+      ]);
+
+    // ✅ Final Log: ตรวจสอบว่า workInfoRecords มีอะไรบ้าง
+    console.log("✅ WorkInfoRecords on", targetDateStr, workInfoRecords.map(w => ({
+      emp: w.employee_id,
+      date: w.work_date.toISOString(),
+      pos: w.position,
+      det: w.detail_work,
+    })));
+
+    // ✅ รวมข้อมูลทั้งหมดเป็น report
+    const report = attendanceRecords.map((attendance) => {
+      const empId = attendance.employee_id.toString().trim();
+
+      const employee = employeeData.find(
+        (e) => e.employee_id.toString().trim() === empId
+      ) || { first_name: "N/A", last_name: "N/A" };
+
+      const leaveInfo = leaveRecords.find(
+        (l) => l.employee_id.toString().trim() === empId
+      ) || { leave_type: "N/A" };
+
+      const otInfo = overtimeRecords.filter(
+        (ot) => ot.employee_id.toString().trim() === empId
+      );
+
+      const totalOvertimeHours = otInfo.reduce(
+        (sum, ot) => sum + (ot.overtime_hours || 0),
+        0
+      );
+
+      const matchedWorks = workInfoRecords.filter((w) =>
+        w.employee_id.toString().trim() === empId &&
+        w.work_date.toISOString().slice(0, 10) === targetDateStr
+      );
+
+      const latestWork = matchedWorks.sort((a, b) =>
+        +new Date(b.work_date) - +new Date(a.work_date)
+      )[0];
+
+      // ✅ สร้าง report object
+      return {
+        report_id: `WR-${Date.now()}`,
+        employee_id: empId,
+        employee_name: `${employee.first_name} ${employee.last_name}`,
+        check_in: attendance.check_in_time || "N/A",
+        check_out: attendance.check_out_time || "N/A",
+        total_hours: attendance.work_hours || "N/A",
+        overtime_hours: totalOvertimeHours || "N/A",
+        leave_type: leaveInfo.leave_type || "N/A",
+        status: attendance.status || "N/A",
+        position: latestWork?.position || "N/A",
+        detail_work: latestWork?.detail_work || "N/A",
+      };
+    });
+
+    console.log("🚀 Final Report Output:", report);
+    res.json({ data: report });
+  } catch (error) {
+    console.error("❌ Error generating report:", error);
+    res.status(500).json({ message: "Error generating report" });
+  }
 });
 
-      
-
-      // รวมข้อมูลจากทุก collections
-      const report = attendanceRecords.map((attendance) => {
-        const employee = employeeData.find(
-          (emp) => emp.employee_id === attendance.employee_id
-        ) || { first_name: "N/A", last_name: "N/A" };
-
-        const leaveInfo = leaveRecords.find(
-          (leave) => leave.employee_id === attendance.employee_id
-        ) || { leave_type: "N/A" };
-
-        const overtimeInfo = overtimeRecords.filter(
-          (overtime) =>
-            overtime.employee_id.toString() === attendance.employee_id
-        );
-
-        const totalOvertimeHours = overtimeInfo.reduce(
-          (sum, overtime) => sum + (overtime.overtime_hours || 0),
-          0
-        );
-
-        const targetDateStr = reportDate.toISOString().slice(0, 10);
-
-        const workInfo = workInfoRecords.find(w =>
-          w.employee_id === attendance.employee_id &&
-          w.work_date.toISOString().startsWith(targetDateStr)
-        ) as { position?: string; detail_work?: string };
-
-        console.log("✅ workInfoRecords for", date, workInfoRecords.map(w => ({
-          emp: w.employee_id,
-          date: w.work_date.toISOString(),
-          pos: w.position,
-          det: w.detail_work,
-        })));
-        
-        
-        
-        return {
-          report_id: `WR-${Date.now()}`, // กำหนด ID สำหรับรายงาน
-          employee_id: attendance.employee_id,
-          employee_name: `${employee.first_name} ${employee.last_name}`,
-          check_in: attendance.check_in_time || "N/A",
-          check_out: attendance.check_out_time || "N/A",
-          total_hours: attendance.work_hours || "N/A",
-          overtime_hours: totalOvertimeHours || "N/A",
-          leave_type: leaveInfo.leave_type || "N/A",
-          status: attendance.status || "N/A",
-
-          position: workInfo?.position || "N/A",
-          detail_work: workInfo?.detail_work || "N/A",
-        };
-      });
-      console.log("🚀 Final Report:", report);
-
-      res.json({ data: report });
-    } catch (error) {
-      console.error("Error generating report:", error);
-      res.status(500).json({ message: "Error generating report" });
-    }
-  }
-);
 
 // สร้าง API สำหรับคำนวณค่าเงินรายวันของพนักงาน
 data.get("/payroll", verifyToken, async (req: Request, res: Response) => {
