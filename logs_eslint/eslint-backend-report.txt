@@ -1,0 +1,8 @@
+
+C:\ProgramData\Jenkins\.jenkins\workspace\daily-contract-pipeline\backend\src\utils\contractScheduler.ts
+  6:9   error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  8:8   error  A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  9:10  error  'e' is defined but never used             @typescript-eslint/no-unused-vars
+
+✖ 3 problems (3 errors, 0 warnings)
+

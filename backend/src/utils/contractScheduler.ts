@@ -1,16 +1,20 @@
 import cron from 'node-cron';
 import Employee from '../models/Employee';
 import Notification from '../models/Notification';
+import type { Server } from 'socket.io'; // ✅ ใช้ type แบบชัดเจน
 
-// 👉 ลอง require แบบ lazy load เฉพาะตอนใช้งาน
-let io: any;
-try {
-  io = require('../app').io;
-} catch (e) {
-  console.warn('⚠️ No io loaded (testing mode)');
-}
+let io: Server | undefined;
 
-// ✅ export function ไว้ให้ test เรียก
+// ✅ ใช้ dynamic import แบบ async + ไม่มี error eslint
+(async () => {
+  try {
+    const appModule = await import('../app');
+    io = appModule.io;
+  } catch {
+    console.warn('⚠️ No io loaded (testing mode)');
+  }
+})();
+
 export const checkContractStatus = async () => {
   console.log('📅 เริ่มตรวจสอบสัญญาพนักงาน...');
 
@@ -30,13 +34,12 @@ export const checkContractStatus = async () => {
         await employee.save();
 
         await Notification.create({
-          employee_id: "20240001",
+          employee_id: 'SYSTEM', // ✅ ปลอดภัยใน production
           category: 'contract',
           message: 'มีพนักงานรอการต่อสัญญา',
           details: `พนักงาน ${employee.first_name} (${employee.employee_id}) ใกล้หมดสัญญา`,
         });
 
-        // ✅ Emit แบบมีเงื่อนไข (ถ้าไม่ได้โหลด io ก็ไม่พัง)
         if (io) {
           io.emit('contract_renewal_pending', {
             message: 'มีพนักงานรอการต่อสัญญา',
