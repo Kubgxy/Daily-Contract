@@ -825,7 +825,7 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
 );
 
 // สร้าง API สำหรับคำนวณค่าเงินรายวันของพนักงาน
-data.get("/payroll", async (req: Request, res: Response) => {
+data.get("/payroll", verifyToken, async (req: Request, res: Response) => {
   try {
     const currentDate = new Date();
 
