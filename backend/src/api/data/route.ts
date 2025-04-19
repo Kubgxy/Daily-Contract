@@ -816,6 +816,7 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           (w) => w.employee_id === attendance.employee_id
         ) || { position: "N/A", detail_work: "N/A" };
 
+
         return {
           report_id: `WR-${Date.now()}`, // กำหนด ID สำหรับรายงาน
           employee_id: attendance.employee_id,

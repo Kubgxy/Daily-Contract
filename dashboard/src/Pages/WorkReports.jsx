@@ -243,7 +243,7 @@ const WorkReport = () => {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
                 >
-                  ประเภทงาน
+                  แผนก
                 </th>
                 <th
                   scope="col"
@@ -527,16 +527,6 @@ const WorkReport = () => {
                         </p>
                       </div>
                     </div>
-
-                    <div>
-                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        ประเภทงาน
-                      </p>
-                      <p className="text-base text-gray-900 dark:text-white">
-                        {selectedReport.type_work || "N/A"}
-                      </p>
-                    </div>
-
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
