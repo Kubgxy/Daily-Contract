@@ -1,110 +1,115 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import axios from "axios"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import axios from "axios";
 
 const WorkReport = () => {
-  const [reports, setReports] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [selectedDate, setSelectedDate] = useState(getTodayDate())
-  const [searchUserId, setSearchUserId] = useState("")
-  const [currentPage, setCurrentPage] = useState(1)
-  const [selectedReport, setSelectedReport] = useState(null)
-  const [openDialog, setOpenDialog] = useState(false)
-  const itemsPerPage = 10
+  const [reports, setReports] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const [searchUserId, setSearchUserId] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedReport, setSelectedReport] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const itemsPerPage = 10;
 
   function getTodayDate() {
-    const today = new Date()
-    return today.toISOString().split("T")[0]
+    const today = new Date();
+    return today.toISOString().split("T")[0];
   }
 
   const fetchReports = async (date) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:3000/api/data/daily-report/${date}` , {
-        params: { date },
-        withCredentials: true,
-      })
-      setReports(response.data.data || [])
+      const response = await axios.get(
+        `http://localhost:3000/api/data/daily-report/${date}`,
+        {
+          params: { date },
+          withCredentials: true,
+        }
+      );
+      setReports(response.data.data || []);
     } catch (error) {
-      console.error("Error fetching work reports:", error)
+      console.error("Error fetching work reports:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchReports(selectedDate)
-  }, [selectedDate])
+    fetchReports(selectedDate);
+  }, [selectedDate]);
 
   const handleDateChange = (event) => {
-    const newDate = event.target.value
-    setSelectedDate(newDate)
-    setCurrentPage(1) // Reset to first page when date changes
-  }
+    const newDate = event.target.value;
+    setSelectedDate(newDate);
+    setCurrentPage(1); // Reset to first page when date changes
+  };
 
   const handleSearchChange = (event) => {
-    setSearchUserId(event.target.value)
-    setCurrentPage(1) // Reset to first page when search changes
-  }
+    setSearchUserId(event.target.value);
+    setCurrentPage(1); // Reset to first page when search changes
+  };
 
   const handleRowClick = (report) => {
-    setSelectedReport(report)
-    setOpenDialog(true)
-  }
+    setSelectedReport(report);
+    setOpenDialog(true);
+  };
 
   const handleCloseDialog = () => {
-    setOpenDialog(false)
-    setSelectedReport(null)
-  }
+    setOpenDialog(false);
+    setSelectedReport(null);
+  };
 
   const filteredReports = reports.filter(
-    (report) => searchUserId === "" || report.employee_id.toString().includes(searchUserId),
-  )
+    (report) =>
+      searchUserId === "" ||
+      report.employee_id.toString().includes(searchUserId)
+  );
 
   // Pagination
-  const indexOfLastItem = currentPage * itemsPerPage
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage
-  const currentItems = filteredReports.slice(indexOfFirstItem, indexOfLastItem)
-  const totalPages = Math.ceil(filteredReports.length / itemsPerPage)
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredReports.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredReports.length / itemsPerPage);
 
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+    setCurrentPage(pageNumber);
+  };
 
   // Format date and time
   const formatDate = (dateString) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
     return date.toLocaleDateString("th-TH", {
       year: "numeric",
       month: "short",
       day: "numeric",
-    })
-  }
+    });
+  };
 
   const formatTime = (dateString) => {
-    if (!dateString) return "N/A"
-    const date = new Date(dateString)
+    if (!dateString) return "N/A";
+    const date = new Date(dateString);
     return date.toLocaleTimeString("th-TH", {
       hour: "2-digit",
       minute: "2-digit",
-    })
-  }
+    });
+  };
 
   // Get status badge styling
   const getStatusBadgeClass = (status) => {
     switch (status) {
       case "Present":
-        return "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+        return "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400";
       case "Absent":
-        return "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+        return "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400";
       case "Leave":
-        return "bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400"
+        return "bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400"
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400";
     }
-  }
+  };
 
   // Animation variants
   const containerVariants = {
@@ -115,7 +120,7 @@ const WorkReport = () => {
         staggerChildren: 0.05,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -128,26 +133,40 @@ const WorkReport = () => {
         damping: 12,
       },
     },
-  }
+  };
 
   if (loading && reports.length === 0) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-dark-900">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
       </div>
-    )
+    );
   }
 
   return (
-    <motion.div className="p-6 max-w-7xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
-      <motion.h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-6" variants={itemVariants}>
+    <motion.div
+      className="p-6 max-w-7xl mx-auto"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.h1
+        className="text-2xl font-bold text-gray-800 dark:text-white mb-6"
+        variants={itemVariants}
+      >
         รายงานการทำงานของพนักงาน
       </motion.h1>
 
-      <motion.div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-6" variants={itemVariants}>
+      <motion.div
+        className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-6"
+        variants={itemVariants}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="date-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label
+              htmlFor="date-filter"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
               วันที่
             </label>
             <input
@@ -194,7 +213,10 @@ const WorkReport = () => {
         </div>
       </motion.div>
 
-      <motion.div className="bg-white dark:bg-dark-800 rounded-xl shadow-md overflow-hidden" variants={itemVariants}>
+      <motion.div
+        className="bg-white dark:bg-dark-800 rounded-xl shadow-md overflow-hidden"
+        variants={itemVariants}
+      >
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
             <thead className="bg-gray-50 dark:bg-dark-700">
@@ -264,7 +286,9 @@ const WorkReport = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {report.check_out ? formatTime(report.check_out) : "N/A"}
+                        {report.check_out
+                          ? formatTime(report.check_out)
+                          : "N/A"}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -284,7 +308,9 @@ const WorkReport = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusBadgeClass(report.status)}`}
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusBadgeClass(
+                          report.status
+                        )}`}
                       >
                         {report.status || "N/A"}
                       </span>
@@ -293,7 +319,10 @@ const WorkReport = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                  <td
+                    colSpan="6"
+                    className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+                  >
                     ไม่พบข้อมูลรายงานการทำงาน
                   </td>
                 </tr>
@@ -308,15 +337,26 @@ const WorkReport = () => {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
               <div>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  แสดง <span className="font-medium">{indexOfFirstItem + 1}</span> ถึง{" "}
-                  <span className="font-medium">{Math.min(indexOfLastItem, filteredReports.length)}</span> จากทั้งหมด{" "}
-                  <span className="font-medium">{filteredReports.length}</span> รายการ
+                  แสดง{" "}
+                  <span className="font-medium">{indexOfFirstItem + 1}</span>{" "}
+                  ถึง{" "}
+                  <span className="font-medium">
+                    {Math.min(indexOfLastItem, filteredReports.length)}
+                  </span>{" "}
+                  จากทั้งหมด{" "}
+                  <span className="font-medium">{filteredReports.length}</span>{" "}
+                  รายการ
                 </p>
               </div>
               <div>
-                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <nav
+                  className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                  aria-label="Pagination"
+                >
                   <button
-                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+                    onClick={() =>
+                      handlePageChange(Math.max(1, currentPage - 1))
+                    }
                     disabled={currentPage === 1}
                     className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
                       currentPage === 1
@@ -355,7 +395,9 @@ const WorkReport = () => {
                   ))}
 
                   <button
-                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+                    onClick={() =>
+                      handlePageChange(Math.min(totalPages, currentPage + 1))
+                    }
                     disabled={currentPage === totalPages}
                     className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
                       currentPage === totalPages
@@ -398,13 +440,19 @@ const WorkReport = () => {
               className="fixed inset-0 bg-gray-500 bg-opacity-75 dark:bg-dark-900 dark:bg-opacity-75 transition-opacity"
               aria-hidden="true"
             ></div>
-            <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+            <span
+              className="hidden sm:inline-block sm:align-middle sm:h-screen"
+              aria-hidden="true"
+            >
               &#8203;
             </span>
             <div className="inline-block align-bottom bg-white dark:bg-dark-800 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-white dark:bg-dark-800 px-4 pt-5 pb-4 sm:p-6">
                 <div className="mb-4 flex justify-between items-center">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white" id="modal-title">
+                  <h3
+                    className="text-lg font-bold text-gray-900 dark:text-white"
+                    id="modal-title"
+                  >
                     รายละเอียดรายงานการทำงาน
                   </h3>
                   <button
@@ -418,7 +466,12 @@ const WorkReport = () => {
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -427,60 +480,100 @@ const WorkReport = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
                       <div>
-                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">รหัสพนักงาน</p>
+                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          รหัสพนักงาน
+                        </p>
                         <p className="text-base font-medium text-gray-900 dark:text-white">
                           {selectedReport.employee_id}
                         </p>
                       </div>
                       <span
-                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusBadgeClass(selectedReport.status)}`}
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusBadgeClass(
+                          selectedReport.status
+                        )}`}
                       >
                         {selectedReport.status || "N/A"}
                       </span>
                     </div>
 
                     <div>
-                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">วันที่ทำงาน</p>
-                      <p className="text-base text-gray-900 dark:text-white">{selectedDate}</p>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        วันที่ทำงาน
+                      </p>
+                      <p className="text-base text-gray-900 dark:text-white">
+                        {selectedDate}
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">เวลาเช็คอิน</p>
+                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          เวลาเช็คอิน
+                        </p>
                         <p className="text-base text-gray-900 dark:text-white">
-                          {selectedReport.check_in ? formatTime(selectedReport.check_in) : "N/A"}
+                          {selectedReport.check_in
+                            ? formatTime(selectedReport.check_in)
+                            : "N/A"}
                         </p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">เวลาเช็คเอาท์</p>
+                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          เวลาเช็คเอาท์
+                        </p>
                         <p className="text-base text-gray-900 dark:text-white">
-                          {selectedReport.check_out ? formatTime(selectedReport.check_out) : "N/A"}
+                          {selectedReport.check_out
+                            ? formatTime(selectedReport.check_out)
+                            : "N/A"}
                         </p>
                       </div>
                     </div>
 
                     <div>
-                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">ประเภทงาน</p>
-                      <p className="text-base text-gray-900 dark:text-white">{selectedReport.type_work || "N/A"}</p>
+                      <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        ประเภทงาน
+                      </p>
+                      <p className="text-base text-gray-900 dark:text-white">
+                        {selectedReport.type_work || "N/A"}
+                      </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">ชั่วโมงทำงานปกติ</p>
-                        <p className="text-base text-gray-900 dark:text-white">{selectedReport.total_hours || "N/A"}</p>
+                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          ชั่วโมงทำงานปกติ
+                        </p>
+                        <p className="text-base text-gray-900 dark:text-white">
+                          {selectedReport.total_hours || "N/A"}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">ชั่วโมงทำงานล่วงเวลา</p>
+                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                          ชั่วโมงทำงานล่วงเวลา
+                        </p>
                         <p className="text-base text-gray-900 dark:text-white">
                           {selectedReport.overtime_hours || "0"}
                         </p>
                       </div>
                     </div>
 
-                    {selectedReport.notes && (
-                      <div>
-                        <p className="text-sm font-medium text-gray-500 dark:text-gray-400">หมายเหตุ</p>
-                        <p className="text-base text-gray-900 dark:text-white">{selectedReport.notes}</p>
+                    {selectedReport && (
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            แผนก
+                          </p>
+                          <p className="text-base text-gray-900 dark:text-white">
+                            {selectedReport.position || "ไม่ระบุ"}
+                          </p>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            รายละเอียดการทำงาน
+                          </p>
+                          <p className="text-base text-gray-900 dark:text-white">
+                            {selectedReport.detail_work || "ไม่ระบุ"}
+                          </p>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -500,8 +593,7 @@ const WorkReport = () => {
         </div>
       )}
     </motion.div>
-  )
-}
+  );
+};
 
-export default WorkReport
-
+export default WorkReport;

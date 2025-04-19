@@ -13,6 +13,7 @@ import Requests from "../../models/Request";
 import Payroll from "../../models/Payroll";
 import Overtime from "../../models/Overtime";
 import LeaveRecords from "../../models/LeaveRequest";
+import WorkInfo from "../../models/WorkInfo";
 //Middleware
 import { verifyToken } from "../../middleware/verifyToken";
 
@@ -783,6 +784,14 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
         overtime_date: reportDate,
       });
 
+      const workInfoRecords = await WorkInfo.find({
+        work_date: {
+          $gte: new Date(date + "T00:00:00.000Z"),
+          $lte: new Date(date + "T23:59:59.999Z"),
+        },
+      })
+      
+
       // รวมข้อมูลจากทุก collections
       const report = attendanceRecords.map((attendance) => {
         const employee = employeeData.find(
@@ -803,6 +812,10 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           0
         );
 
+        const workInfo = workInfoRecords.find(
+          (w) => w.employee_id === attendance.employee_id
+        ) || { position: "N/A", detail_work: "N/A" };
+
         return {
           report_id: `WR-${Date.now()}`, // กำหนด ID สำหรับรายงาน
           employee_id: attendance.employee_id,
@@ -813,6 +826,9 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           overtime_hours: totalOvertimeHours || "N/A",
           leave_type: leaveInfo.leave_type || "N/A",
           status: attendance.status || "N/A",
+
+          position: workInfo.position || "N/A",
+          detail_work: workInfo.detail_work || "N/A",
         };
       });
 
