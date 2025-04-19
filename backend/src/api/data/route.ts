@@ -816,10 +816,13 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           0
         );
 
-        const workInfo = workInfoRecords.find((w) =>
+        const workInfo = workInfoRecords.find(w =>
           w.employee_id === attendance.employee_id &&
-          new Date(w.work_date).toISOString().slice(0, 10) === date
-        ) || { position: "N/A", detail_work: "N/A" };
+          new Date(w.work_date).toDateString() === reportDate.toDateString()
+        ) as { position?: string; detail_work?: string };
+
+        const { position, detail_work } = workInfo || {};
+
         
         
         console.log("✅ workInfoRecords for", date, workInfoRecords.map(w => ({
@@ -842,10 +845,11 @@ data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response)
           leave_type: leaveInfo.leave_type || "N/A",
           status: attendance.status || "N/A",
 
-          position: workInfo.position || "N/A",
-          detail_work: workInfo.detail_work || "N/A",
+          position: workInfo?.position || "N/A",
+          detail_work: workInfo?.detail_work || "N/A",
         };
       });
+      console.log("🚀 Final Report:", report);
 
       res.json({ data: report });
     } catch (error) {
