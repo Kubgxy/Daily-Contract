@@ -174,7 +174,7 @@ pipeline {
   post {
     always {
       echo '📦 สร้างรายงาน Robot Framework'
-      robot outputPath: 'results' , allowEmptyResults: true
+      robot outputPath: 'results', allowEmptyResults: true
 
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\tests\\results'
 
