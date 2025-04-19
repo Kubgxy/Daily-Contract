@@ -175,14 +175,17 @@ pipeline {
     always {
       echo '📂 สร้างรายงาน Robot Framework'
       // เช็คว่ามีผลลัพธ์ก่อนรัน robot publisher
-      script {
-        def resultFile = new File("${env.WORKSPACE}/results/output.xml")
-        if (resultFile.exists()) {
-          robot outputPath: 'results'
-        } else {
-          echo '⚠️ ไม่พบไฟล์ output.xml จึงไม่สามารถสร้างรายงาน Robot Framework ได้'
-        }
-      }
+      bat '''
+        if exist results\\output.xml (
+          echo 📄 พบไฟล์ output.xml กำลังสร้างรายงาน...
+          robot --outputdir results tests\\FrontEndPST.robot
+          robot --outputdir results tests\\FrontEndNGT.robot
+        ) else (
+          echo ⚠️ ไม่พบ output.xml ไม่สร้างรายงาน Robot Framework
+        )
+      '''
+
+      echo '📦 กำลังเก็บไฟล์ Robot Framework ทั้งหมด'
       bat 'xcopy /Y /S /I results D:\\SPU\\Daily-Contract\\tests\\results'
 
       echo '📦 กำลังเก็บไฟล์ eslint log ทั้งหมด'
