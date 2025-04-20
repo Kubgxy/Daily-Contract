@@ -470,4 +470,61 @@ Test Case For Reject Renewal Contract
     Sleep    2s
     Capture Page Screenshot    RejectRenewalContractPass7.png
 
+# Test Case For Notification Page
+*** Test Cases ***
+Test Case For Sent Notification Only One Employee
+    [Tags]    SentNotiOneEmployee
+    [Documentation]    Sent Notification On Notification Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/Notification/Positive/SentNotiOneEmployee
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    SentNotificationPass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    SentNotiOneEmployeePass2.png
+
+    #เข้าหน้า Notification Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/a[1]    SentNotiOneEmployeePass3.png
+
+    #ทำการส่งข้อความแจ้งเตือน 1 คน
+
+    Input Text    xpath=//*[@id="employee_id"]    20240010
+
+    Click And Capture    xpath=//*[@id="category"]    SentNotiOneEmployeePass4.png
+    Click And Capture    xpath=//*[@id="category"]/option[2]    SentNotiOneEmployeePass5.png
+
+    Input Text    xpath=//*[@id="message"]    ทดสอบการส่งข้อความแจ้งเตือน
+    Input Text    xpath=//*[@id="details"]    testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div[1]/div/div/button    SentNotiOneEmployeePass6.png
+
+    Sleep    2s
+    Capture Page Screenshot    SentNotiOneEmployeePass7.png
+
+Test Case For Sent Notification All Employee
+    [Tags]    SentNotiAllEmployee
+    [Documentation]    Sent Notification On Notification Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    SentNotiAllEmployeePass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    SentNotiAllEmployeePass2.png
+
+    #เข้าหน้า Notification Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/a[1]    SentNotiAllEmployeePass3.png
+
+    #ทำการส่งข้อความแจ้งเตือนให้พนักงานทั้งหมด
+    Click And Capture    xpath=//*[@id="category"]    SentNotiAllEmployeePass4.png
+    Click And Capture    xpath=//*[@id="category"]/option[2]    SentNotiAllEmployeePass5.png
+
+    Input Text    xpath=//*[@id="message"]    ทดสอบการส่งข้อความแจ้งเตือนหาพนักงานทั้งหมด
+    Input Text    xpath=//*[@id="details"]    testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div[1]/div/div/button    SentNotiAllEmployeePass6.png
+
+    Sleep    2s
+    Capture Page Screenshot    SentNotiAllEmployeePass7.png
+
 # Test Case For 

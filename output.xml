@@ -1,212 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.13.2 on win32)" generated="2025-04-20T21:18:03.604547" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2.2 (Python 3.13.2 on win32)" generated="2025-04-20T22:01:17.465589" rpa="false" schemaversion="5">
 <suite id="s1" name="DashboardPST" source="D:\SPU\Daily-Contract\tests\DashboardPST.robot">
 <kw name="Open Browser And Maximize" owner="KeyWord" type="SETUP">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:04.213448" level="INFO">Opening browser 'chrome' to base url 'http://localhost:5173/'.</msg>
+<msg time="2025-04-20T22:01:18.093120" level="INFO">Opening browser 'chrome' to base url 'http://localhost:5173/'.</msg>
 <arg>${BASE_URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-04-20T21:18:04.212942" elapsed="2.460657"/>
+<status status="PASS" start="2025-04-20T22:01:18.092702" elapsed="2.510108"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-04-20T21:18:06.674205" elapsed="0.075868"/>
+<status status="PASS" start="2025-04-20T22:01:20.603514" elapsed="0.068663"/>
 </kw>
 <kw name="Set Selenium Speed" owner="SeleniumLibrary">
 <arg>0.2s</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-04-20T21:18:06.750405" elapsed="0.000444"/>
+<status status="PASS" start="2025-04-20T22:01:20.672507" elapsed="0.000702"/>
 </kw>
-<status status="PASS" start="2025-04-20T21:18:04.211681" elapsed="2.539317"/>
+<status status="PASS" start="2025-04-20T22:01:18.091463" elapsed="2.582044"/>
 </kw>
-<test id="s1-t1" name="Test Case For Reject Renewal Contract" line="448">
+<test id="s1-t1" name="Test Case For Sent Notification All Employee" line="504">
 <kw name="Set Screenshot Directory" owner="SeleniumLibrary">
-<arg>${EXECDIR}/results/Screenshots/Admin/RenewalContract/Reject/Positive</arg>
+<arg>${EXECDIR}/results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee</arg>
 <doc>Sets the directory for captured screenshots.</doc>
-<status status="PASS" start="2025-04-20T21:18:06.752314" elapsed="0.001212"/>
+<status status="PASS" start="2025-04-20T22:01:20.675287" elapsed="0.000900"/>
 </kw>
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:06.754488" level="INFO">Opening url 'http://localhost:5173/'</msg>
+<msg time="2025-04-20T22:01:20.677275" level="INFO">Opening url 'http://localhost:5173/'</msg>
 <arg>${BASE_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-04-20T21:18:06.754160" elapsed="0.325845"/>
+<status status="PASS" start="2025-04-20T22:01:20.676844" elapsed="0.369232"/>
 </kw>
 <kw name="Click And Capture" owner="KeyWord">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:07.081495" elapsed="0.447730"/>
+<status status="PASS" start="2025-04-20T22:01:21.050763" elapsed="0.471173"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:07.958851" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass1.png"&gt;&lt;img src="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-04-20T22:01:21.968620" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass1.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass1.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${filename}</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-04-20T21:18:07.529663" elapsed="0.429778"/>
+<status status="PASS" start="2025-04-20T22:01:21.522259" elapsed="0.446661"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:07.961674" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[2]'.</msg>
+<msg time="2025-04-20T22:01:21.969985" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/div/div[2]'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:07.960417" elapsed="0.922780"/>
+<status status="PASS" start="2025-04-20T22:01:21.969358" elapsed="0.918111"/>
 </kw>
 <arg>xpath=//*[@id="root"]/div/div/div/div/div[2]</arg>
-<arg>RejectRenewalContractPass1.png</arg>
-<status status="PASS" start="2025-04-20T21:18:07.080805" elapsed="1.802615"/>
+<arg>SentNotiAllEmployeePass1.png</arg>
+<status status="PASS" start="2025-04-20T22:01:21.049337" elapsed="1.838847"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:08.884543" level="INFO">Typing text '20240001' into text field 'xpath=//*[@id="username"]'.</msg>
+<msg time="2025-04-20T22:01:22.892930" level="INFO">Typing text '20240001' into text field 'xpath=//*[@id="username"]'.</msg>
 <arg>xpath=//*[@id="username"]</arg>
 <arg>20240001</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:08.884066" elapsed="0.906287"/>
+<status status="PASS" start="2025-04-20T22:01:22.890840" elapsed="0.813422"/>
 </kw>
 <kw name="Input Password" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:09.792086" level="INFO">Typing password into text field 'xpath=//*[@id="password"]'.</msg>
-<msg time="2025-04-20T21:18:10.266997" level="INFO">Temporally setting log level to: NONE</msg>
+<msg time="2025-04-20T22:01:23.705641" level="INFO">Typing password into text field 'xpath=//*[@id="password"]'.</msg>
+<msg time="2025-04-20T22:01:24.159034" level="INFO">Temporally setting log level to: NONE</msg>
 <arg>xpath=//*[@id="password"]</arg>
 <arg>1234567</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:09.791684" elapsed="0.781780"/>
+<status status="PASS" start="2025-04-20T22:01:23.705061" elapsed="0.768268"/>
 </kw>
 <kw name="Click And Capture" owner="KeyWord">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:10.575302" elapsed="0.446957"/>
+<status status="PASS" start="2025-04-20T22:01:24.475099" elapsed="0.459228"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:11.702716" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass2.png"&gt;&lt;img src="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-04-20T22:01:25.565801" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass2.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass2.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${filename}</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-04-20T21:18:11.022843" elapsed="0.680143"/>
+<status status="PASS" start="2025-04-20T22:01:24.934857" elapsed="0.631182"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:11.704035" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button'.</msg>
+<msg time="2025-04-20T22:01:25.566702" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:11.703417" elapsed="0.512544"/>
+<status status="PASS" start="2025-04-20T22:01:25.566312" elapsed="0.516609"/>
 </kw>
 <arg>xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button</arg>
-<arg>RejectRenewalContractPass2.png</arg>
-<status status="PASS" start="2025-04-20T21:18:10.574280" elapsed="1.642005"/>
+<arg>SentNotiAllEmployeePass2.png</arg>
+<status status="PASS" start="2025-04-20T22:01:24.474289" elapsed="1.608885"/>
 </kw>
 <kw name="Click And Capture" owner="KeyWord">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:12.217944" elapsed="0.901927"/>
+<status status="PASS" start="2025-04-20T22:01:26.085111" elapsed="0.468538"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:13.545916" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass3.png"&gt;&lt;img src="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-04-20T22:01:26.954724" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass3.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass3.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${filename}</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-04-20T21:18:13.120322" elapsed="0.426005"/>
+<status status="PASS" start="2025-04-20T22:01:26.554166" elapsed="0.400811"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:13.547458" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]'.</msg>
+<msg time="2025-04-20T22:01:26.955632" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/a[1]'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:13.546839" elapsed="0.533478"/>
+<status status="PASS" start="2025-04-20T22:01:26.955307" elapsed="0.691059"/>
 </kw>
-<arg>xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]</arg>
-<arg>RejectRenewalContractPass3.png</arg>
-<status status="PASS" start="2025-04-20T21:18:12.217103" elapsed="1.863551"/>
+<arg>xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/a[1]</arg>
+<arg>SentNotiAllEmployeePass3.png</arg>
+<status status="PASS" start="2025-04-20T22:01:26.084034" elapsed="1.562539"/>
 </kw>
 <kw name="Click And Capture" owner="KeyWord">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:14.083054" elapsed="0.445665"/>
+<status status="PASS" start="2025-04-20T22:01:27.648076" elapsed="0.436676"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:14.933275" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass4.png"&gt;&lt;img src="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-04-20T22:01:28.572471" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass4.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass4.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${filename}</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-04-20T21:18:14.529085" elapsed="0.404388"/>
+<status status="PASS" start="2025-04-20T22:01:28.085806" elapsed="0.486935"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:14.934300" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[3]'.</msg>
+<msg time="2025-04-20T22:01:28.573798" level="INFO">Clicking element 'xpath=//*[@id="category"]'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:14.933805" elapsed="0.677136"/>
+<status status="PASS" start="2025-04-20T22:01:28.573262" elapsed="0.615081"/>
 </kw>
-<arg>xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[3]</arg>
-<arg>RejectRenewalContractPass4.png</arg>
-<status status="PASS" start="2025-04-20T21:18:14.081886" elapsed="1.529456"/>
+<arg>xpath=//*[@id="category"]</arg>
+<arg>SentNotiAllEmployeePass4.png</arg>
+<status status="PASS" start="2025-04-20T22:01:27.647168" elapsed="1.541389"/>
 </kw>
 <kw name="Click And Capture" owner="KeyWord">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:15.612721" elapsed="0.446547"/>
+<status status="PASS" start="2025-04-20T22:01:29.190058" elapsed="0.434774"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:16.477278" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass5.png"&gt;&lt;img src="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-04-20T22:01:30.178726" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass5.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass5.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${filename}</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-04-20T21:18:16.059700" elapsed="0.417872"/>
+<status status="PASS" start="2025-04-20T22:01:29.625475" elapsed="0.553487"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:16.478553" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/main/div/div/table/tbody/tr[2]/td[5]/div/button[2]'.</msg>
+<msg time="2025-04-20T22:01:30.179724" level="INFO">Clicking element 'xpath=//*[@id="category"]/option[2]'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:16.478020" elapsed="0.580965"/>
+<status status="PASS" start="2025-04-20T22:01:30.179341" elapsed="0.487468"/>
 </kw>
-<arg>xpath=//*[@id="root"]/div/div/div/main/div/div/table/tbody/tr[2]/td[5]/div/button[2]</arg>
-<arg>RejectRenewalContractPass5.png</arg>
-<status status="PASS" start="2025-04-20T21:18:15.612122" elapsed="1.447184"/>
+<arg>xpath=//*[@id="category"]/option[2]</arg>
+<arg>SentNotiAllEmployeePass5.png</arg>
+<status status="PASS" start="2025-04-20T22:01:29.189217" elapsed="1.477803"/>
 </kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=/html/body/div[2]/div/div[6]/button[1]</arg>
-<arg>timeout=3s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:17.060085" elapsed="0.501944"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-20T22:01:30.668589" level="INFO">Typing text 'ทดสอบการส่งข้อความแจ้งเตือนหาพนักงานทั้งหมด' into text field 'xpath=//*[@id="message"]'.</msg>
+<arg>xpath=//*[@id="message"]</arg>
+<arg>ทดสอบการส่งข้อความแจ้งเตือนหาพนักงานทั้งหมด</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-20T22:01:30.668081" elapsed="1.092278"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-20T22:01:31.762097" level="INFO">Typing text 'testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest' into text field 'xpath=//*[@id="details"]'.</msg>
+<arg>xpath=//*[@id="details"]</arg>
+<arg>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-20T22:01:31.761252" elapsed="1.104110"/>
 </kw>
 <kw name="Click And Capture" owner="KeyWord">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${locator}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-04-20T21:18:17.564006" elapsed="0.431373"/>
+<status status="PASS" start="2025-04-20T22:01:32.867439" elapsed="0.435818"/>
 </kw>
 <kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:18.461506" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass6.png"&gt;&lt;img src="results/Screenshots/Admin/RenewalContract/Reject/Positive/RejectRenewalContractPass6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-04-20T22:01:33.708285" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass6.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass6.png" width="800px"&gt;&lt;/a&gt;</msg>
 <arg>${filename}</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-04-20T21:18:17.996028" elapsed="0.466178"/>
+<status status="PASS" start="2025-04-20T22:01:33.303561" elapsed="0.404940"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-04-20T21:18:18.463465" level="INFO">Clicking element 'xpath=/html/body/div[2]/div/div[6]/button[1]'.</msg>
+<msg time="2025-04-20T22:01:33.709186" level="INFO">Clicking element 'xpath=//*[@id="root"]/div/div/div/main/div/div/div[1]/div/div/button'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-04-20T21:18:18.462686" elapsed="0.595881"/>
+<status status="PASS" start="2025-04-20T22:01:33.708857" elapsed="0.523603"/>
 </kw>
-<arg>xpath=/html/body/div[2]/div/div[6]/button[1]</arg>
-<arg>RejectRenewalContractPass6.png</arg>
-<status status="PASS" start="2025-04-20T21:18:17.563227" elapsed="1.495672"/>
+<arg>xpath=//*[@id="root"]/div/div/div/main/div/div/div[1]/div/div/button</arg>
+<arg>SentNotiAllEmployeePass6.png</arg>
+<status status="PASS" start="2025-04-20T22:01:32.866501" elapsed="1.366302"/>
 </kw>
-<doc>Reject Renewal Contract On Renewal Contract Page</doc>
-<tag>RejectRenewal</tag>
-<status status="PASS" start="2025-04-20T21:18:06.751160" elapsed="12.308487"/>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-04-20T22:01:36.234382" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-04-20T22:01:34.233441" elapsed="2.001165"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-04-20T22:01:36.657524" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass7.png"&gt;&lt;img src="results/Screenshots/Admin/Notification/Positive/SentNotiAllEmployee/SentNotiAllEmployeePass7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>SentNotiAllEmployeePass7.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-04-20T22:01:36.235254" elapsed="0.422490"/>
+</kw>
+<doc>Sent Notification On Notification Page</doc>
+<tag>SentNotiAllEmployee</tag>
+<status status="PASS" start="2025-04-20T22:01:20.673733" elapsed="15.984595"/>
 </test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-04-20T21:18:19.062510" elapsed="3.147148"/>
+<status status="PASS" start="2025-04-20T22:01:36.660161" elapsed="2.417994"/>
 </kw>
-<status status="PASS" start="2025-04-20T21:18:03.608277" elapsed="18.601591"/>
+<status status="PASS" start="2025-04-20T22:01:17.468497" elapsed="21.609861"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">RejectRenewal</stat>
+<stat pass="1" fail="0" skip="0">SentNotiAllEmployee</stat>
 </tag>
 <suite>
 <stat name="DashboardPST" id="s1" pass="1" fail="0" skip="0">DashboardPST</stat>
