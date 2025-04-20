@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Bell, ChevronDown, ChevronUp, Check, Clock } from "lucide-react";
+import { Bell, ChevronDown, ChevronUp, Check, Clock, CheckCheck } from "lucide-react";
 import Navbar from "./../Components/Navbar";
 import "./../index.css";
 import baseURL from '../utils/api';
@@ -106,14 +106,22 @@ function Notifications() {
       <Navbar />
       <div className="max-w-5xl mx-auto px-7">
         <div className="bg-white h-[800px] mt-10 rounded-xl shadow-lg">
-          {/* Header */}
-          <div className="p-6 border-b border-gray-100">
+  
+          {/* ✅ Header + ปุ่มทำเครื่องหมายว่าอ่านแล้วทั้งหมด */}
+          <div className="p-6 border-b border-gray-100 flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Bell className="w-6 h-6 text-blue-500" />
-              <h1 className="text-2xl font-semibold text-blue-700">
-                การแจ้งเตือน
-              </h1>
+              <h1 className="text-2xl font-semibold text-blue-700">การแจ้งเตือน</h1>
             </div>
+  
+            {/* ✅ ปุ่มใหม่แบบ modern */}
+            <button
+              onClick={markAllAsRead}
+              className="flex items-center gap-1 bg-white border border-blue-600 text-blue-600 hover:bg-blue-50 text-sm font-medium px-4 py-1.5 rounded-lg transition-all shadow-sm"
+            >
+              <CheckCheck className="w-4 h-4" />
+              ทำเครื่องหมายว่าอ่านแล้วทั้งหมด
+            </button>
           </div>
   
           {/* Notifications List */}
@@ -125,16 +133,6 @@ function Notifications() {
               </div>
             ) : (
               <>
-                {/* ✅ ปุ่มทำเครื่องหมายว่าอ่านแล้วทั้งหมด */}
-                <div className="flex justify-end mb-4">
-                  <button
-                    onClick={markAllAsRead}
-                    className="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-all"
-                  >
-                    📥 ทำเครื่องหมายว่าอ่านแล้วทั้งหมด
-                  </button>
-                </div>
-  
                 {notifications.map((notification) => (
                   <div
                     key={notification._id}
