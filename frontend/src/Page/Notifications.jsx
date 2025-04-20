@@ -208,8 +208,4 @@ function Notifications() {
   );
 }
 
-Notifications.propTypes = {
-  setNotificationCount: PropTypes.func,
-};
-
 export default Notifications;
