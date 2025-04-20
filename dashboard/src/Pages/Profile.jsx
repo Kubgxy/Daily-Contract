@@ -325,7 +325,7 @@ const Profile = () => {
               <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
                 อีเมล
               </p>
-              <p className="text-base text-gray-900 dark:text-white">
+              <p className="text-base text-gray-900 dark:text-white truncate" title={profile.email}>
                 {profile.email}
               </p>
             </div>
@@ -342,11 +342,10 @@ const Profile = () => {
             </h2>
             <button
               onClick={handleEditToggle}
-              className={`px-4 py-2 rounded-lg text-sm font-medium ${
-                isEditing
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${isEditing
                   ? "bg-gray-200 text-gray-800 dark:bg-dark-700 dark:text-gray-300"
                   : "bg-primary-600 text-white hover:bg-primary-700"
-              } transition-colors`}
+                } transition-colors`}
             >
               {isEditing ? "ยกเลิก" : "แก้ไข"}
             </button>
@@ -391,11 +390,10 @@ const Profile = () => {
                 }
                 onChange={handleChange}
                 disabled={!isEditing}
-                className={`form-input ${
-                  !isEditing
+                className={`form-input ${!isEditing
                     ? "bg-gray-50 dark:bg-dark-700 cursor-not-allowed"
                     : ""
-                }`}
+                  }`}
               />
             </div>
 
@@ -409,11 +407,10 @@ const Profile = () => {
                 onChange={handleChange}
                 disabled={!isEditing}
                 rows="3"
-                className={`form-input ${
-                  !isEditing
+                className={`form-input ${!isEditing
                     ? "bg-gray-50 dark:bg-dark-700 cursor-not-allowed"
                     : ""
-                }`}
+                  }`}
               ></textarea>
             </div>
 
@@ -474,9 +471,8 @@ const Profile = () => {
                 <button
                   onClick={handleSave}
                   disabled={loading}
-                  className={`px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors ${
-                    loading ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
+                  className={`px-4 py-2 bg-primary-600 text-white rounded-lg text-sm font-medium hover:bg-primary-700 transition-colors ${loading ? "opacity-70 cursor-not-allowed" : ""
+                    }`}
                 >
                   {loading ? (
                     <div className="flex items-center">
