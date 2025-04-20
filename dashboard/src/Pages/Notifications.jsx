@@ -207,13 +207,15 @@ const Notifications = () => {
     }
   };
 
-  const filteredNotifications = notifications.filter(
-    (notification) =>
-      notification.employee_id
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      notification.message.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredNotifications = notifications.filter((notification) => {
+    const employeeIdSafe = (notification.employee_id ?? "").toLowerCase();
+    const messageSafe = (notification.message ?? "").toLowerCase();
+    return (
+      employeeIdSafe.includes(searchTerm.toLowerCase()) ||
+      messageSafe.includes(searchTerm.toLowerCase())
+    );
+  });
+  
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

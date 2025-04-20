@@ -418,4 +418,56 @@ Test Case For Reject Work Record
     Sleep    2s
     Capture Page Screenshot    RejectWorkRecordPass7.png
 
+# Test Case For Renawal Contract Page
+*** Test Cases ***
+Test Case For Approve Renewal Contract
+    [Tags]    ApproveRenewal
+    [Documentation]    Approve Renewal Contract On Renewal Contract Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/RenewalContract/Approve/Positive
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    ApproveRenewalContractPass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    ApproveRenewalContractPass2.png
+
+    #เข้าหน้า Renewal Contract Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    ApproveRenewalContractPass3.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[3]    ApproveRenewalContractPass4.png
+
+    #ทำการอนุมัติการต่อสัญญา
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/table/tbody/tr[1]/td[5]/div/button[1]    ApproveRenewalContractPass5.png
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/div[6]/button[1]    timeout=3s
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    ApproveRenewalContractPass6.png
+
+    Sleep    2s
+    Capture Page Screenshot    ApproveRenewalContractPass7.png
+
+Test Case For Reject Renewal Contract
+    [Tags]    RejectRenewal
+    [Documentation]    Reject Renewal Contract On Renewal Contract Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/RenewalContract/Reject/Positive
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    RejectRenewalContractPass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    RejectRenewalContractPass2.png
+
+    #เข้าหน้า Renewal Contract Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    RejectRenewalContractPass3.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[3]    RejectRenewalContractPass4.png
+
+    #ทำการปฏิเสธการต่อสัญญา
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/table/tbody/tr[2]/td[5]/div/button[2]    RejectRenewalContractPass5.png
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/div[6]/button[1]    timeout=3s
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    RejectRenewalContractPass6.png
+
+    Sleep    2s
+    Capture Page Screenshot    RejectRenewalContractPass7.png
+
 # Test Case For 
