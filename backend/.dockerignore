@@ -5,5 +5,4 @@ node_modules
 .vscode
 README.md
 Dockerfile
-uploads
 src/utils/testCheck.ts
