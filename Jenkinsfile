@@ -79,32 +79,6 @@ pipeline {
       }
     }
 
-    stage('📦 Install Dependencies') {
-      parallel {
-        stage('Frontend') {
-          steps {
-            dir('frontend') {
-              bat 'npm install'
-            }
-          }
-        }
-        stage('Dashboard') {
-          steps {
-            dir('dashboard') {
-              bat 'npm install'
-            }
-          }
-        }
-        stage('Backend') {
-          steps {
-            dir('backend') {
-              bat 'npm install'
-            }
-          }
-        }
-      }
-    }
-
     stage('🔍 Lint Code') {
       parallel {
         stage('Frontend Lint') {
@@ -135,40 +109,29 @@ pipeline {
 
     stage('⚙️ Prepare .env Files') {
       steps {
-        dir('frontend') {
-          bat 'copy .env.example .env'
-        }
-        dir('dashboard') {
-          bat 'copy .env.example .env'
-        }
         dir('backend') {
           bat 'copy .env.example .env'
         }
       }
     }
 
-    stage('🐳 Build Docker Images') {
+    stage('🐳 Build & Run Docker Compose') {
       steps {
-        bat 'docker-compose build'
+        bat 'docker-compose up --build -d'
       }
     }
 
-    stage('🚀 Run Docker Services') {
-      steps {
-        bat 'docker-compose up -d'
+    stage('🤖 Run Robot Framework') {
+       steps {
+         bat '''
+           set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+           if not exist results mkdir results
+           robot --outputdir results tests\\FrontEndPST.robot
+           robot --outputdir results tests\\FrontEndNGT.robot
+           robot --outputdir results tests\\DashboardPST.robot
+         '''
       }
     }
-
-    // stage('🤖 Run Robot Framework') {
-    //    steps {
-    //      bat '''
-    //        set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
-    //        if not exist results mkdir results
-    //        robot --outputdir results tests\\FrontEndPST.robot
-    //        robot --outputdir results tests\\FrontEndNGT.robot
-    //      '''
-    //   }
-    // }  
   } // end stages
 
   post {
@@ -180,6 +143,7 @@ pipeline {
           echo 📄 พบไฟล์ output.xml กำลังสร้างรายงาน...
           robot --outputdir results tests\\FrontEndPST.robot
           robot --outputdir results tests\\FrontEndNGT.robot
+          robot --outputdir results tests\\DashboardPST.robot
         ) else (
           echo ⚠️ ไม่พบ output.xml ไม่สร้างรายงาน Robot Framework
         )
