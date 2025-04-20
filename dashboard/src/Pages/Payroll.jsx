@@ -157,7 +157,7 @@ const PayrollPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label htmlFor="search-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              ค้นหาพนักงาน (ชื่อหรือรหัส)
+              ค้นหาพนักงาน
             </label>
             <div className="relative">
               <input
@@ -185,18 +185,6 @@ const PayrollPage = () => {
             </div>
           </div>
 
-          <div>
-            <label htmlFor="date-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              เลือกวันที่
-            </label>
-            <input
-              id="date-filter"
-              type="date"
-              value={filterDate}
-              onChange={handleDateFilter}
-              className="form-input w-full"
-            />
-          </div>
 
           <div>
             <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -212,6 +200,18 @@ const PayrollPage = () => {
               <option value="Paid">จ่ายแล้ว</option>
               <option value="UnPaid">ยังไม่จ่าย</option>
             </select>
+          </div>
+          <div>
+            <label htmlFor="date-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              วันที่
+            </label>
+            <input
+              id="date-filter"
+              type="date"
+              value={filterDate}
+              onChange={handleDateFilter}
+              className="form-input w-full"
+            />
           </div>
         </div>
       </motion.div>

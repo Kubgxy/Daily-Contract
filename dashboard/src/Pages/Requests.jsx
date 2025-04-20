@@ -12,6 +12,8 @@ const Requests = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [openDialog, setOpenDialog] = useState(false)
   const [selectedRequest, setSelectedRequest] = useState(null)
+  const [statusFilter, setStatusFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
   const [action, setAction] = useState("")
   const [selectedDetails, setSelectedDetails] = useState(null)
   const [detailsDialogOpen, setDetailsDialogOpen] = useState(false)
@@ -113,7 +115,7 @@ const Requests = () => {
               start_time: selectedRequest.details?.start_time || "",
               end_time: selectedRequest.details?.end_time || "",
             },
-            
+
           }
         } else {
           payload.type = "overtimeRequest" // เพิ่ม type สำหรับ Rejected
@@ -202,13 +204,17 @@ const Requests = () => {
 
   // Filter requests
   const filteredRequests = requests
-    .filter((request) => {
-      const matchesType = typeFilter === "" || request.type === typeFilter
-      const matchesSearch = searchTerm === "" || request.employee_id?.toLowerCase().includes(searchTerm.toLowerCase())
+  .filter((request) => {
+    const matchesSearch = searchTerm === "" || 
+      request.employee_id?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = typeFilter === "" || request.type === typeFilter;
+    const matchesStatus = statusFilter === "" || request.status === statusFilter;
+    const matchesDate = dateFilter === "" || 
+      request.created_at.split('T')[0] === dateFilter;
 
-      return matchesType && matchesSearch
-    })
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    return matchesSearch && matchesType && matchesStatus && matchesDate;
+  })
+  .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
   // Pagination
   const indexOfLastItem = currentPage * itemsPerPage
@@ -259,24 +265,8 @@ const Requests = () => {
       </motion.h1>
 
       <motion.div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-6" variants={itemVariants}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="type-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              ประเภทคำขอ
-            </label>
-            <select
-              id="type-filter"
-              value={typeFilter}
-              onChange={handleTypeFilterChange}
-              className="form-select w-full"
-            >
-              <option value="">ทั้งหมด</option>
-              <option value="leaveRequest">คำขอลางาน</option>
-              <option value="workInfoRequest">คำขอแก้ไขข้อมูลการทำงาน</option>
-              <option value="overtimeRequest">คำขอทำงานล่วงเวลา</option>
-            </select>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {/* Employee ID Search - ซ้ายสุด */}
           <div>
             <label htmlFor="search-term" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               ค้นหาพนักงาน
@@ -305,6 +295,56 @@ const Requests = () => {
                 />
               </svg>
             </div>
+          </div>
+
+          {/* Request Type Filter - อันที่สอง */}
+          <div>
+            <label htmlFor="type-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              ประเภทคำขอ
+            </label>
+            <select
+              id="type-filter"
+              value={typeFilter}
+              onChange={handleTypeFilterChange}
+              className="form-select w-full"
+            >
+              <option value="">ทั้งหมด</option>
+              <option value="leaveRequest">คำขอลางาน</option>
+              <option value="workInfoRequest">คำขอแก้ไขข้อมูลการทำงาน</option>
+              <option value="overtimeRequest">คำขอทำงานล่วงเวลา</option>
+            </select>
+          </div>
+
+          {/* Status Filter - อันที่สาม */}
+          <div>
+            <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              สถานะ
+            </label>
+            <select
+              id="status-filter"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="form-select w-full"
+            >
+              <option value="">ทั้งหมด</option>
+              <option value="Pending">รอการอนุมัติ</option>
+              <option value="Approved">อนุมัติแล้ว</option>
+              <option value="Rejected">ปฏิเสธแล้ว</option>
+            </select>
+          </div>
+
+          {/* Date Filter - ขวาสุด */}
+          <div>
+            <label htmlFor="date-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              วันที่ส่งคำขอ
+            </label>
+            <input
+              id="date-filter"
+              type="date"
+              value={dateFilter}
+              onChange={(e) => setDateFilter(e.target.value)}
+              className="form-input w-full"
+            />
           </div>
         </div>
       </motion.div>
@@ -427,11 +467,10 @@ const Requests = () => {
                   <button
                     onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
-                      currentPage === 1
-                        ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                    }`}
+                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${currentPage === 1
+                      ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                      : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                      }`}
                   >
                     <span className="sr-only">Previous</span>
                     <svg
@@ -453,11 +492,10 @@ const Requests = () => {
                     <button
                       key={i}
                       onClick={() => handlePageChange(i + 1)}
-                      className={`relative inline-flex items-center px-4 py-2 border ${
-                        currentPage === i + 1
-                          ? "z-10 bg-primary-50 dark:bg-primary-900/20 border-primary-500 dark:border-primary-700 text-primary-600 dark:text-primary-400"
-                          : "bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                      } text-sm font-medium`}
+                      className={`relative inline-flex items-center px-4 py-2 border ${currentPage === i + 1
+                        ? "z-10 bg-primary-50 dark:bg-primary-900/20 border-primary-500 dark:border-primary-700 text-primary-600 dark:text-primary-400"
+                        : "bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                        } text-sm font-medium`}
                     >
                       {i + 1}
                     </button>
@@ -466,11 +504,10 @@ const Requests = () => {
                   <button
                     onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                     disabled={currentPage === totalPages}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
-                      currentPage === totalPages
-                        ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                    }`}
+                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${currentPage === totalPages
+                      ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                      : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                      }`}
                   >
                     <span className="sr-only">Next</span>
                     <svg
@@ -588,9 +625,8 @@ const Requests = () => {
               <div className="bg-white dark:bg-dark-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div
-                    className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${
-                      action === "approved" ? "bg-green-100 dark:bg-green-900/30" : "bg-red-100 dark:bg-red-900/30"
-                    } sm:mx-0 sm:h-10 sm:w-10`}
+                    className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${action === "approved" ? "bg-green-100 dark:bg-green-900/30" : "bg-red-100 dark:bg-red-900/30"
+                      } sm:mx-0 sm:h-10 sm:w-10`}
                   >
                     {action === "approved" ? (
                       <svg
@@ -629,11 +665,10 @@ const Requests = () => {
               <div className="bg-gray-50 dark:bg-dark-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 ${
-                    action === "approved"
-                      ? "bg-green-600 hover:bg-green-700 focus:ring-green-500"
-                      : "bg-red-600 hover:bg-red-700 focus:ring-red-500"
-                  } text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm`}
+                  className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 ${action === "approved"
+                    ? "bg-green-600 hover:bg-green-700 focus:ring-green-500"
+                    : "bg-red-600 hover:bg-red-700 focus:ring-red-500"
+                    } text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm`}
                   onClick={handleConfirmAction}
                   disabled={loading}
                 >
@@ -682,9 +717,8 @@ const Requests = () => {
       {(successMessage || errorMessage) && (
         <div className="fixed bottom-4 right-4 z-50 max-w-md">
           <div
-            className={`bg-white dark:bg-dark-800 rounded-lg shadow-lg border ${
-              errorMessage ? "border-red-500" : "border-green-500"
-            } overflow-hidden`}
+            className={`bg-white dark:bg-dark-800 rounded-lg shadow-lg border ${errorMessage ? "border-red-500" : "border-green-500"
+              } overflow-hidden`}
           >
             <div className="p-4 flex items-start">
               <div className="flex-shrink-0">

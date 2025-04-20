@@ -8,6 +8,7 @@ const WorkReport = () => {
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [searchUserId, setSearchUserId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedReport, setSelectedReport] = useState(null);
@@ -47,6 +48,11 @@ const WorkReport = () => {
     setCurrentPage(1); // Reset to first page when date changes
   };
 
+  const handleDepartmentFilterChange = (event) => {
+    setDepartmentFilter(event.target.value);
+    setCurrentPage(1);
+  };
+
   const handleSearchChange = (event) => {
     setSearchUserId(event.target.value);
     setCurrentPage(1); // Reset to first page when search changes
@@ -64,8 +70,9 @@ const WorkReport = () => {
 
   const filteredReports = reports.filter(
     (report) =>
-      searchUserId === "" ||
-      report.employee_id.toString().includes(searchUserId)
+      (searchUserId === "" ||
+        report.employee_id.toString().includes(searchUserId)) &&
+      (selectedDepartment === "All" || report.position === selectedDepartment)
   );
 
   // Pagination
@@ -77,6 +84,16 @@ const WorkReport = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const departments = [
+    "All",
+    "ProductionManager",
+    "ProductionStaff",
+    "SalesManager",
+    "SalesStaff",
+    "QCManager",
+    "QCStaff",
+  ];
 
   // Format date and time
   const formatDate = (dateString) => {
@@ -161,23 +178,8 @@ const WorkReport = () => {
         className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-6"
         variants={itemVariants}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label
-              htmlFor="date-filter"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              วันที่
-            </label>
-            <input
-              id="date-filter"
-              type="date"
-              value={selectedDate}
-              onChange={handleDateChange}
-              className="form-input w-full"
-            />
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Employee ID Search */}
           <div>
             <label
               htmlFor="employee-search"
@@ -209,6 +211,45 @@ const WorkReport = () => {
                 />
               </svg>
             </div>
+          </div>
+
+          {/* Department Filter - Dropdown */}
+          <div>
+            <label
+              htmlFor="department-filter"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              แผนก
+            </label>
+            <select
+              id="department-filter"
+              value={selectedDepartment}
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+              className="form-select w-full"
+            >
+              {departments.map((dept) => (
+                <option key={dept} value={dept}>
+                  {dept === "All" ? "ทุกแผนก" : dept}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Date Filter */}
+          <div>
+            <label
+              htmlFor="date-filter"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              วันที่
+            </label>
+            <input
+              id="date-filter"
+              type="date"
+              value={selectedDate}
+              onChange={handleDateChange}
+              className="form-input w-full"
+            />
           </div>
         </div>
       </motion.div>
@@ -358,11 +399,10 @@ const WorkReport = () => {
                       handlePageChange(Math.max(1, currentPage - 1))
                     }
                     disabled={currentPage === 1}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
-                      currentPage === 1
-                        ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                    }`}
+                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${currentPage === 1
+                      ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                      : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                      }`}
                   >
                     <span className="sr-only">Previous</span>
                     <svg
@@ -384,11 +424,10 @@ const WorkReport = () => {
                     <button
                       key={i}
                       onClick={() => handlePageChange(i + 1)}
-                      className={`relative inline-flex items-center px-4 py-2 border ${
-                        currentPage === i + 1
-                          ? "z-10 bg-primary-50 dark:bg-primary-900/20 border-primary-500 dark:border-primary-700 text-primary-600 dark:text-primary-400"
-                          : "bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                      } text-sm font-medium`}
+                      className={`relative inline-flex items-center px-4 py-2 border ${currentPage === i + 1
+                        ? "z-10 bg-primary-50 dark:bg-primary-900/20 border-primary-500 dark:border-primary-700 text-primary-600 dark:text-primary-400"
+                        : "bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                        } text-sm font-medium`}
                     >
                       {i + 1}
                     </button>
@@ -399,11 +438,10 @@ const WorkReport = () => {
                       handlePageChange(Math.min(totalPages, currentPage + 1))
                     }
                     disabled={currentPage === totalPages}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
-                      currentPage === totalPages
-                        ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                    }`}
+                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${currentPage === totalPages
+                      ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                      : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                      }`}
                   >
                     <span className="sr-only">Next</span>
                     <svg
