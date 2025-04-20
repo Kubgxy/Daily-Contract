@@ -256,33 +256,22 @@ Test Case For Register Step2 By Admin
 #     Sleep    2s
 #     Capture Page Screenshot    RegisterStepThreePass16.png
     
-#     #อัพโหลดไฟล์ avatar
-#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[4]/div/label    RegisterStepThreePass13.png
+#     # #อัพโหลดไฟล์ avatar
+#     # Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[4]/div/label    RegisterStepThreePass13.png
 
-#     Wait Until Page Contains Element    ${AVATAR_INPUT}    timeout=3s
-#     Execute JavaScript    document.querySelector('input[type="file"]').removeAttribute('hidden');
-#     Choose File    ${AVATAR_INPUT}    ${IMAGE_PATH}
+#     # Wait Until Page Contains Element    ${AVATAR_INPUT}    timeout=3s
+#     # Execute JavaScript    document.querySelector('input[type="file"]').removeAttribute('hidden');
+#     # Choose File    ${AVATAR_INPUT}    ${IMAGE_PATH}
     
-#     Sleep    2s
+#     # Sleep    2s
 
 #     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button[2]    RegisterStepThreePass14.png
 
 #     Wait Until Element Is Visible    xpath=//button[contains(text(),"ลงทะเบียนพนักงาน")]    timeout=10s
 #     Click And Capture                xpath=//button[contains(text(),"ลงทะเบียนพนักงาน")]    RegisterStepThreePass15.png
 
-#     # ✅ รอ Modal เปิดจน Title ปรากฏ
-#     Wait Until Element Contains    id=modal-title    ยืนยันการลงทะเบียน    timeout=10s
-
-#     # ✅ รอให้ Backdrop หายก่อน (div ที่ block การคลิก)
-#     Wait Until Page Does Not Contain Element    xpath=//div[@aria-hidden="true" and contains(@class, "bg-opacity-75")]    timeout=10s
-
-#     # ✅ แล้วค่อยคลิกปุ่ม "ยืนยัน"
-#     Click And Capture    xpath=//button[normalize-space(text())="ยืนยัน"]    RegisterStepThreePass16.png
-
-#     # ✅ จากนั้นรอ Swal ลงทะเบียนสำเร็จขึ้น
-#     Wait Until Element Contains    id=modal-title    ลงทะเบียนสำเร็จ    timeout=10s
-#     Click And Capture              xpath=//button[normalize-space(text())="ตกลง"]    RegisterStepThreePass17.png
-
+#     Wait Until Element Is Visible    xpath=//button[contains(text(),"ยืนยัน")]    timeout=3s
+#     Click And Capture    xpath=//button[contains(text(),"ยืนยัน")]    RegisterStepThreePass16.png
 
 #     Sleep    5s
 #     Capture Page Screenshot    RegisterStepThreePass18.png
@@ -290,6 +279,28 @@ Test Case For Register Step2 By Admin
 
 # Test Case For Employee List Page
 *** Test Cases ***
+Test Case For See Detail Employee
+    [Tags]    SeeDetailEmployee
+    [Documentation]    See Detail Employee On Employee List Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/EmployeeDetail/Positive
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    EmployeeDetailPass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    EmployeeDetailPass2.png
+
+    #เข้าหน้า Employee List Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    EmployeeDetailPass3.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[1]    EmployeeDetailPass4.png
+
+    #ทำการดูรายละเอียดพนักงาน
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[43]/td[5]/button[1]    EmployeeDetailPass5.png
+
+    Sleep    5s
+    Capture Page Screenshot    EmployeeDetailPass6.png
+
 Test Case For Employee List Page
     [Tags]    EditDataEmployee
     [Documentation]    Edit Data Employee On Employee List Page
@@ -307,7 +318,7 @@ Test Case For Employee List Page
     Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[1]    EmployeeEditPass4.png
 
     #ทำการแก้ไขข้อมูลพนักงาน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[44]/td[5]/button[2]    EmployeeEditPass5.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[43]/td[5]/button[2]    EmployeeEditPass5.png
 
     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[1]/input    ประยุต
     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[2]/input    จันทร์โอชา
@@ -327,3 +338,83 @@ Test Case For Employee List Page
 
     Sleep    2s
     Capture Page Screenshot    EmployeeEditPass11.png
+
+Test Case For Delete Employee
+    [Tags]    DeleteEmployee
+    [Documentation]    Delete Employee On Employee List Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/EmployeeDelete/Positive
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    EmployeeDeletePass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    EmployeeDeletePass2.png
+
+    #เข้าหน้า Employee List Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    EmployeeDeletePass3.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[1]    EmployeeDeletePass4.png
+
+    #ทำการลบข้อมูลพนักงาน
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[44]/td[5]/button[3]    EmployeeDeletePass5.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div[2]/button[1]    EmployeeDeletePass6.png
+
+    Sleep    2s
+    Capture Page Screenshot    EmployeeDeletePass7.png
+
+# Test Case For WorkRecord Page
+*** Test Cases ***
+Test Case For Approve Work Record
+    [Tags]    ApproveWorkRecord
+    [Documentation]    Approve Work Record On Work Record Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/WorkRecord/Approve/Positive
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    ApproveWorkRecordPass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    ApproveWorkRecordPass2.png
+
+    #เข้าหน้า Work Record Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    ApproveWorkRecordPass3.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[2]    ApproveWorkRecordPass4.png
+
+    #ทำการอนุมัติการทำงาน
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[1]/td[6]/div/button[1]    ApproveWorkRecordPass5.png
+
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    ApproveWorkRecordPass6.png
+
+    Sleep    2s
+    Capture Page Screenshot    ApproveWorkRecordPass7.png
+
+# Test Case For Reject Work Record
+Test Case For Reject Work Record
+    [Tags]    RejectWorkRecord
+    [Documentation]    Reject Work Record On Work Record Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/WorkRecord/Reject/Positive
+
+    Go To    ${BASE_URL}
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    RejectWorkRecordPass1.png
+    Input Text    xpath=//*[@id="username"]    20240001
+    Input Password    xpath=//*[@id="password"]    1234567
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    RejectWorkRecordPass2.png
+
+    #เข้าหน้า Work Record Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    RejectWorkRecordPass3.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[2]    RejectWorkRecordPass4.png
+
+    #ทำการปฏิเสธการทำงาน
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[2]/td[6]/div/button[2]    RejectWorkRecordPass5.png
+    Input Text    xpath=//*[@id="swal2-textarea"]    ไม่อนุมัติการทำงาน
+
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    RejectWorkRecordPass6.png
+
+    Wait Until Element Is Visible    xpath=/html/body/div[2]/div/div[6]/button[1]    timeout=3s
+    Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]    RejectWorkRecordPass7.png
+    
+    Sleep    2s
+    Capture Page Screenshot    RejectWorkRecordPass7.png
+
