@@ -714,9 +714,9 @@ requests.get("/attendance", async (req: Request, res: Response) => {
   try {
     const { date } = req.query;
     
-    let query: Record<string, any> = {
+    const query = {
       type: "workInfoRequest"
-    };
+    } as { type: string; updated_at?: { $gte: Date; $lte: Date } };
     
     if (date) {
       const start = new Date(date as string);
@@ -726,7 +726,7 @@ requests.get("/attendance", async (req: Request, res: Response) => {
     
       query.updated_at = { $gte: start, $lte: end };
     }
-
+    
     const data = await Requests.find(query).sort({ updated_at: -1 }); // ✅ เปลี่ยน sort ให้ match กับ query ด้วย
     res.status(200).json({ success: true, data });
   } catch (error) {

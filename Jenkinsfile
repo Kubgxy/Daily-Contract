@@ -139,6 +139,8 @@ pipeline {
       echo '📂 สร้างรายงาน Robot Framework'
       // เช็คว่ามีผลลัพธ์ก่อนรัน robot publisher
       bat '''
+        set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
+
         if exist results\\output.xml (
           echo 📄 พบไฟล์ output.xml กำลังสร้างรายงาน...
           robot --outputdir results tests\\FrontEndPST.robot
