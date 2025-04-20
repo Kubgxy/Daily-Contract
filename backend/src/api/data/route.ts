@@ -621,7 +621,7 @@ data.patch("/updateNotification/:id", async (req: Request, res: Response) => {
   }
 });
 
-// API สำหรับทำเครื่องหมายการแจ้งเตือนทั้งหมดเป็นอ่านแล้ว
+// API สำหรับทำเครื่องหมายการแจ้งเตือนที่เลือกเป็นอ่านแล้ว
 data.patch(
   "/markAsRead/:_id",
   verifyToken,
@@ -658,6 +658,35 @@ data.patch(
         status: "Error",
         data: {
           msg: "Failed to mark notifications as read",
+          error,
+        },
+      });
+    }
+  }
+);
+
+// API สำหรับทำเครื่องหมายการแจ้งเตือนทั้งหมดเป็นอ่านแล้ว
+data.patch(
+  "/markAllAsRead",
+  verifyToken,
+  async (req: Request, res: Response) => {
+    try {
+      // อัปเดตการแจ้งเตือนทั้งหมดเป็นอ่านแล้ว
+      await Notification.updateMany({}, { $set: { is_read: "read" } });
+      res.status(200).json({
+        code: "Success-02-0003",
+        status: "Success",
+        data: {
+          msg: "All notifications marked as read",
+        },
+      });
+    } catch (error) {
+      console.error("Error marking all notifications as read:", error);
+      res.status(500).json({
+        code: "ERROR-02-0004",
+        status: "Error",
+        data: {
+          msg: "Failed to mark all notifications as read",
           error,
         },
       });

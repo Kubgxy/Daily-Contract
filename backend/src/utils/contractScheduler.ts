@@ -1,11 +1,12 @@
 import cron from 'node-cron';
 import Employee from '../models/Employee';
 import Notification from '../models/Notification';
-import type { Server } from 'socket.io'; // ✅ ใช้ type แบบชัดเจน
+import type { Server } from 'socket.io';
+
+import { onlineUsers } from '../app'; // ✅ ดึง onlineUsers มาใช้
 
 let io: Server | undefined;
 
-// ✅ ใช้ dynamic import แบบ async + ไม่มี error eslint
 (async () => {
   try {
     const appModule = await import('../app');
@@ -34,21 +35,31 @@ export const checkContractStatus = async () => {
         await employee.save();
 
         await Notification.create({
-          employee_id: 'SYSTEM', // ✅ ปลอดภัยใน production
+          employee_id: 'SYSTEM',
           category: 'contract',
           message: 'มีพนักงานรอการต่อสัญญา',
           details: `พนักงาน ${employee.first_name} (${employee.employee_id}) ใกล้หมดสัญญา`,
         });
 
-        if (io) {
-          io.emit('contract_renewal_pending', {
-            message: 'มีพนักงานรอการต่อสัญญา',
+        await Notification.create({
+          employee_id: employee.employee_id,
+          category: 'contract',
+          message: 'สัญญาการทำงานของคุณใกล้หมดอายุ',
+          details: `พนักงาน ${employee.first_name} (${employee.employee_id}) ใกล้หมดสัญญาในการทำงาน ถ้าหากคุณต้องการต่อสัญญา กรุณาติดต่อ HR`,
+        });
+
+        // ✅ เพิ่มส่วนนี้: แจ้งเตือนเฉพาะ socket ของพนักงาน
+        const socketId = onlineUsers.get(employee.employee_id);
+        if (io && socketId) {
+          io.to(socketId).emit('contract_renewal_pending', {
+            message: 'สัญญาการทำงานของคุณใกล้หมดอายุ',
             employee: {
               name: employee.first_name,
               employee_id: employee.employee_id,
               contract_end_date: employee.contract_end_date,
             },
           });
+          console.log(`📤 ส่ง Socket แจ้งเตือนให้พนักงาน ${employee.employee_id}`);
         }
 
         console.log(`🔔 แจ้งเตือน: ${employee.employee_id} → Pending`);

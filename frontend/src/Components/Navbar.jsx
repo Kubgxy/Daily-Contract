@@ -3,6 +3,7 @@ import { Disclosure, Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/r
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import baseURL from '../utils/api';
+import { useNotification } from '../Context/NotificationContext';
 
 const navigation = [
   { name: "เช็คอิน/เช็คเอาท์", href: "/checkin" },
@@ -12,9 +13,12 @@ const navigation = [
   { name: "เกี่ยวกับเรา", href: "/about" },
 ];
 
+
 export default function Navbar() {
   const [employee, setEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const { unreadCount } = useNotification();
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
@@ -48,13 +52,19 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:flex sm:space-x-4">
                   {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                    >
-                      {item.name}
-                    </a>
+                    <div key={item.name} className="relative">
+                      <a
+                        href={item.href}
+                        className="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                      >
+                        {item.name}
+                      </a>
+                      {item.name === "การแจ้งเตือน" && unreadCount > 0 && (
+                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+                          {unreadCount}
+                        </span>
+                      )}
+                    </div>
                   ))}
                 </div>
                 <div className="flex items-center">
@@ -118,13 +128,19 @@ export default function Navbar() {
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
                 {navigation.map((item) => (
+                  <div key={item.name} className="relative">
                   <a
-                    key={item.name}
                     href={item.href}
-                    className="block text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium"
+                    className="text-white hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                   >
                     {item.name}
                   </a>
+                  {item.name === "การแจ้งเตือน" && unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+                      {unreadCount}
+                    </span>
+                  )}
+                </div>
                 ))}
               </div>
             </Disclosure.Panel>

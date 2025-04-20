@@ -3,7 +3,6 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 import socket from "./utils/socket";
 import { useEffect } from "react";
@@ -24,38 +23,68 @@ import WorkInfo from "./Page/WorkInfo";
 import VerifyOtp from "./Page/VerifyOtp";
 import ResetPassword from "./Page/ResetPassword";
 
+// Context
+import { useNotification } from "./Context/NotificationContext";
+
 function App() {
-    useEffect(() => {
-      const fetchEmployeeInfo = async () => {
-        try {
-          const res = await axios.get(`${baseURL}/api/auth/employees/me`, { withCredentials: true });
-  
-          // ✅ หลังได้ employee_id → ส่งผ่าน socket
-          socket.emit("register", res.data.employee_id);
-          console.log("🔍 Registering:", res.data?.employee_id);
-        } catch (err) {
-          console.error("⚠️ ดึงข้อมูล employee ล้มเหลว:", err);
-        }
-      };
-  
-      fetchEmployeeInfo();
-  
-      socket.on("notify", (data) => {
-        Swal.fire({
-          toast: true,
-          position: "top-end",
-          icon: "info",
-          title: data.title,
-          text: data.message,
-          showConfirmButton: false,
-          timer: 4000,
+  const { setUnreadCount } = useNotification(); // ✅ เพิ่ม context ที่นี่
+
+  useEffect(() => {
+    const fetchEmployeeInfo = async () => {
+      try {
+        const res = await axios.get(`${baseURL}/api/auth/employees/me`, {
+          withCredentials: true,
         });
+
+        // ✅ หลังได้ employee_id → ส่งผ่าน socket
+        socket.emit("register", res.data.employee_id);
+        console.log("🔍 Registering:", res.data?.employee_id);
+      } catch (err) {
+        console.error("⚠️ ดึงข้อมูล employee ล้มเหลว:", err);
+      }
+    };
+
+    fetchEmployeeInfo();
+
+    const shownMessages = new Set();
+
+    const handleNotify = ({ title, message }) => {
+      if (shownMessages.has(message)) return;
+      shownMessages.add(message);
+      setTimeout(() => shownMessages.delete(message), 10000);
+
+      // ✅ เพิ่ม unreadCount +1 ทุกครั้งที่มีแจ้งเตือนเข้าใหม่
+      setUnreadCount((prev) => prev + 1);
+
+      // 🔊 เสียงแจ้งเตือน
+      const sound = new Audio("/sounds/notify.mp3");
+      sound.play().catch(() => {});
+
+      // 💬 Toast แจ้งเตือน
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "info",
+        title: title || "แจ้งเตือน",
+        text: message,
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+        customClass: {
+          popup: "rounded-xl shadow-lg border border-blue-100 bg-white/80 backdrop-blur-xl",
+          title: "text-blue-800 font-semibold",
+          icon: "text-blue-600",
+        },
       });
-  
-      return () => {
-        socket.off("notify");
-      };
-    }, []);  
+    };
+
+    socket.on("notify", handleNotify);
+    return () => socket.off("notify", handleNotify);
+  }, []);
 
   return (
     <Router>
