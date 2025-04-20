@@ -34,7 +34,6 @@ Test Function On ProfilePage
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    ProfilePage2.png
     Click And Capture    xpath=/html/body/div/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/button    ProfilePage3.png
 
-
 # Test Case For Check In Page
 *** Test Cases ***
 Test Check In Page
