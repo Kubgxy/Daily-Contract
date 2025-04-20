@@ -714,16 +714,16 @@ requests.get("/attendance", async (req: Request, res: Response) => {
   try {
     const { date } = req.query;
     
-    const query: any = {
+    let query: Record<string, any> = {
       type: "workInfoRequest"
     };
-
+    
     if (date) {
       const start = new Date(date as string);
       start.setHours(0, 0, 0, 0);
       const end = new Date(start);
       end.setHours(23, 59, 59, 999);
-
+    
       query.updated_at = { $gte: start, $lte: end };
     }
 
