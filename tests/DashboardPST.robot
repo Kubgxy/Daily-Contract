@@ -199,74 +199,131 @@ Test Case For Register Step2 By Admin
     Sleep    2s
     Capture Page Screenshot    RegisterStepTwoPass7.png
 
-Test Case For Register Step3 By Admin
-    [Tags]    RegisterStep3
-    [Documentation]    Register Step3 By Admin
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/Profile/Register/Step3/Positive
+# Test Case For Register Step3 By Admin
+#     [Tags]    RegisterStep3
+#     [Documentation]    Register Step3 By Admin
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/Profile/Register/Step3/Positive
+
+#     Go To    ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    RegisterStepThreePass1.png
+#     Input Text    xpath=//*[@id="username"]    20240001
+#     Input Password    xpath=//*[@id="password"]    1234567
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    RegisterStepThreePass2.png
+
+#     #เข้าหน้า Register Page
+#     Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[1]/a[3]    RegisterStepThreePass3.png
+
+#     #ทำการกรอกข้อมูล Step 1 ลงในฟอร์ม Register
+#     Input Password    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div/div[1]/div/input    123456
+#     Input Password    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div/div[2]/div/input    123456
+
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button    RegisterStepThreePass4.png
+#     Sleep    2s
+
+#     #ทำการกรอกข้อมูล Step 2 ลงในฟอร์ม Register
+#     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[1]/div[1]/input    Test
+#     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[1]/div[2]/input    Caseeeeeeee
+
+#     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div/input    testcase@gmail.com
+
+#     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[3]/div/input    0912345678
+
+#     Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[4]/textarea    พระนั่งเกล้า
+
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button[2]    RegisterStepThreePass6.png
+#     Sleep    2s
+
+#     #ทำการกรอกข้อมูล Step 3 ลงในฟอร์ม Register
+
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[1]/div/select    RegisterStepThreePass7.png
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[1]/div/select/option[4]    RegisterStepThreePass8.png
+
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[2]/div/select    RegisterStepThreePass9.png
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[2]/div/select/option[3]    RegisterStepThreePass10.png
+    
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[3]/div/select    RegisterStepThreePass11.png
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[3]/div/select/option[2]    RegisterStepThreePass12.png
+
+#     # วิธีเทพแบบ React-Compatible
+#     Execute JavaScript    const el = document.querySelector('input[name="contract_start_date"]'); el.setAttribute('value', '2025-04-20'); el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true }));
+
+#     Execute JavaScript    const el2 = document.querySelector('input[name="contract_end_date"]'); el2.setAttribute('value', '2025-10-20'); el2.dispatchEvent(new Event('input', { bubbles: true })); el2.dispatchEvent(new Event('change', { bubbles: true }));
+
+#     Sleep    1s
+#     Element Attribute Value Should Be    xpath=//input[@name="contract_start_date"]    value    2025-04-20
+#     Element Attribute Value Should Be    xpath=//input[@name="contract_end_date"]      value    2025-10-20
+
+#     Sleep    2s
+#     Capture Page Screenshot    RegisterStepThreePass16.png
+    
+#     #อัพโหลดไฟล์ avatar
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[4]/div/label    RegisterStepThreePass13.png
+
+#     Wait Until Page Contains Element    ${AVATAR_INPUT}    timeout=3s
+#     Execute JavaScript    document.querySelector('input[type="file"]').removeAttribute('hidden');
+#     Choose File    ${AVATAR_INPUT}    ${IMAGE_PATH}
+    
+#     Sleep    2s
+
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button[2]    RegisterStepThreePass14.png
+
+#     Wait Until Element Is Visible    xpath=//button[contains(text(),"ลงทะเบียนพนักงาน")]    timeout=10s
+#     Click And Capture                xpath=//button[contains(text(),"ลงทะเบียนพนักงาน")]    RegisterStepThreePass15.png
+
+#     # ✅ รอ Modal เปิดจน Title ปรากฏ
+#     Wait Until Element Contains    id=modal-title    ยืนยันการลงทะเบียน    timeout=10s
+
+#     # ✅ รอให้ Backdrop หายก่อน (div ที่ block การคลิก)
+#     Wait Until Page Does Not Contain Element    xpath=//div[@aria-hidden="true" and contains(@class, "bg-opacity-75")]    timeout=10s
+
+#     # ✅ แล้วค่อยคลิกปุ่ม "ยืนยัน"
+#     Click And Capture    xpath=//button[normalize-space(text())="ยืนยัน"]    RegisterStepThreePass16.png
+
+#     # ✅ จากนั้นรอ Swal ลงทะเบียนสำเร็จขึ้น
+#     Wait Until Element Contains    id=modal-title    ลงทะเบียนสำเร็จ    timeout=10s
+#     Click And Capture              xpath=//button[normalize-space(text())="ตกลง"]    RegisterStepThreePass17.png
+
+
+#     Sleep    5s
+#     Capture Page Screenshot    RegisterStepThreePass18.png
+
+
+# Test Case For Employee List Page
+*** Test Cases ***
+Test Case For Employee List Page
+    [Tags]    EditDataEmployee
+    [Documentation]    Edit Data Employee On Employee List Page
+    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/EmployeeEdit/Positive
 
     Go To    ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    RegisterStepThreePass1.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    EmployeeEditPass1.png
     Input Text    xpath=//*[@id="username"]    20240001
     Input Password    xpath=//*[@id="password"]    1234567
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    RegisterStepThreePass2.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    EmployeeEditPass2.png
 
-    #เข้าหน้า Register Page
-    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[1]/a[3]    RegisterStepThreePass3.png
+    #เข้าหน้า Employee List Page
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    EmployeeEditPass3.png
 
-    #ทำการกรอกข้อมูล Step 1 ลงในฟอร์ม Register
-    Input Password    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div/div[1]/div/input    123456
-    Input Password    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div/div[2]/div/input    123456
+    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[1]    EmployeeEditPass4.png
 
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button    RegisterStepThreePass4.png
+    #ทำการแก้ไขข้อมูลพนักงาน
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[44]/td[5]/button[2]    EmployeeEditPass5.png
+
+    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[1]/input    ประยุต
+    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[2]/input    จันทร์โอชา
+    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[3]/input    0999999999
+    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[4]/input    prayut@gmail.com
+    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[5]/textarea    พระนั่งเกล้าาาาาา
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[6]/select    EmployeeEditPass6.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[6]/select/option[4]    EmployeeEditPass7.png
+
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[7]/select    EmployeeEditPass8.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[1]/div[7]/select/option[2]    EmployeeEditPass9.png
+
     Sleep    2s
 
-    #ทำการกรอกข้อมูล Step 2 ลงในฟอร์ม Register
-    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[1]/div[1]/input    Test
-    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[1]/div[2]/input    Caseeeeeeee
+    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div/div[2]/button[2]    EmployeeEditPass10.png
 
-    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div/input    testcase@gmail.com
-
-    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[3]/div/input    0912345678
-
-    Input Text    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[4]/textarea    พระนั่งเกล้า
-
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button[2]    RegisterStepThreePass6.png
     Sleep    2s
-
-    #ทำการกรอกข้อมูล Step 3 ลงในฟอร์ม Register
-    Execute JavaScript    document.querySelector('input[name="contract_start_date"]').value = '2025-04-20'
-    Execute JavaScript    document.querySelector('input[name="contract_start_date"]').dispatchEvent(new Event('change', { bubbles: true }))
-
-    Execute JavaScript    document.querySelector('input[name="contract_end_date"]').value = '2025-10-20'
-    Execute JavaScript    document.querySelector('input[name="contract_end_date"]').dispatchEvent(new Event('change', { bubbles: true }))
-
-    Sleep    5s
-    Capture Page Screenshot    RegisterStepThreePass16.png
-
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[1]/div/select    RegisterStepThreePass7.png
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[1]/div/select/option[4]    RegisterStepThreePass8.png
-
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[2]/div/select    RegisterStepThreePass9.png
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[2]/div[2]/div/select/option[3]    RegisterStepThreePass10.png
-    
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[3]/div/select    RegisterStepThreePass11.png
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[3]/div/select/option[2]    RegisterStepThreePass12.png
-
-    #อัพโหลดไฟล์ avatar
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[2]/div[4]/div/label    RegisterStepThreePass13.png
-
-    Wait Until Page Contains Element    ${AVATAR_INPUT}    timeout=10s
-    Execute JavaScript    document.querySelector('input[type="file"]').removeAttribute('hidden');
-    Choose File    ${AVATAR_INPUT}    ${IMAGE_PATH}
-    
-    Sleep    2s
-
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/form/div[3]/button[2]    RegisterStepThreePass14.png
-
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div[2]/button[1]    RegisterStepThreePass15.png
-
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div[2]/button    RegisterStepThreePass16.png
-
-    Sleep    5s
-    Capture Page Screenshot    RegisterStepThreePass17.png
-
+    Capture Page Screenshot    EmployeeEditPass11.png
