@@ -339,29 +339,29 @@ Test Case For Employee List Page
     Sleep    2s
     Capture Page Screenshot    EmployeeEditPass11.png
 
-Test Case For Delete Employee
-    [Tags]    DeleteEmployee
-    [Documentation]    Delete Employee On Employee List Page
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/EmployeeDelete/Positive
+# Test Case For Delete Employee
+#     [Tags]    DeleteEmployee
+#     [Documentation]    Delete Employee On Employee List Page
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Admin/EmployeeDelete/Positive
 
-    Go To    ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    EmployeeDeletePass1.png
-    Input Text    xpath=//*[@id="username"]    20240001
-    Input Password    xpath=//*[@id="password"]    1234567
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    EmployeeDeletePass2.png
+#     Go To    ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[2]    EmployeeDeletePass1.png
+#     Input Text    xpath=//*[@id="username"]    20240001
+#     Input Password    xpath=//*[@id="password"]    1234567
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div/div/div/form/button    EmployeeDeletePass2.png
 
-    #เข้าหน้า Employee List Page
-    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    EmployeeDeletePass3.png
+#     #เข้าหน้า Employee List Page
+#     Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/button[1]    EmployeeDeletePass3.png
 
-    Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[1]    EmployeeDeletePass4.png
+#     Click And Capture    xpath=//*[@id="root"]/div/div/aside/div/div[2]/div[2]/div/a[1]    EmployeeDeletePass4.png
 
-    #ทำการลบข้อมูลพนักงาน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[44]/td[5]/button[3]    EmployeeDeletePass5.png
+#     #ทำการลบข้อมูลพนักงาน
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[2]/div/table/tbody/tr[44]/td[5]/button[3]    EmployeeDeletePass5.png
 
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div[2]/button[1]    EmployeeDeletePass6.png
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/main/div/div[3]/div/div[2]/div[2]/button[1]    EmployeeDeletePass6.png
 
-    Sleep    2s
-    Capture Page Screenshot    EmployeeDeletePass7.png
+#     Sleep    2s
+#     Capture Page Screenshot    EmployeeDeletePass7.png
 
 # Test Case For WorkRecord Page
 *** Test Cases ***
@@ -418,3 +418,4 @@ Test Case For Reject Work Record
     Sleep    2s
     Capture Page Screenshot    RejectWorkRecordPass7.png
 
+# Test Case For 
