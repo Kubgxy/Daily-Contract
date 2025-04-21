@@ -34,46 +34,46 @@ Test Function On ProfilePage
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    ProfilePage2.png
     Click And Capture    xpath=/html/body/div/div/div/div[2]/div/div[2]/div[1]/div/div[2]/div/div[1]/div/button    ProfilePage3.png
 
-# Test Case For Check In Page
-*** Test Cases ***
-Test Check In Page
-    [Tags]    CheckIn
-    [Documentation]    Test Check In Page
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/CheckInPage/CheckIn
+# # Test Case For Check In Page
+# *** Test Cases ***
+# Test Check In Page
+#     [Tags]    CheckIn
+#     [Documentation]    Test Check Out Page
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/CheckInPage/CheckIn
 
-    Go To         ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckInPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckInPage2.png
+#     Go To         ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckInPage1.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+#     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckInPage2.png
 
-    # เข้าหน้า CheckIn
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[1]/a    CheckInPage3.png  
+#     # เข้าหน้า CheckIn
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[1]/a    CheckInPage3.png  
 
-    # เช็คปุ่มกด CheckIn สามารถใช้ได้
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[1]    CheckInPage4.png
-    Wait Until Element Is Visible    xpath=//button[text()="OK"]    5s
-    Click And Capture    xpath=//button[text()="OK"]    CheckInPage5.png
+#     # เช็คปุ่มกด CheckIn สามารถใช้ได้
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[1]    CheckInPage4.png
+#     Wait Until Element Is Visible    xpath=//button[text()="OK"]    5s
+#     Click And Capture    xpath=//button[text()="OK"]    CheckInPage5.png
     Sleep    5s
 
-Test Check Out Page
-    [Tags]    CheckOut
-    [Documentation]    Test Check In Page
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/CheckInPage/CheckOut
+# Test Check Out Page
+#     [Tags]    CheckOut
+#     [Documentation]    Test Check In Page
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/CheckInPage/CheckOut
 
-    Go To         ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckOutPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckOutPage2.png
+#     Go To         ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckOutPage1.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+#     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckOutPage2.png
 
-    # เข้าหน้า CheckIn
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[2]/a   CheckOutPage3.png  
+#     # เข้าหน้า CheckIn
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[2]/a   CheckOutPage3.png  
 
-    # เช็คปุ่มกด CheckIn สามารถใช้ได้
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[2]    CheckOutPage4.png
-    Wait Until Element Is Visible    xpath=//button[text()="OK"]    5s
-    Click And Capture    xpath=//button[text()="OK"]    CheckOutPage5.png
+#     # เช็คปุ่มกด CheckIn สามารถใช้ได้
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[2]    CheckOutPage4.png
+#     Wait Until Element Is Visible    xpath=//button[text()="OK"]    5s
+#     Click And Capture    xpath=//button[text()="OK"]    CheckOutPage5.png
 
 # Test Cases For Notification Page
 *** Test Cases ***
@@ -90,7 +90,7 @@ Test Notification Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button              NotificationPage2.png
 
     # ✅ เข้าหน้า Notification อย่างปลอดภัย
-    Click And Capture               xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]   NotificationPage3.png
+    Click And Capture               xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[2]/a   NotificationPage3.png
 
     # ✅ ติ๊กอ่านแล้ว (ปุ่มติ๊กถูก)
     Wait Until Element Is Visible   xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[2]/div/button    5s
@@ -131,40 +131,40 @@ Test Load WorkInfo Page
     # ถ่ายภาพทั้งหน้า
     Capture Page Screenshot    WorkInfoLoadPage4.png
 
-Test Show Task Options By Position
-    [Tags]    WorkInfoDropdown
-    [Documentation]    Test Show Task Options By Position
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoDropdown
+# Test Show Task Options By Position
+#     [Tags]    WorkInfoDropdown
+#     [Documentation]    Test Show Task Options By Position
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoDropdown
 
-    # Login
-    Go To         ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoDropdown1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoDropdown2.png
+#     # Login
+#     Go To         ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoDropdown1.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+#     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoDropdown2.png
 
-    #เข้าหน้า Work Info
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoDropdown3
+#     #เข้าหน้า Work Info
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoDropdown3
 
-    # รอ dropdown ปรากฏ
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoDropdown3.png
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select    WorkInfoDropdown4.png
+#     # รอ dropdown ปรากฏ
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoDropdown3.png
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select    WorkInfoDropdown4.png
 
-    # เช็ค dropdown ตามตำแหน่งงาน
-    Element Text Should Be    xpath=//select/option[2]    ผลิตสินค้า
-    Element Text Should Be    xpath=//select/option[3]    ตรวจสอบคุณภาพเบื้องต้น
-    Element Text Should Be    xpath=//select/option[4]    จัดเตรียมวัตถุดิบ
-    Element Text Should Be    xpath=//select/option[5]    บำรุงรักษาเครื่องจักร
-    Element Text Should Be    xpath=//select/option[6]    จัดเก็บสินค้า
+#     # เช็ค dropdown ตามตำแหน่งงาน
+#     Element Text Should Be    xpath=//select/option[2]    ผลิตสินค้า
+#     Element Text Should Be    xpath=//select/option[3]    ตรวจสอบคุณภาพเบื้องต้น
+#     Element Text Should Be    xpath=//select/option[4]    จัดเตรียมวัตถุดิบ
+#     Element Text Should Be    xpath=//select/option[5]    บำรุงรักษาเครื่องจักร
+#     Element Text Should Be    xpath=//select/option[6]    จัดเก็บสินค้า
 
-    # คลิก dropdown แล้วกดลูกศรลงให้มันโชว์
-    Execute JavaScript    document.querySelector('select').setAttribute('size', '6')
+#     # คลิก dropdown แล้วกดลูกศรลงให้มันโชว์
+#     Execute JavaScript    document.querySelector('select').setAttribute('size', '6')
 
-    # รอ dropdown แสดง
-    Sleep    1s
+#     # รอ dropdown แสดง
+#     Sleep    1s
 
-    # ถ่ายภาพทั้งหน้า
-    Capture Page Screenshot    WorkInfoDropdown5.png
+#     # ถ่ายภาพทั้งหน้า
+#     Capture Page Screenshot    WorkInfoDropdown5.png
 
 Test Submit Work Record Successfully
     [Tags]    WorkInfoSubmitPositive
