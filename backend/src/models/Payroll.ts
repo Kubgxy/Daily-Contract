@@ -24,7 +24,7 @@ const PayrollSchema: Schema = new Schema(
     created_at: { type: Date, default: Date.now },
     statusPayroll: {
       type: String,
-      enum: ["UnPaid", "paid"], // กำหนดค่าที่อนุญาต
+      enum: ["UnPaid", "Paid"], // กำหนดค่าที่อนุญาต
       default: "UnPaid",
     },
   },

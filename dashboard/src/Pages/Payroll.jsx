@@ -11,7 +11,6 @@ const PayrollPage = () => {
   const [selectedPayroll, setSelectedPayroll] = useState(null)
   const [filterStatus, setFilterStatus] = useState("all")
   const [searchText, setSearchText] = useState("")
-  const [filterDate, setFilterDate] = useState("")
   const [currentPage, setCurrentPage] = useState(1)
   const [successMessage, setSuccessMessage] = useState("")
   const itemsPerPage = 10
@@ -19,44 +18,76 @@ const PayrollPage = () => {
   useEffect(() => {
     const fetchPayrollData = async () => {
       try {
-        setLoading(true)
-        const response = await axios.get("http://localhost:3000/api/data/payroll",
-          { withCredentials: true })
-        setPayrolls(response.data.data || [])
-      } catch (error) {
-        console.error("Error fetching payroll data:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
+        setLoading(true);
+        // เพิ่ม console.log เพื่อดูการเรียก API
+        console.log("Fetching payroll data...");
 
-    fetchPayrollData()
-  }, [])
+        const response = await axios.get(
+          "http://localhost:3000/api/data/payroll",
+          {
+            withCredentials: true,
+          }
+        );
+
+        console.log("Response data:", response.data); // ดูข้อมูลที่ได้จาก API
+
+        if (response.data && response.data.data) {
+          setPayrolls(response.data.data);
+        } else {
+          console.error("No data received from API");
+          setPayrolls([]);
+        }
+      } catch (error) {
+        console.error("Error fetching payroll data:", error);
+        setError(error.response?.data?.message || "ไม่สามารถโหลดข้อมูลได้");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPayrollData();
+  }, []);
 
   const updateStatusPayroll = async (employee_id, statusPayroll) => {
     try {
-      setLoading(true)
+      setLoading(true);
+  
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      };
+  
       const response = await axios.patch(
         `http://localhost:3000/api/data/payroll/${employee_id}/status`,
-        { statusPayroll },
-        { headers: { Authorization: "Bearer your-auth-token" } },
-        { withCredentials: true })
-
-      setSuccessMessage(response.data.message || "อัปเดตสถานะการจ่ายเงินเรียบร้อยแล้ว")
-      setTimeout(() => setSuccessMessage(""), 3000)
-
-      setPayrolls((prev) =>
-        prev.map((payroll) => (payroll.employee_id === employee_id ? { ...payroll, statusPayroll } : payroll)),
-      )
-      setOpenDialog(false)
+        { statusPayroll: "Paid" },
+        config
+      );
+  
+      if (response.status === 200) {
+        // อัพเดทข้อมูลในตารางทันทีโดยไม่ต้อง refresh
+        setPayrolls(prevPayrolls => 
+          prevPayrolls.map(payroll => 
+            payroll.employee_id === employee_id 
+              ? { ...payroll, statusPayroll: "Paid", updated_at: new Date() }
+              : payroll
+          )
+        );
+  
+        setSuccessMessage("อัปเดตสถานะการจ่ายเงินเรียบร้อยแล้ว");
+        setTimeout(() => setSuccessMessage(""), 3000);
+        setOpenDialog(false);
+      }
+  
     } catch (error) {
-      console.error("Error updating statusPayroll:", error)
-      setSuccessMessage("เกิดข้อผิดพลาดในการอัปเดตสถานะการจ่ายเงิน")
-      setTimeout(() => setSuccessMessage(""), 3000)
+      console.error("Error updating statusPayroll:", error);
+      setSuccessMessage("เกิดข้อผิดพลาดในการอัปเดตสถานะ");
+      setTimeout(() => setSuccessMessage(""), 3000);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleFilterStatus = (e) => {
     const value = e.target.value
@@ -68,11 +99,6 @@ const PayrollPage = () => {
     const value = e.target.value.toLowerCase()
     setSearchText(value)
     setCurrentPage(1) // Reset to first page when search changes
-  }
-
-  const handleDateFilter = (e) => {
-    setFilterDate(e.target.value)
-    setCurrentPage(1) // Reset to first page when date changes
   }
 
   const handlePaymentConfirm = (payroll) => {
@@ -94,16 +120,24 @@ const PayrollPage = () => {
     }).format(amount)
   }
 
-  // Filter payrolls
-  const filteredPayrolls = payrolls.filter(
-    (payroll) =>
-      (filterStatus === "all" || payroll.statusPayroll === filterStatus) &&
-      (!filterDate || payroll.date === filterDate) &&
-      (payroll.employee_name?.toLowerCase().includes(searchText) ||
-        payroll.employee_id?.toString().includes(searchText)) &&
-      payroll.work_hours != null && // ตรวจสอบว่า work_hours ไม่ใช่ null หรือ undefined
-      payroll.work_hours > 0, // และ work_hours มากกว่า 0
-  )
+  const filteredPayrolls = payrolls
+    .filter((payroll) => {
+      // ตรวจสอบข้อมูลที่จำเป็นก่อน
+      if (!payroll) return false;
+
+      // กรองตามการค้นหา
+      const searchMatch =
+        !searchText ||
+        payroll.employee_name?.toLowerCase().includes(searchText.toLowerCase()) ||
+        payroll.employee_id?.toString().includes(searchText);
+
+      // กรองตามสถานะ
+      const statusMatch =
+        filterStatus === "all" ||
+        payroll.statusPayroll === filterStatus;
+
+      return searchMatch && statusMatch;
+    });
 
   // Pagination
   const indexOfLastItem = currentPage * itemsPerPage
@@ -139,7 +173,7 @@ const PayrollPage = () => {
     },
   }
 
-  if (loading && payrolls.length === 0) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-gray-50 dark:bg-dark-900">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-600"></div>
@@ -154,7 +188,8 @@ const PayrollPage = () => {
       </motion.h1>
 
       <motion.div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-6" variants={itemVariants}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* ค้นหาพนักงาน */}
           <div>
             <label htmlFor="search-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               ค้นหาพนักงาน
@@ -163,7 +198,7 @@ const PayrollPage = () => {
               <input
                 id="search-text"
                 type="text"
-                placeholder="ค้นหาพนักงาน..."
+                placeholder="ค้นหาตาม ID หรือชื่อ"
                 value={searchText}
                 onChange={handleSearch}
                 className="form-input pl-10 w-full"
@@ -185,10 +220,10 @@ const PayrollPage = () => {
             </div>
           </div>
 
-
+          {/* สถานะการจ่ายเงิน */}
           <div>
             <label htmlFor="status-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              สถานะ
+              สถานะการจ่ายเงิน
             </label>
             <select
               id="status-filter"
@@ -201,18 +236,7 @@ const PayrollPage = () => {
               <option value="UnPaid">ยังไม่จ่าย</option>
             </select>
           </div>
-          <div>
-            <label htmlFor="date-filter" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-              วันที่
-            </label>
-            <input
-              id="date-filter"
-              type="date"
-              value={filterDate}
-              onChange={handleDateFilter}
-              className="form-input w-full"
-            />
-          </div>
+
         </div>
       </motion.div>
 
@@ -313,11 +337,10 @@ const PayrollPage = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          payroll.statusPayroll === "Paid"
-                            ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
-                            : "bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400"
-                        }`}
+                        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${payroll.statusPayroll === "Paid"
+                          ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
+                          : "bg-amber-100 text-amber-800 dark:bg-amber-900/20 dark:text-amber-400"
+                          }`}
                       >
                         {payroll.statusPayroll === "Paid" ? "จ่ายแล้ว" : "ยังไม่จ่าย"}
                       </span>
@@ -361,11 +384,10 @@ const PayrollPage = () => {
                   <button
                     onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
-                      currentPage === 1
-                        ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                    }`}
+                    className={`relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${currentPage === 1
+                      ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                      : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                      }`}
                   >
                     <span className="sr-only">Previous</span>
                     <svg
@@ -387,11 +409,10 @@ const PayrollPage = () => {
                     <button
                       key={i}
                       onClick={() => handlePageChange(i + 1)}
-                      className={`relative inline-flex items-center px-4 py-2 border ${
-                        currentPage === i + 1
-                          ? "z-10 bg-primary-50 dark:bg-primary-900/20 border-primary-500 dark:border-primary-700 text-primary-600 dark:text-primary-400"
-                          : "bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                      } text-sm font-medium`}
+                      className={`relative inline-flex items-center px-4 py-2 border ${currentPage === i + 1
+                        ? "z-10 bg-primary-50 dark:bg-primary-900/20 border-primary-500 dark:border-primary-700 text-primary-600 dark:text-primary-400"
+                        : "bg-white dark:bg-dark-800 border-gray-300 dark:border-dark-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                        } text-sm font-medium`}
                     >
                       {i + 1}
                     </button>
@@ -400,11 +421,10 @@ const PayrollPage = () => {
                   <button
                     onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                     disabled={currentPage === totalPages}
-                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${
-                      currentPage === totalPages
-                        ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                        : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
-                    }`}
+                    className={`relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 text-sm font-medium ${currentPage === totalPages
+                      ? "text-gray-400 dark:text-gray-600 cursor-not-allowed"
+                      : "text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-dark-700"
+                      }`}
                   >
                     <span className="sr-only">Next</span>
                     <svg
