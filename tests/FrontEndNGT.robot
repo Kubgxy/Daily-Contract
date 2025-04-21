@@ -36,7 +36,7 @@ Test Checkin Outside Allowed Radius
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckIn2.png
 
     #เข้าหน้าระบบบันทึกเวลาทำงาน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[1]    Checkin3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[1]/a    Checkin3.png
 
     Set Geolocation    ${GEO_LAT}    ${GEO_LNG}
     Reload Page
@@ -58,7 +58,7 @@ Test Checkout Outside Allowed Radius
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckOut2.png
 
     #เข้าหน้าระบบบันทึกเวลาทำงาน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[1]    CheckOut3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[1]/a    CheckOut3.png
 
     Set Geolocation    ${GEO_LAT}    ${GEO_LNG}
     Reload Page
@@ -101,7 +101,7 @@ Test Case For Workinfo Page dropdown
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoDropDown2.png
 
     #เข้าหน้าบันทึกข้อมูลการทำงาน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoDropdown3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoDropdown3.png
 
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[2]/div/input    5
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[2]/div/textarea    test
@@ -127,7 +127,7 @@ Test Case For Workinfo Page Hour
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    Hours2.png
 
     #เข้าหน้าบันทึกข้อมูลการทำงาน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    Hours3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    Hours3.png
 
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select    Hours4.png
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select/option[2]    Hours5.png
@@ -156,7 +156,7 @@ Test Case For Request Page leaveRequest Type
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    LeaveRequest2.png
 
     #เข้าหน้าการส่งคำขอ
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    LeaveRequest3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    LeaveRequest3.png
 
     #ทดสอบโดยไม่กรอกข้อมูลประเภทการลา
     Click And Capture    xpath=//*[@id="formType"]    LeaveRequest4.png
@@ -188,7 +188,7 @@ Test Case For Request Page LeaveRequest StartDate
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    StartDate2.png
 
     #เข้าหน้าการส่งคำขอ
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    StartDate3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    StartDate3.png
 
     #ทดสอบโดยไม่กรอกข้อมูลวันที่เริ่มลา
     Click And Capture    xpath=//*[@id="formType"]    StartDate4.png
@@ -220,7 +220,7 @@ Test Case For Request Page LeaveRequest EndDate
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    EndDate2.png
 
     #เข้าหน้าการส่งคำขอ
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    EndDate3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    EndDate3.png
 
     #ทดสอบโดยไม่กรอกข้อมูลวันที่สิ้นสุดลา
     Click And Capture    xpath=//*[@id="formType"]    EndDate4.png
@@ -252,7 +252,7 @@ Test Case For Request Page LeaveRequest Reason
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    Reason2.png
 
     #เข้าหน้าการส่งคำขอ
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    Reason3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    Reason3.png
 
     #ทดสอบโดยไม่กรอกข้อมูลเหตุผลการลา
     Click And Capture    xpath=//*[@id="formType"]    Reason4.png 

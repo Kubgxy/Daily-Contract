@@ -48,7 +48,7 @@ Test Check In Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckInPage2.png
 
     # เข้าหน้า CheckIn
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[1]    CheckInPage3.png  
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[1]/a    CheckInPage3.png  
 
     # เช็คปุ่มกด CheckIn สามารถใช้ได้
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[1]    CheckInPage4.png
@@ -68,7 +68,7 @@ Test Check Out Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckOutPage2.png
 
     # เข้าหน้า CheckIn
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[1]    CheckOutPage3.png  
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[2]/a   CheckOutPage3.png  
 
     # เช็คปุ่มกด CheckIn สามารถใช้ได้
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[2]    CheckOutPage4.png
@@ -122,7 +122,7 @@ Test Load WorkInfo Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoLoadPage2.png
 
     # เช็คหน้าเพจว่าถูกโหลดสําเร็จ
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoLoadPage3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoLoadPage3.png
     Element Text Should Be    xpath=//*[@id="root"]/div/div/div[2]/header/div[1]/div[2]/div/h1    Work Info
 
     # รอหน้าเพจแสดง
@@ -142,6 +142,9 @@ Test Show Task Options By Position
     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoDropdown2.png
+
+    #เข้าหน้า Work Info
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoDropdown3
 
     # รอ dropdown ปรากฏ
     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoDropdown3.png
@@ -176,7 +179,7 @@ Test Submit Work Record Successfully
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoSubmitPositive2.png
 
     # เข้าหน้า WorkInfo
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoSubmitPositive3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoSubmitPositive3.png
 
     # บันทึกข้อมูลการทำงาน
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select    WorkInfoSubmitPositive4.png
@@ -202,7 +205,7 @@ Test Submit Work With Note
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoNoteSubmit2.png
 
     # เข้าหน้า WorkInfo
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoNoteSubmit3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoNoteSubmit3.png
 
     # บันทึกข้อมูลการทำงาน
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/form/div[1]/div[1]/div/select    WorkInfoNoteSubmit4.png
@@ -237,7 +240,7 @@ Test Switch To Work History Tab
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoTabSwitchHistory2.png
 
     # เข้าหน้า WorkInfo
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoTabSwitchHistory3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoTabSwitchHistory3.png
 
     # เข้าหน้าประวัติการทำงาน
     Sleep    1s
@@ -259,7 +262,7 @@ Test Show Record Details In History
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoHistoryDetails2.png
 
     # เข้าหน้า WorkInfo
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoHistoryDetails3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoHistoryDetails3.png
 
     # เข้าหน้าประวัติการทำงาน
     Sleep    1s
@@ -282,7 +285,7 @@ Test Show Tooltip Guidance
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoTooltipUI2.png
 
     # เข้าหน้า WorkInfo
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[3]    WorkInfoTooltipUI3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[3]/a    WorkInfoTooltipUI3.png
 
     # รอ tooltip icon ปรากฏแบบเจาะจง
     Wait Until Element Is Visible    css=svg.lucide.lucide-circle-alert    timeout=10s
@@ -310,7 +313,7 @@ Test Sent Leave Request On Request Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    RequestSent2.png
 
     # เข้าหน้า Request
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    RequestSent3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    RequestSent3.png
 
     # เทสการส่งคำขอแบบฟอร์มขอลาหยุด
     Click And Capture    xpath=//*[@id="formType"]    RequestSent4.png
@@ -343,7 +346,7 @@ Test Sent Overtime Request On Request Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    OvertimeRequest2.png
 
     # เข้าหน้า Request
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    OvertimeRequest3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    OvertimeRequest3.png
 
     # เทสการส่งคำขอแบบฟอร์มขอทำงานล่วงเวลา
     Click And Capture     xpath=//*[@id="formType"]    OvertimeRequest4.png
@@ -378,7 +381,7 @@ Test Sent Edit Data Request On Request Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    Editdatawork2.png
 
     # เข้าหน้า Request
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    Editdatawork3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    Editdatawork3.png
 
     # เทสการส่งคำขอแบบฟอร์มขอแก้ไขข้อมูลการทำงาน
     Click And Capture     xpath=//*[@id="formType"]    Editdatawork4.png
@@ -418,7 +421,7 @@ Test Click To See Details Request
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    ClickSeeDetails2.png
 
     # เข้าหน้า Request
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[4]    ClickSeeDetails3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[4]/a    ClickSeeDetails3.png
 
     # กดปุ่มดูรายละเอียดการส่งคำขอ
     Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[1]/button    ClickSeeDetails4.png
@@ -442,7 +445,7 @@ Test About Page
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    AboutPageLoadPage2.png
 
     # ✅ เข้าหน้า Request
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[5]    AboutPageLoadPage3.png
+    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/div[5]/a    AboutPageLoadPage3.png
 
     # ✅ เปิด Modal About
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/div[2]/button    AboutPageLoadPage4.png
