@@ -48,11 +48,6 @@ const WorkReport = () => {
     setCurrentPage(1); // Reset to first page when date changes
   };
 
-  const handleDepartmentFilterChange = (event) => {
-    setDepartmentFilter(event.target.value);
-    setCurrentPage(1);
-  };
-
   const handleSearchChange = (event) => {
     setSearchUserId(event.target.value);
     setCurrentPage(1); // Reset to first page when search changes
