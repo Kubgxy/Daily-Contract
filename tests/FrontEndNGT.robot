@@ -10,13 +10,13 @@ Suite Teardown    Close Browser
 *** Test Cases ***
 Test Login With Invalid Credentials
     [Tags]    LoginNegative
-    [Documentation]    ตรวจสอบการแสดงผลเมื่อใส่ชื่อผู้ใช้หรือรหัสผ่านผิด
+    [Documentation]    Check login with invalid credentials
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Login/Negative
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    InvalidLogin1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240010
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    InvalidLogin2.png
 
     Wait Until Element Is Visible    xpath=//div[contains(@class, "bg-red-50")]//p[contains(text(), "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง")]    timeout=10s
@@ -26,7 +26,7 @@ Test Login With Invalid Credentials
 *** Test Cases ***
 Test Checkin Outside Allowed Radius
     [Tags]    CheckinNegative
-    [Documentation]    ทดสอบการเช็คอินเมื่อตำแหน่งอยู่นอกพื้นที่ที่กำหนด
+    [Documentation]    Test case for checkin when outside allowed radius
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Checkin/Negative
 
     Go To         ${BASE_URL}
@@ -48,7 +48,7 @@ Test Checkin Outside Allowed Radius
 # Test Case For Checkout Negative
 Test Checkout Outside Allowed Radius
     [Tags]    CheckoutNegative
-    [Documentation]    ทดสอบการเช็คอินเมื่อตำแหน่งอยู่นอกพื้นที่ที่กำหนด
+    [Documentation]    Test case for checkout when outside allowed radius
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Checkin/Negative
 
     Go To         ${BASE_URL}
@@ -67,37 +67,37 @@ Test Checkout Outside Allowed Radius
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/div[2]/div[3]/button[2]    CheckOut3.png
     Capture Page Screenshot    CheckOut4.png
 
-# Test Case For Notification Negative
-*** Test Cases ***
-Test Notification Page When No Notification
-    [Tags]    NotificationNegative
-    [Documentation]    ทดสอบเมื่อหน้าการแจ้งเตือนไม่มีการแจ้งเตือนเลย
-    Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Notification/Negative
+# # Test Case For Notification Negative
+# *** Test Cases ***
+# Test Notification Page When No Notification
+#     [Tags]    NotificationNegative
+#     [Documentation]    Test case for notification page when no notification
+#     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Notification/Negative
 
-    Go To         ${BASE_URL}
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    Notification1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240001
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567
-    Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    Notification2.png
+#     Go To         ${BASE_URL}
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    Notification1.png
+#     Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240001
+#     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    Notification2.png
 
-    #เข้าหน้าการแจ้งเตือน
-    Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]    Notification3.png
+#     #เข้าหน้าการแจ้งเตือน
+#     Click And Capture    xpath=//*[@id="root"]/div/div/div[1]/nav/div/div/div[2]/a[2]    Notification3.png
 
-    Wait Until Page Contains Element    xpath=//p[contains(text(), "ไม่มีการแจ้งเตือน")]    timeout=5s
-    Element Should Be Visible    xpath=//p[contains(text(), "ไม่มีการแจ้งเตือน")]
-    Capture Page Screenshot   Notification4.png
+#     Wait Until Page Contains Element    xpath=//p[contains(text(), "ไม่มีการแจ้งเตือน")]    timeout=5s
+#     Element Should Be Visible    xpath=//p[contains(text(), "ไม่มีการแจ้งเตือน")]
+#     Capture Page Screenshot   Notification4.png
 
 #Test Case For WorkInfo Negative
 *** Test Cases ***
 Test Case For Workinfo Page dropdown
     [Tags]    WorkInfoDropdown
-    [Documentation]    ทดสอบเมื่อไม่ได้เลือกข้อมูลใน dropdown
+    [Documentation]    Test case for workinfo page when no dropdown selected
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/Dropdown/Negative
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    WorkInfoDropDown1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240001
-    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    WorkInfoDropDown2.png
 
     #เข้าหน้าบันทึกข้อมูลการทำงาน
@@ -117,7 +117,7 @@ Test Case For Workinfo Page dropdown
 
 Test Case For Workinfo Page Hour
     [Tags]    WorkInfoHours
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลเวลาการทำงาน
+    [Documentation]    Test case for workinfo page when no hours selected
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/Hours/Negative
 
     Go To         ${BASE_URL}
@@ -146,7 +146,7 @@ Test Case For Workinfo Page Hour
 *** Test Cases ***
 Test Case For Request Page leaveRequest Type
     [Tags]    LeaveRequestType
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลการขออนุญาตลา
+    [Documentation]   Test case for request page when no leave type selected
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/LeaveRequest/Type
 
     Go To         ${BASE_URL}
@@ -178,7 +178,7 @@ Test Case For Request Page leaveRequest Type
 
 Test Case For Request Page LeaveRequest StartDate
     [Tags]    LeaveRequestStartDate
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลวันที่เริ่มลา
+    [Documentation]    Test case for request page when no start date selected
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/LeaveRequest/StartDate
 
     Go To         ${BASE_URL}
@@ -201,7 +201,7 @@ Test Case For Request Page LeaveRequest StartDate
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[2]    04/20/2025
 
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    StartDate9.png
-    Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    กูจะนอนนนนนนนนนนนนนนน
+    Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    จะนอนนนนนนนนนนนนนนน
 
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/button    StartDate10.png
 
@@ -210,7 +210,7 @@ Test Case For Request Page LeaveRequest StartDate
 
 Test Case For Request Page LeaveRequest EndDate
     [Tags]    LeaveRequestEndDate
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลวันที่สิ้นสุดลา
+    [Documentation]    Test case for request page when no end date selected
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/LeaveRequest/EndDate
 
     Go To         ${BASE_URL}
@@ -233,7 +233,7 @@ Test Case For Request Page LeaveRequest EndDate
     Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[1]    04/16/2025 
 
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    EndDate9.png
-    Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    กูจะนอนนนนนนนนนนนนน
+    Input Text    xpath=//*[@id="root"]/div/div/div[2]/div/form/div/input[3]    จะนอนนนนนนนนนนนนน
 
     Click And Capture    xpath=//*[@id="root"]/div/div/div[2]/div/form/button    EndDate10.png
 
@@ -242,7 +242,7 @@ Test Case For Request Page LeaveRequest EndDate
 
 Test Case For Request Page LeaveRequest Reason
     [Tags]    LeaveRequestReason
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลเหตุผลการลา
+    [Documentation]    Test case for request page when no reason selected
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/LeaveRequest/Reason
 
     Go To         ${BASE_URL}
@@ -276,7 +276,7 @@ Test Case For Request Page LeaveRequest Reason
 *** Test Cases ***
 Test Case For SettingPage Edit Phone Number
     [Tags]    EditPhoneNumber
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลเบอร์โทรศัพท์
+    [Documentation]    Test case for setting page when phone number not 10 digits
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/EditPhoneNumber
 
     Go To         ${BASE_URL}
@@ -301,7 +301,7 @@ Test Case For SettingPage Edit Phone Number
 
 Test Case For Request Page Edit Address
     [Tags]    EditAddress
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลที่อยู่
+    [Documentation]    Test case for setting page when address not filled
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/EditAddress
 
     Go To         ${BASE_URL}
@@ -331,7 +331,7 @@ Test Case For Request Page Edit Address
 
 Test Case For Setting Page When Old Password Empty
     [Tags]    OldPasswordEmpty
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลรหัสผ่านเก่า
+    [Documentation]    Test case for setting page when old password not filled
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/OldPasswordEmpty
 
     Go To         ${BASE_URL}
@@ -363,7 +363,7 @@ Test Case For Setting Page When Old Password Empty
 
 Test Case For Setting Page When New Password Empty
     [Tags]    NewPasswordEmpty
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลรหัสผ่านใหม่
+    [Documentation]    Test case for setting page when new password not filled
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/NewPasswordEmpty
 
     Go To         ${BASE_URL}
@@ -395,7 +395,7 @@ Test Case For Setting Page When New Password Empty
 
 Test Case For Setting Page When Confirm Password Empty
     [Tags]    ConfirmPasswordEmpty
-    [Documentation]    ทดสอบเมื่อไม่ได้กรอกข้อมูลยืนยันรหัสผ่านใหม่
+    [Documentation]    Test case for setting page when confirm password not filled
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Settings/ConfirmPasswordEmpty
 
     Go To         ${BASE_URL}

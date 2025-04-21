@@ -43,7 +43,7 @@ Test Check In Page
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckInPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240015
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckInPage2.png
 
@@ -63,7 +63,7 @@ Test Check Out Page
 
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    CheckOutPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240015
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    CheckOutPage2.png
 
@@ -85,8 +85,8 @@ Test Notification Page
     # ✅ Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    NotificationPage1.png
-    Input Text           xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240010
-    Input Password       xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    1234567
+    Input Text           xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
+    Input Password       xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button              NotificationPage2.png
 
     # ✅ เข้าหน้า Notification อย่างปลอดภัย
@@ -111,7 +111,7 @@ Test Notification Page
 *** Test Cases ***
 Test Load WorkInfo Page
     [Tags]    WorkInfoLoadPage
-    [Documentation]    ทดสอบการโหลดหน้า Work Info ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
+    [Documentation]    Test Load WorkInfo Page Ready With Navbar And Postion User
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoLoadPage
 
     # Login
@@ -133,7 +133,7 @@ Test Load WorkInfo Page
 
 Test Show Task Options By Position
     [Tags]    WorkInfoDropdown
-    [Documentation]    ทดสอบว่าการแสดงรายการงานใน dropdown ตรงกับตำแหน่งของผู้ใช้งาน
+    [Documentation]    Test Show Task Options By Position
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoDropdown
 
     # Login
@@ -165,7 +165,7 @@ Test Show Task Options By Position
 
 Test Submit Work Record Successfully
     [Tags]    WorkInfoSubmitPositive
-    [Documentation]    ทดสอบการกรอกงานและชั่วโมงทำงานที่ถูกต้อง พร้อมกดบันทึกสำเร็จ
+    [Documentation]    Test Submit Work Record Successfully
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoSubmitPositive
 
     # Login
@@ -191,7 +191,7 @@ Test Submit Work Record Successfully
 
 Test Submit Work With Note
     [Tags]    WorkInfoNoteSubmit
-    [Documentation]    ทดสอบการเพิ่มหมายเหตุและตรวจสอบว่าแสดงในประวัติได้ถูกต้อง
+    [Documentation]    Test Submit Work With Note 
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoNoteSubmit
 
     # Login
@@ -226,7 +226,7 @@ Test Submit Work With Note
 
 Test Switch To Work History Tab
     [Tags]    WorkInfoTabSwitchHistory
-    [Documentation]    ทดสอบการกดสลับแท็บไปที่ “ประวัติการทำงาน” แล้วข้อมูลแสดงถูกต้อง
+    [Documentation]    Test Switch To Work History Tab
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoTabSwitchHistory
 
     # Login
@@ -248,7 +248,7 @@ Test Switch To Work History Tab
 
 Test Show Record Details In History
     [Tags]    WorkInfoHistoryDetails
-    [Documentation]    ทดสอบการกดปุ่ม “ดูรายละเอียด” ในประวัติแล้วข้อมูลแสดงถูกต้อง
+    [Documentation]    Test Show Record Details In History
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoHistoryDetails
 
     # Login
@@ -271,7 +271,7 @@ Test Show Record Details In History
 
 Test Show Tooltip Guidance
     [Tags]    WorkInfoTooltipUI
-    [Documentation]    ทดสอบการแสดง Tooltip แนะนำเมื่อกดที่ไอคอน และสามารถปิด/เปิดได้
+    [Documentation]    Test Show Tooltip Guidance
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/WorkInfo/WorkInfoTooltipUI
 
     # Login
@@ -297,9 +297,9 @@ Test Show Tooltip Guidance
 
 # Test Cases For Request Page
 *** Test Cases ***
-Test Sent Request On Request Page
+Test Sent Leave Request On Request Page
     [Tags]    RequestSentLeaveRequest
-    [Documentation]    ทดสอบการส่งคำขอลาหยุดในหน้า Request ว่าสามารถส่งได้สำเร็จ
+    [Documentation]    Test Sent Request On Request Page 
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/leaveRequest
 
     # Login
@@ -330,9 +330,9 @@ Test Sent Request On Request Page
     Click And Capture    xpath=/html/body/div[2]/div/div[6]/button[1]     RequestSent13.png 
     Capture Page Screenshot    RequestSent14.png
 
-Test Sent Request On Request Page 
+Test Sent Overtime Request On Request Page 
     [Tags]    RequestSentOvertime
-    [Documentation]    ทดสอบการส่งคำขอทำงานล่วงเวลาในหน้า Request ว่าสามารถส่งได้สำเร็จ
+    [Documentation]    Test Sent Request On Request Page
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/OvertimeRequest
 
     # Login
@@ -365,9 +365,9 @@ Test Sent Request On Request Page
     Click And Capture     xpath=/html/body/div[2]/div/div[6]/button[1]    OvertimeRequest12.png
     Capture Page Screenshot    OvertimeRequest13.png
 
-Test Sent Request On Request Page 
+Test Sent Edit Data Request On Request Page 
     [Tags]    RequestSentEditdatawork
-    [Documentation]    ทดสอบการส่งคำขอแก้ไขข้อมูลการทำงานในหน้า Request ว่าสามารถส่งได้สำเร็จ
+    [Documentation]    Test Sent Edit Data Request On Request Page
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/Editdatawork
 
     # Login
@@ -407,7 +407,7 @@ Test Sent Request On Request Page
 
 Test Click To See Details Request
     [Tags]    RequestClickSeeDetails
-    [Documentation]    ทดสอบการกดปุ่ม “ดูรายละเอียด” ในประวัติแล้วข้อมูลแสดงถูกต้อง
+    [Documentation]    Test Click To See Details Request
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Request/ClickSeeDetails
 
     # Login
@@ -431,7 +431,7 @@ Test Click To See Details Request
 *** Test Cases ***
 Test About Page
     [Tags]   AboutPage
-    [Documentation]    ทดสอบการโหลดหน้า About ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
+    [Documentation]    Test Load About Page And Click To See Details Creator
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/About/AboutPage
 
     # ✅ Login
@@ -460,13 +460,13 @@ Test About Page
 *** Test Cases ***
 Test Case Setting Page
     [Tags]   SettingPage
-    [Documentation]    ทดสอบการโหลดหน้า Setting ว่าข้อมูลถูกโหลดสำเร็จ พร้อม Navbar และตำแหน่งผู้ใช้งาน
+    [Documentation]    Test Load Setting Page And Edit Data
     Set Screenshot Directory    ${EXECDIR}/results/Screenshots/Setting/SettingPage
 
     # Login
     Go To         ${BASE_URL}
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div/div[1]    SettingPageLoadPage1.png
-    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240015
+    Input Text    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[1]/div/input    20240008
     Input Password    xpath=//*[@id="root"]/div/div/div/div[2]/form/div[2]/div/input    123456
     Click And Capture    xpath=//*[@id="root"]/div/div/div/div[2]/form/button    SettingPageLoadPage2.png
 
@@ -485,16 +485,16 @@ Test Case Setting Page
 
     Wait Until Element Is Not Visible    css=.swal2-container    5s
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    SettingPageLoadPage9.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button    SettingPageLoadPage10.png
+    # Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    SettingPageLoadPage9.png
+    # Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/input    123456
+    # Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[1]/button    SettingPageLoadPage10.png
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    SettingPageLoadPage11.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567
+    # Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    SettingPageLoadPage11.png
+    # Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[2]/input    1234567
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    SettingPageLoadPage12.png
-    Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567
+    # Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    SettingPageLoadPage12.png
+    # Input Password    xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[3]/input    1234567
 
-    Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    SettingPageLoadPage13.png
+    # Click And Capture     xpath=//*[@id="root"]/div/div/div[2]/div[2]/div[4]/button    SettingPageLoadPage13.png
 
     Capture Page Screenshot    SettingPageLoadPage3.png
