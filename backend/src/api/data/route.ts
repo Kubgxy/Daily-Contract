@@ -810,10 +810,7 @@ data.get(
 );
 
 // สร้าง API เพื่อแสดงรายงานรายวัน
-data.get(
-  "/daily-report/:date",
-  verifyToken,
-  async (req: Request, res: Response) => {
+data.get("/daily-report/:date", verifyToken, async (req: Request, res: Response) => {
     if (req.user?.role !== "Admin") {
       return res.status(403).json({ message: "Forbidden: Admin only" });
     }

@@ -108,7 +108,7 @@ workinfo.post("/recordwork", verifyToken, async (req, res) => {
 
 
     const workLog = new WorkInfo({
-      employee_id, // ✅ ต้องใส่!
+      employee_id,
       work_date: new Date(),
       detail_work,
       position,

@@ -30,7 +30,8 @@ export const checkContractStatus = async () => {
 
       const timeDiff = new Date(employee.contract_end_date).getTime() - today.getTime();
 
-      if (timeDiff <= SEVEN_DAYS && (!employee.renewal_status || employee.renewal_status === 'None')) {
+      if (timeDiff <= SEVEN_DAYS && (!employee.renewal_status || employee.renewal_status === 'None' 
+        || employee.renewal_status === 'Approved')) {
         employee.renewal_status = 'Pending';
         await employee.save();
 

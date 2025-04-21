@@ -15,10 +15,7 @@ const SECRET_KEY =
   process.env.SECRET_KEY || "japaitarmhasecrettummai-secretuyounii"; // ใช้ ENV สำหรับความปลอดภัย
 
 // API Register
-auth.post(
-  "/register",
-  upload.single("avatar"),
-  async (req: Request, res: Response) => {
+auth.post("/register", upload.single("avatar"), async (req: Request, res: Response) => {
     const {
       first_name,
       last_name,
@@ -52,21 +49,21 @@ auth.post(
         return res.status(400).json({ message: "Missing field!!!" });
       }
 
-      // ค้นหา employee_id ล่าสุด
-      const lastEmployee = await Employee.findOne().sort({ employee_id: -1 });
-
       // ตรวจสอบ username หรือ email ซ้ำ
       const existingUser = await Employee.findOne({
         $or: [{ username }, { email }],
       });
       if (existingUser) {
         return res
-          .status(400)
-          .json({ message: "Username or Email already exists" });
+        .status(400)
+        .json({ message: "Username or Email already exists" });
       }
-
+      
       // เข้ารหัสรหัสผ่าน
       const hashedPassword = await bcrypt.hash(password, 10);
+
+      // ค้นหา employee_id ล่าสุด
+      const lastEmployee = await Employee.findOne().sort({ employee_id: -1 });
 
       // สร้าง employee_id ใหม่
       const employeeId = lastEmployee
@@ -163,11 +160,9 @@ auth.post("/login", async (req: Request, res: Response) => {
 
     // ✅ เก็บ Token ใน HttpOnly Cookie
     res.cookie("employee_token", token, {
-      httpOnly: true, // ❌ ป้องกัน JavaScript ดึง Token (XSS Protection)
-      // secure: true, // ต้องเป็น true ถ้าใช้กับ cross-origin + chrome
-      // sameSite: "none", // สำคัญมาก!!!
-      secure: false,        // ✅ สำหรับ dev (ถ้า prod ต้อง true + https)
-      sameSite: "strict",   // ✅ ต้อง strict ถ้าใช้ localhost ทั้ง frontend + backend
+      httpOnly: true,
+      secure: false, 
+      sameSite: "strict", 
       maxAge: 3600000, // 1 ชั่วโมง
     });
 

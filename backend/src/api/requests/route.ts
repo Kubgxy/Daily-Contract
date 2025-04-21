@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import multer from "multer";
 import path from "path";
 import dotenv from "dotenv";
+import { io , onlineUsers } from "../../app";
 
 //Models
 import Requests from "../../models/Request";
@@ -456,7 +457,13 @@ requests.post("/updateRequestStatus", async (req: Request, res: Response) => {
         console.log("✅ บันทึก overtime สำเร็จแล้ว");
       }
       
-      
+      const socketId = onlineUsers.get(request.employee_id);
+      if (socketId) {
+        io.to(socketId).emit("notify", {
+          title: action === "approved" ? "คำขอได้รับการอนุมัติ" : "คำขอถูกปฏิเสธ",
+          message: `คำขอ ${type} ของคุณได้รับการ ${action === "approved" ? "อนุมัติ" : "ปฏิเสธ"} โดย ${approved_by}`,
+        });
+      }
   
       return res.status(200).json({
         status: "Success",
@@ -623,6 +630,14 @@ requests.post("/approveLeaveRequest", async (req: Request, res: Response) => {
             await LeaveRecords.create(newLeaveRecord);
         }
 
+        const socketId = onlineUsers.get(request.employee_id);
+        if (socketId) {
+            io.to(socketId).emit("notify", {
+                title: action === "approved" ? "คำขอได้รับการอนุมัติ" : "คำขอถูกปฏิเสธ",
+                message: `คำขอลาของคุณได้รับการ ${action === "approved" ? "อนุมัติ" : "ปฏิเสธ"} โดย ${approved_by}`,
+        })
+        }
+        
         return res.status(200).json({
             code: "Success-02-0004",
             status: "Success",
