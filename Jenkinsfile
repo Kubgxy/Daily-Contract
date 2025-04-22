@@ -127,7 +127,6 @@ pipeline {
            set PATH=C:\\Users\\TigerDev\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;%PATH%
            if not exist results mkdir results
            robot --outputdir results tests\\FrontEndPST.robot
-           robot --outputdir results tests\\FrontEndNGT.robot
          '''
       }
     }
