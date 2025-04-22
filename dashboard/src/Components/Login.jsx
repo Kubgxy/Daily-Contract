@@ -28,7 +28,7 @@ function Login() {
           withCredentials: true,
         })
 
-        if (meRes.data.role !== "Admin") {
+        if (meRes.data.role !== "Admin" && meRes.data.role !== "Manager") {
           setError("เฉพาะแอดมินเท่านั้นที่สามารถเข้าสู่ระบบนี้ได้")
           return
         }
